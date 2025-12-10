@@ -1,0 +1,105 @@
+\documentclass[a4paper]{book}
+
+\usepackage{sectsty}
+\usepackage{graphicx}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{cancel}
+\usepackage{enumerate}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{xcolor}
+\usepackage{centernot}
+\usetikzlibrary{intersections}
+\usetikzlibrary{calc}
+\usetikzlibrary{pgfplots.groupplots}
+\usetikzlibrary{arrows.meta, patterns}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{compat=1.18}
+
+% \usepackage{yhmath}
+% \usepackage{float}
+% \usepackage{listings}
+
+% \lstset{basicstyle=\small, keywordstyle=\color{black}\bfseries, numbers=left, numberstyle=\tiny,
+% stepnumber=2, numbersep=5pt}
+
+\newtheorem{axiom}{Assioma}
+\newtheorem{principle}{Principio}
+\newtheorem{thm}{Teorema}
+\newtheorem{cor}{Corollario}
+\newtheorem{lemma}[section]{Lemma}
+\newtheorem{define}[section]{Definizione}
+\newtheorem{prop}[section]{Proposizione}
+\newtheorem{property}[section]{Proprietà}
+\newtheorem{es}[section]{Esempio}
+\newtheorem{notation}{Notazione}
+\newtheorem{obs}[section]{Osservazione}
+\newtheorem{limnot}{Limite notevole}
+
+\renewcommand{\thelimnot}{\Roman{limnot}}
+\renewcommand{\proofname}{Dim.}
+
+\newcommand{\definit}{\text{Definit.}}
+\newcommand{\conj}{\overline}
+\newcommand{\conv}{\text{Conv.}}
+\newcommand{\fix}{\text{Fiss.}}
+\def\sgn{\mathrm{sgn}}
+
+\newcommand{\uniformto}{\overset{u}{\to}}
+
+\newcommand{\verteq}{\rotatebox{90}{$\,=$}}
+\newcommand{\equalto}[2]{\underset{\scriptstyle\overset{\mkern4mu\verteq}{#2}}{#1}}
+\newcommand{\geqto}[2]{\underset{\scriptstyle\overset{\mkern4mu\geqslant}{#2}}{#1}}
+
+\newcommand{\slim}{\mathop{\mathrm{s-lim}}}
+
+
+\definecolor{teal}{HTML}{14A4A6}
+\definecolor{blue}{HTML}{1043e7}
+\definecolor{tyrian}{HTML}{BE3075}
+\definecolor{amber}{HTML}{FFBF00}
+
+% Margins
+\textwidth=16cm
+\textheight=23cm
+% \headheight=0cm
+% \headsep=0cm
+\evensidemargin=0cm
+\oddsidemargin=0cm
+% \topmargin=0cm
+% \topskip=0cm
+
+\title{ Analisi 1 }
+\author{ Luca Fagaraz }
+% \date{\today}
+
+\begin{document}
+\maketitle	
+\pagebreak
+
+\tableofcontents
+\pagebreak
+
+\include{logic}
+
+\include{hyperbolictrig}
+
+\include{complex}
+
+\include{sequences}
+
+\include{series}
+
+\include{functions}
+
+\include{derivatives}
+
+\include{integrals}
+
+\include{seq_ser_functions}
+
+
+\end{document}

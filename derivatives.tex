@@ -1,0 +1,858 @@
+\chapter{Derivate}
+
+
+\section{Introduzione}
+
+
+\begin{define}[Rapporto incrementale]
+  Sia $f:(a, b) \to \mathbb{R}$ e $x_0 \in (a,b)$, sia $h \neq 0$, 
+  si definisce \textbf{rapporto incrementale} di $f$ in $x_0$:
+
+  $$
+    R(f, x_0, h) = \dfrac{f(x_0 + h) - f(x_0)}{h}
+  $$
+\end{define}
+
+
+\begin{define}[Derivata]
+  Una funzione reale $f$ è \textbf{derivabile} in $x_0$ se:
+
+  $$
+    \lim_{h\to 0}R(f, x_0, h) = l \in \mathbb{R}
+  $$
+
+  $l$ è detto \textbf{derivata} di $f$ in $x_0$.
+\end{define}
+
+
+\begin{notation}
+  $\dfrac{df}{dx}(x_0)$, $f'(x_0)$, $\dot{f}(x_0)$, $Df(x_0)$
+\end{notation}
+
+
+
+\section{Differenziabilità}
+
+
+\begin{notation}
+  $\omega(h)$: $\omega(h) \to 0 \iff h \to 0$
+\end{notation}
+
+
+\begin{define}[Differenziabilità]
+  Sia $f:(a,b) \to \mathbb{R}$ e $x_0 \in (a,b)$, $f$ è \textbf{differenziabile} in 
+  $x_0$ se:
+
+  $$
+    \exists L\in \mathbb{R}~\colon~f(x_0 + h) = f(x_0) + L\cdot h + h\omega(h)
+  $$
+\end{define}
+
+\begin{obs}
+  Sia $x_0 + h := x$, allora:
+
+  $$
+    f(x) = \underbrace{f(x_0) + L (x-x_0)}_{\text{retta}} + \underbrace{(x-x_0)\omega(x-x_0)}_{errore}
+  $$
+\end{obs}
+
+
+\begin{thm}
+  Sia $f$ una funzione reale, allora $f$ è differenziabile in $x_0$ $\iff$ $f$ è derivabile in $x_0$. In particolare:
+
+  $$
+    L = f'(x_0)
+  $$
+  $$
+    f(x) = f(x_0) + f'(x_0)(x-x_0) + (x-x_0) \omega(x-x_0)
+  $$
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item ($\Rightarrow$): Dato che $f$ è differenziabile, $\exists L \in \mathbb{R}$ t.che:
+          $$
+            f(x_0 + h) = f(x_0) + L\cdot h + h\omega(h) \iff f(x_0 + h) - f(x_0) = h(L + \omega(h))
+          $$
+
+          dato che $h \neq 0$:
+
+          $$
+            \dfrac{f(x_0 + h) - f(x_0)}{h} = L + \omega(h) \iff f'(x_0) = L \in \mathbb{R}
+          $$
+    \item ($\Leftarrow$): Dato che $f$ è derivabile:
+          $$
+            \dfrac{f(x_0 + h) - f(x_0)}{h} \underset{h\to 0}{\to} f'(x_0) \iff \dfrac{f(x_0 + h) - f(x_0)}{h} - f'(x_0) \underset{h\to 0}{\to} 0
+          $$
+
+          quindi:
+
+          $$
+            \dfrac{f(x_0 + h) - f(x_0)}{h} - f'(x_0) = \omega(h) \implies f(x_0 + h) = f(x_0) + h\equalto{f'(x_0)}{L} + h\omega(h)
+          $$
+  \end{itemize}
+\end{proof}
+
+
+\begin{thm}
+  Se $f$ è derivabile in $x_0$, allora è continua in $x_0$.
+\end{thm}
+
+\begin{proof}
+  Dato che $f$ è derivabile in $x_0$, è differenziabile in $x_0$. Quindi:
+
+  $$
+    f(x) = f(x_0) + f'(x_0)(x-x_0) + (x-x_0)\omega(x-x_0)
+  $$
+
+  si ha che (dato che $f'(x_0)$ è finito):
+
+  $$
+    f'(x_0)(x-x_0) \underset{x\to x_0}{\to} 0
+  $$
+  $$
+    (x-x_0)\omega(x-x_0) \underset{x\to x_0}{\to} 0
+  $$
+
+  quindi:
+
+  $$
+    f(x) \underset{x\to x_0}{\to} f(x_0)
+  $$
+
+  che è la definizione di continuità in $x_0$.
+\end{proof}
+
+
+\section{La funzione derivata}
+
+
+\begin{define}[Funzione derivata]
+  Sia $f: \mathfrak{I} \to \mathbb{R}$, si definisce \textbf{funzione derivata} di $f$ la funzione 
+  $f': \mathfrak{D}(f') \to \mathbb{R}$ così definita:
+
+  $$
+    x \mapsto f'(x)
+  $$
+
+  dove $\mathfrak{D}(f') := \{x \in \mathfrak{I}~\colon\text{ f è derivabile in } x\} \subset \mathfrak{I}$
+\end{define}
+
+\begin{obs}
+  Può essere che $\mathfrak{D}(f') = \emptyset$
+\end{obs}
+
+\begin{obs}[$\diamondsuit$]
+  Se $\mathfrak{I} = [a, b]$, derivabile in $a$ significa che $\exists f'_+(a)$
+\end{obs}
+
+
+\begin{thm}
+  Sia $f: \mathfrak{I} \to \mathbb{R}$ derivabile in $\mathfrak{I}$, la funzione derivata $f': \mathfrak{I} \to \mathbb{R}$ 
+  ha la proprietà di Darboux.
+\end{thm}
+
+\begin{proof}
+  Siano $x, y \in \mathfrak{I}$ con $x < y$. Allora:
+  \begin{itemize}
+    \item Se $f'(x) = f'(y)$, la proprietà è verificata
+    \item Se $f'(x) \neq f'(y)$, si supponga $f'(x) < f'(y)$ e sia $\gamma \in \mathbb{R}~\colon~f'(x) < \gamma < f'(y)$, si vuole 
+          mostrare che $\exists c \in [x, y]~\colon~f'(c) = \gamma$. \\
+
+          Sia $g:[x, y] \to \mathbb{R}$ così definita:
+
+          $$
+            g(t) = f(t) - \gamma t
+          $$
+          
+          si ha che $g$ è derivabile in $[x, y]$ (poiché $f$ lo è). Inoltre:
+
+          $$
+            g'(t) = f'(t) - \gamma
+          $$
+
+          si ha che $g'(y) = f'(y) - \gamma > 0$, mentre $g'(x) = f'(x) - \gamma < 0$. Dato che $g$ è continua, ammette massimo e minimo 
+          in $[x, y]$ (per il teorema di Weierstrass). Inoltre, si ha che non può assumere il minimo in $x$. Infatti, se così fosse, si avrebbe che:
+
+          $$
+            g(x) \leqslant g(t)~\forall t \in [x, y]
+          $$
+          $$
+            g'(x) = \lim_{h \to 0^+}\dfrac{f(x + h) - f(x)}{h} \geqslant 0~~~\text{ Th. della perm. del segno }
+          $$
+
+          che contraddice l'osservazione precedente. Lo stesso si può dire per $y$. Si può quindi concludere che:
+
+          $$
+            \exists c \in [x, y]~\colon~g'(c) = 0 \implies f'(c) = \gamma
+          $$
+  \end{itemize}
+\end{proof}
+
+
+\begin{define}
+  $\mathcal{C}'(\mathfrak{I}) := \{f:\mathfrak{I} \to \mathbb{R}~\colon~f \text{ è derivabile e } f' \text{ è continua}\}$
+\end{define}
+
+
+\section{Derivate successive}
+
+\begin{define}[Derivata $n$-esima]
+  Sia $f: \mathfrak{I} \to \mathbb{R}$ derivabile in $\mathcal{U}(x_0)$. Detta $f^{(0)}$ la funzione stessa, se $f^{(n-1)}$ è definita 
+  in $\mathcal{U}(x_0)$, si definisce \textbf{derivata $n$-esima} di $f$ in $x_0$ $f^{(n)}(x_0)$ la derivata di $f^{(n-1)}$ in $x_0$.
+\end{define}
+
+\begin{define}
+  $\mathcal{C}^n(\mathfrak{I}) := \{f: \mathfrak{I} \to \mathbb{R}~\colon~f \text{ è derivabile } n \text{ volte e } f^{(n)} \text{ è continua }\}$
+\end{define}
+
+\begin{define}
+  $\mathcal{C}^{\infty}(\mathfrak{I}) := \{f: \mathfrak{I} \to \mathbb{R}~\colon~\exists f^{(n)}~\forall n \in \mathbb{N}\}$
+\end{define}
+
+\section{Teoremi sulle funzioni derivabili}
+
+\begin{thm}[Teorema di Lagrange]
+  Sia $f:[a, b] \to \mathbb{R}$ t.che:
+
+  \begin{itemize}
+    \item $f$ è continua in $[a, b]$
+    \item $f$ è derivabile in $(a, b)$
+  \end{itemize}
+
+  allora:
+
+  $$
+    \exists c \in (a, b)~\colon~f'(c) = \dfrac{f(b) - f(a)}{b-a}
+  $$ 
+\end{thm}
+
+\begin{cor}[Teorema di Rolle]
+  Sia $f:[a, b] \to \mathbb{R}$ t.che:
+
+  \begin{itemize}
+    \item $f$ è continua in $[a, b]$
+    \item $f$ è derivabile in $(a, b)$
+    \item $f(a) = f(b)$
+  \end{itemize}
+
+  allora:
+
+  $$
+    \exists c \in (a, b)~\colon~f'(c) = 0
+  $$ 
+\end{cor}
+
+\begin{proof}
+  Si dimostrerà prima il caso in cui $f(a) = f(b)$ (quindi $f'(c) = 0$). \\
+  Dato che $f$ è continua, per il teorema di Weierstrass ammette massimo e minimo in $[a, b]$. I possibili casi sono che:
+
+  \begin{itemize}
+    \item $f$ assume sia il massimo che il minimo agli estremi. In tal caso $f$ è costante, quindi $f'(x) = 0~\forall x \in (a, b)$
+    \item $f$ assume almeno uno tra il massimo e il minimo in un punto interno. In tal caso, detto $c$ l'ascissa del minimo o del massimo interno,
+          per il teorema di Fermat, $f'(c) = 0$  
+  \end{itemize}
+
+  si consideri ora $f(a) \neq f(b)$. Sia $g: [a, b] \to \mathbb{R}$ t.che:
+
+  $$
+    g(x) = \dfrac{f(b) - f(a)}{b-a}(x-a) - f(x)
+  $$
+
+  si ha che:
+
+  $$
+    g(a) = -f(a) = g(b)
+  $$
+
+  quindi $g$ soddisfa le ipotesi del teorema di Rolle. Quindi:
+
+  $$
+    \exists c \in (a, b)~\colon~f'(c) = \dfrac{f(b) - f(a)}{b-a}
+  $$
+\end{proof}
+
+
+\begin{cor}
+
+\end{cor}
+
+
+\begin{thm}[Teorema di Cauchy]
+  Siano $f, g: [a, b] \to \mathbb{R}$ due funzioni t.che:
+
+  \begin{itemize}
+    \item $f$ e $g$ sono continue in $[a, b]$
+    \item $f$ e $g$ sono derivabili in $(a, b)$
+  \end{itemize}
+
+  allora:
+
+  $$
+    \exists c \in (a, b)~\colon~f'(c)[g(b) - g(a)] = g'(c)[f(b) - f(a)]
+  $$
+\end{thm}
+
+\begin{proof}
+  Sia $h:[a,b] \to \mathbb{R}$ t.che:
+
+  $$
+    h(x) = [f(b) - f(a)]g(x) - [g(b) - g(a)]f(x)
+  $$
+
+  si ha che $h(x)$ soddisfa le ipotesi di Rolle.
+\end{proof}
+
+
+\begin{thm}[Condizione sufficiente di derivabilità]
+  Sia $f:\mathcal{U}(x_0) \to \mathbb{R}$ t.che:
+
+  \begin{itemize}
+    \item $f$ sia derivabile in $\dot{\mathcal{U}}(x_0)$
+    \item $f$ sia continua in $x_0$
+    \item $\displaystyle \exists l \in \mathbb{R}~\colon~\lim_{x\to x_0}f'(x) = l$
+  \end{itemize}
+
+  allora $f$ è derivabile in $x_0$ e $f'(x_0) = l$.
+\end{thm}
+
+\begin{proof}
+  Si dimostrerà che $f'_+(x_0) = l$. Si consideri, per $h > 0$, l'intervallo $[x_0, x_0 + h]$. Si ha che $f$ soddisfa le ipotesi del 
+  teorema di Lagrange in tale intervallo. Quindi:
+
+  $$
+    \exists x_h,~x_0 < x_h < x_0 + h~\colon~f'(x_h) = \dfrac{f(x_0 + h) - f(x_0)}{h}
+  $$
+
+  dato che, per confronto:
+
+  $$
+    x_h \underset{h \to 0^+}{\to} x_0
+  $$
+
+  si ha che:
+
+  $$
+    \lim_{x \to x_0^+}f'(x) = f'(x_0)
+  $$
+\end{proof}
+
+
+\begin{thm}[Derivabilità e monotonia ($\diamondsuit$)]
+  Sia $f: [a, b] \to \mathbb{R}$ una funzione che soddisfi le ipotesi del teorema di Lagrange, allora:
+
+  $$
+    f \text{ è crescente } \iff f'(x) \geqslant 0~\forall x \in (a, b)
+  $$
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item ($\Rightarrow$): Sia $x_0 \in (a, b)$ fissato e $h > 0$:
+          $$
+            \dfrac{f(x_0 + h) - f(x_0)}{h} \geqslant 0~\text{ per ipotesi } \implies f'_+(x_0) \geqslant 0~\text{ Th. della perm. del segno }
+          $$ 
+    \item ($\Leftarrow$): Sia $[x, y] \subset (a, b)$ e si applichi il teorema di Lagrange ad $f$ in $[x, y]$:
+          $$
+            \exists z \in (x, y)~\colon~\geqto{f'(z)}{0}(y - x) = f(y) - f(x) \geqslant 0
+          $$
+  \end{itemize}
+\end{proof}
+
+
+\begin{thm}
+  Sia $f: [a, b] \to \mathbb{R}$ una funzione che soddisfi le ipotesi del teorema di Lagrange, allora:
+
+  $$
+    f'(x) > 0~\forall x \in (a, b) \implies f~\text{ è strettamente crescente }
+  $$
+\end{thm}
+
+\begin{proof}
+  La dimostrazione è analoga alla precedente.
+\end{proof}
+
+\begin{obs}
+  Il viceversa non vale.
+\end{obs}
+
+\begin{es}
+  $f(x) = x^3$
+\end{es}
+
+
+\begin{cor}
+  $f$ è costante $\iff$ $f' = 0$
+\end{cor}
+
+
+\section{Funzioni convesse}
+
+\begin{define}[Combinazione convessa]
+  Siano $x, y \in \mathbb{R}$, si definisce \textbf{combinazione convessa} di $x$ e $y$ il numero:
+
+  $$
+    z_{\lambda} = \lambda x + (1 - \lambda)y~~~\lambda \in (0, 1)
+  $$
+\end{define}
+
+\begin{obs}
+  Tutti e soli i numeri tra $x$ e $y$ sono combinazioni convesse di $x$ e $y$.
+\end{obs}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{define}[Convessità]
+  Sia $f: [x, y] \to \mathbb{R}$, $f$ è \textbf{convessa} in se:
+
+  $$
+    \forall \lambda \in (0, 1)~~~f(\lambda x + (1 - \lambda)y) \leqslant \lambda f(x) + (1-\lambda)f(y)
+  $$
+\end{define}
+
+\begin{obs}
+  La definizione di funzione convessa equivale a dire che il grafico di $f$ sta sotto alla retta passante per $x$ e $y$.
+\end{obs}
+
+\begin{proof}
+  Sia $r$ la retta passante per $x$ e $y$:
+
+  $$
+    r(t) = \dfrac{f(y)-f(x)}{y-x}(t - x) + f(x)
+  $$
+
+  si vuole mostrare che:
+
+  $$
+    f(t) \leqslant r(t)~\forall t \in [x, y]~\iff~f(\lambda x + (1 - \lambda)y) \leqslant \lambda f(x) + (1-\lambda)f(y)~\forall \lambda \in [0, 1]
+  $$
+
+  si ha che:
+
+  $$
+    f(z_{\lambda}) \leqslant r(z_{\lambda})~\forall \lambda \in [0, 1]
+  $$
+
+  $$
+    f(\lambda x + (1 - \lambda)y) \leqslant \dfrac{f(y)-f(x)}{y-x}(\lambda x + (1 - \lambda)y - x) + f(x)
+  $$
+
+  $$
+    f(\lambda x + (1 - \lambda)y) \leqslant \dfrac{f(y)-f(x)}{\cancel{y-x}}(1 - \lambda)(\cancel{y - x}) + f(x)
+  $$
+
+  $$
+    f(\lambda x + (1 - \lambda)y) \leqslant \cancel{f(x)} + f(y) - \lambda f(y) - \cancel{f(x)} + \lambda f(x)
+  $$
+
+  $$
+    f(\lambda x + (1 - \lambda)y) \leqslant \lambda f(x) + (1 - \lambda)f(y)
+  $$
+\end{proof}
+
+\begin{define}[Funzione convessa]
+  Una funzione $f:\mathfrak{I} \to \mathbb{R}$ è \textbf{convessa} se è convessa in ogni $[x, y] \subset \mathfrak{I}$.
+\end{define}
+
+\begin{define}[Funzione concava]
+  Una funzione $f:[a,b] \to \mathbb{R}$ è \textbf{concava} se $-f$ è convessa.
+\end{define}
+
+
+\begin{obs}
+  Una funzione $f$ è convessa $\iff$ $\forall x < y$ e $\forall z_{\lambda}$ $m_r \leqslant m_p$.
+\end{obs}
+
+\begin{center}
+  \begin{tikzpicture}
+  \begin{axis}[
+    width=10cm,
+    height=8cm,
+    xmin=-1, xmax=6,
+    ymin=-1, ymax=6,
+    axis lines=middle,
+    axis line style={->},
+    xtick=\empty,
+    ytick=\empty,
+  ]
+
+  % Convex function (example)
+  \addplot[domain=0.5:5.5, smooth, thick, blue]
+      {0.5*(x-3)^2 + 1};
+
+  % Coordinates
+  \coordinate (X) at (1, {0.5*(1-3)^2 + 1});
+  \coordinate (Y) at (5, {0.5*(5-3)^2 + 1});
+  \coordinate (Z) at (3, {0.5*(3-3)^2 + 1}); % z_lambda at center
+
+  % Mark points
+  \addplot[only marks, mark=*] coordinates {(1, {0.5*(1-3)^2 + 1})};
+  \addplot[only marks, mark=*] coordinates {(5, {0.5*(5-3)^2 + 1})};
+  \addplot[only marks, mark=*] coordinates {(3, {0.5*(3-3)^2 + 1})};
+
+  % Labels
+  \node[below] at (axis cs:1,0) {$x$};
+  \node[below] at (axis cs:5,0) {$y$};
+  \node[below] at (axis cs:3,0) {$z_\lambda$};
+
+  \node[left] at (X) {$f(x)$};
+  \node[right] at (Y) {$f(y)$};
+  \node[below] at (Z) {$f(z_\lambda)$};
+
+  % Line segments r and p
+  \draw[amber, thick] (X) -- (Z) node[midway, above] {$r$};
+  \draw[amber, thick] (Z) -- (Y) node[midway, above] {$p$};
+
+  \draw[dashed, gray] (1, 0) -- (X);
+  \draw[dashed, gray] (5, 0) -- (Y);
+
+  \end{axis}
+  \end{tikzpicture}
+\end{center}
+
+\begin{proof}
+  Siano $x < y$ fissati. Si ha che:
+
+  $$
+    m_r = \dfrac{f(z_{\lambda}) - f(x)}{z_{\lambda} - x}
+  $$
+  $$
+    m_p = \dfrac{f(z_{\lambda}) - f(y)}{z_{\lambda} - y}
+  $$
+
+  inoltre:
+
+  $$
+    z_{\lambda} - x = \lambda x + (1 - \lambda) y - x = (\lambda - 1)(x - y)
+  $$
+  $$
+    z_{\lambda} - y = \lambda x + (1 - \lambda) y - y = \lambda (x - y)
+  $$
+
+  quindi:
+
+  \begin{align*}
+    m_r \leqslant m_p &\iff \dfrac{f(z_{\lambda}) - f(x)}{(\lambda - 1)(x - y)} \leqslant \dfrac{f(z_{\lambda}) - f(y)}{\lambda (x - y)} \\
+                      &\iff \dfrac{f(z_{\lambda}) - f(x)}{(\lambda - 1)} \geqslant \dfrac{f(z_{\lambda}) - f(y)}{\lambda} \\
+                      &\iff (f(z_{\lambda}) - f(x))\lambda \leqslant (f(z_{\lambda}) - f(y))(\lambda - 1) \\
+                      &\iff - f(x)\lambda \leqslant f(y) - \lambda f(y) - f(z_{\lambda}) \\
+                      &\iff f(z_{\lambda}) \leqslant f(x)\lambda + (1 - \lambda)f(y) \\
+  \end{align*}
+\end{proof}
+
+
+\begin{thm}
+  Se $f: [a, b] \to \mathbb{R}$ è convessa $\implies$ $f$ è continua in $(a, b)$.
+\end{thm}
+
+\begin{obs}
+  La convessità non implica la derivabilità.
+\end{obs}
+
+\begin{thm}
+  Sia $f: [a, b] \to \mathbb{R}$ una funzione convessa e si assuma che $f$ sia 
+  derivabile in $x_0 \in [a, b]$, Allora:
+
+  $$
+    f(x) \geqslant \tau(x)~~~\forall x \in [a, b]
+  $$
+
+  dove $\tau$ è la tangente al grafico di $f$ in $x_0$.
+\end{thm}
+
+\begin{proof}
+  Si fissi $x_0 \in [a, b]$, la tangente in $x_0$ risulta essere:
+
+  $$
+    \tau(x) = f'(x_0)(x - x_0) + x_0
+  $$
+
+  sia $ x := x_0 + h$  con $h > 0$. Sia quindi $z_{\lambda} \in [x_0, x_0 + h]$:
+
+  $$
+    z_{\lambda} = \lambda x_0 + (1 - \lambda)(x_0 + h) = x_0 + h(1 - \lambda)
+  $$
+
+  si ha che, dato che $f$ è convessa:
+
+  $$
+    f(z_{\lambda}) \leqslant \lambda f(x_0) + (1 - \lambda)f(x_0 + h) = \lambda (f(x_0) - f(x_0 + h)) + f(x_0 + h)
+  $$
+\end{proof}
+
+
+\begin{define}
+  Sia $f: [a, b] \to \mathbb{R}$ e $x_0 \in (a, b)$, $x_0$ si dice 
+  \textbf{punto di cambio di concavità} (o convessità) se:
+
+  $$
+    \exists \varepsilon > 0~\colon~f~\text{ è concava in }~[x_0 - \varepsilon, x_0]~\text{ e }~f~\text{ è convessa in }~[x_0, x_0 + \varepsilon]
+  $$
+
+  o viceversa.
+\end{define}
+
+\begin{obs}
+  Se in $x_0$ $f$ è derivabile, in $x_0$ si ha un flesso.
+\end{obs}
+
+
+\begin{thm}
+  Sia $f: [a, b] \to \mathbb{R}$ t.che $f$ è derivabile in $[a, b]$ e $\forall x_0 \in [a, b]$ $f(x) \geqslant \tau(x)~~~\forall x \in [a, b]$, dove $\tau$ è la 
+  tangente al grafico di $f$ in $x_0$ $\implies$ $f$ è convessa in $[a, b]$.
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{thm}
+  Sia $f: [a, b] \to \mathbb{R}$ una funzione derivabile, allora 
+  $f$ è convessa $\iff$ $f'$ è crescente.
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{cor}
+  Sia $f:[a, b] \to \mathbb{R}$, con $f$ due volte derivabile in $[a, b]$, 
+  allora $f$ è convessa $\iff$ $f''(x) \geqslant 0~\forall x \in [a, b]$.
+\end{cor}
+
+\begin{proof}
+
+\end{proof}
+
+
+\section{Sviluppi di Taylor}
+
+\subsection{Approssimazione di una funzione}
+
+\subsection{Polinomio di Taylor}
+
+\begin{define}
+  Sia $f$ una funzione derivabile $n$ volte in $x_0$, si 
+  definisce \textbf{polinomio di Taylor} di ordine $n$ centrato in $x_0$ il polinomio:
+
+  $$
+    p_n(x) := \sum_{k=0}^{n}\dfrac{f^{(k)}(x_0)}{k!}(x - x_0)^k
+  $$
+\end{define}
+
+\begin{thm}[Teorema di Taylor-Peano]
+  Sia $f$ derivabile $n$ volte in $x_0$ e sia $p_n(x)$ il polinomio di Taylor di ordine $n$ di $f$ centrato in $x_0$. Allora:
+
+  $$
+    \lim_{x \to x_0} \dfrac{f(x) - p_n(x)}{(x - x_0)^n} = 0
+  $$
+\end{thm}
+
+\begin{obs}
+  Sia $x := x_0 + h$, con $h \neq 0$, allora la tesi è equivalente a:
+
+  $$
+    f(x_0 + h) = \underset{p_n(x_0 + h)}{\underbrace{f(x_0) + f'(x_0)h + \dfrac{f''(x_0)}{2!}h^2 + \dots + \dfrac{f^{(n)}(x_0)}{n!}h^n}} + \underset{\text{resto di Peano}}{\underbrace{h^n \omega(h)}}
+  $$
+\end{obs}
+
+\begin{proof}
+  Si dimostrerà il caso in cui $x_0 = 0$, per $x \to x_0^+$. Detta $g(x) := f(x) - p_n(x)$, si vuole mostrare che:
+
+  $$
+    \lim_{x \to x_0^+}\dfrac{g(x)}{x^n} = 0
+  $$
+
+  sia allora $x > 0$ fissato sufficientemente piccolo in modo che $f^{(n-1)}$ sia definita in $[0, x]$. Si ha che, per come è definito $p_n(x)$:
+
+  $$
+    g(0) = g'(0) = g''(0) = \dots = g^{(k)}(0) = 0
+  $$
+
+  \begin{enumerate}
+    \setcounter{enumi}{-1}
+    \item si applichi Lagrange a $g$ nell'intervallo $[0, x]$:
+
+          $$
+            \exists x_1 \in (0, x)~\colon~g(x) = g'(x_1)x
+          $$
+    \item si applichi Lagrange a $g'$ nell'intervallo $[0, x_1]$:
+
+          $$
+            \exists x_2 \in (0, x_1)~\colon~g(x)' = g''(x_2)x_1
+          $$
+    \item \dots
+    \item[n-2] 
+          si applichi Lagrange a $g^{(n-2)}$ nell'intervallo $[0, x_{n-2}]$:
+
+          $$
+            \exists x_{n-1} \in (0, x_{n-2})~\colon~g(x)^{(n-2)} = g^{(n-1)}(x_{n-1})x_{n-2}
+          $$
+    \item[n-1] 
+          si usi il fatto che $g^{(n-1)}$ è differenziabile in $0$:
+
+          $$
+            g^{(n-1)}(x_{n-1}) = \equalto{g^{(n-1)}(0)}{0} + \equalto{g^{(n)}(0)}{0}x_{n-1} + x_{n-1}\omega(x_{n-1}) = x_{n-1}\omega(x_{n-1})
+          $$
+  \end{enumerate}
+
+  quindi:
+
+  $$
+    g(x) = g'(x_1)x = g''(x_2)x_1 x = x_{n-1}x_{n-2}\dots x_1 x \omega(x_{n-1})
+  $$
+
+  $$
+    g(x) = x^n \underset{0 < a_n < 1}{\underbrace{\dfrac{x_{n-1}x_{n-2}\dots x_1 x}{x^n}}} \omega(x_{n-1})
+  $$
+
+  $$
+    \dfrac{g(x)}{x^n} = a_n \omega(x_{n-1}) \underset{x \to 0}{\to} 0
+  $$
+
+  si noti che $x_{n-1} \underset{x \to 0}{\to} 0$ per confronto.
+\end{proof}
+
+
+\begin{lemma}
+  Se $r(x)$ è un polinomio di grado minore o uguale a $n \in \mathbb{N}_0$ t.che:
+
+  $$
+    \lim_{x \to 0}\dfrac{r(x)}{x^n} = 0
+  $$
+
+  allora $r(x) = 0$.
+\end{lemma}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{thm}
+  Sia data $f$ definita in $\mathcal{U}(0)$. Si supponga che $\exists q(x)$ di grado minore 
+  o uguale a $n \in \mathbb{N}_0$ t.che:
+
+  $$
+    \lim_{x \to 0}\dfrac{f(x) - q(x)}{x^n} = 0
+  $$
+
+  allora $q(x)$ è unico.
+\end{thm}
+
+\begin{proof}
+  P.A. si supponga che esistano due polinomi distinti $p(x)$ e $q(x)$ di grado minore o uguale a $n$ t.che:
+
+  $$
+    \lim_{x \to 0}\dfrac{f(x) - p(x)}{x^n} = 0
+  $$
+  $$
+    \lim_{x \to 0}\dfrac{f(x) - q(x)}{x^n} = 0
+  $$
+
+  allora:
+
+  $$
+    \lim_{x \to 0}\dfrac{q(x) - p(x)}{x^n} = 0
+  $$
+
+  ma per il lemma precedentemente dimostrato, si ha che:
+
+  $$
+    q(x) - p(x) = 0 \implies q(x) = p(x)
+  $$
+\end{proof}
+
+
+\begin{thm}[Teorema di Taylor-Lagrange]
+
+\end{thm}
+
+
+\section{Teorema di de l'Hôpital}
+
+\begin{thm}[Teorema di de l'Hôpital]
+  Sia $x_0 \in \overline{\mathbb{R}}$ e siano $f, g$ due funzioni derivabili in un
+  $\dot{\mathcal{U}}(x_0)$ con $g'(x) \neq 0~\forall x \in \dot{\mathcal{U}}(x_0)$. Si assuma che:
+
+  $$
+    \lim_{x \to x_0} f(x) = \lim_{x \to x_0} g(x) = 0
+  $$
+
+  oppure:
+
+  $$
+    \lim_{x \to x_0} g(x) = \pm \infty
+  $$
+
+  allora se:
+
+  $$
+    \lim_{x \to x_0}\dfrac{f'(x)}{g'(x)} = l \in \overline{\mathbb{R}} \implies \lim_{x \to x_0}\dfrac{f(x)}{g(x)} = l
+  $$
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+
+\section{Algebra degli $o$-piccoli}
+
+\begin{define}
+  Date due funzioni reali $f$ e $g$, si dice che $f$ è un \textbf{$o$-piccolo} di $g$ in $\mathcal{U}(x_0)$ se:
+
+  $$
+    \lim_{x \to x_0}\dfrac{f(x)}{g(x)} = 0
+  $$
+\end{define}
+
+\begin{notation}
+  $f = o(g)$ in $\mathcal{U}(x_0)$
+\end{notation}
+
+\begin{obs}
+  Con la notazione $f = o(g)$ si intende che $f$ ha la proprietà di essere un $o$-piccolo di $g$, in particolare non si intende 
+  la relazione di equivalenza.
+\end{obs}
+
+\begin{es}
+  In $\mathcal{U}(0)$:
+
+  $$
+    x^2 = o(x),~~~x^3 = o(x)
+  $$
+
+  ma $x^2 \neq x^3$.
+\end{es}
+
+
+\begin{thm}[Teorema di Taylor-Peano con l'$o$-piccolo]
+  Sia $f$ derivabile $n$ volte in $x_0$, allora:
+
+  $$
+    f(x_0 + h) = \sum_{k=0}^{n}\dfrac{f^(k)(x_0)}{k!}h^k + o(h^n)
+  $$
+\end{thm}
+
+
+\begin{property}
+  Siano $m, n \in \mathbb{Z}$ in $\mathcal{U}(0)$:
+  \begin{enumerate}[I]
+    \item $o(x^n) \pm o(x^n) = o(x^n)$
+    \item $ko(x^n) = o(kx^n) = o(x^n)$
+    \item $x^m \cdot o(x^n) = o(x^{n+m})$
+    \item $o(o(x^n)) = o(x^n)$
+    \item $o(x^n + o(x^n)) = o(x^n)$
+    \item $o(x^n)\cdot o(x^m) = o(x^{n+m}) $
+    \item $[o(x^n)]^m = o(x^{nm})$
+  \end{enumerate}
+\end{property}
+
+\begin{proof}
+
+\end{proof}

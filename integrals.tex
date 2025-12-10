@@ -1,0 +1,1229 @@
+\chapter{Integrali}
+
+\section{L'integrale di Riemann}
+
+\section{Costruzione dell'integrale di Riemann}
+
+Sia $f: [a, b] \to \mathbb{R}$ una funzione limitata.
+
+***grafico***
+
+Si fissi $n \in \mathbb{N}$, ogni intervallo ha lunghezza $\dfrac{b-a}{n}$.
+
+$$
+  x_k = a + \dfrac{b-a}{n}k
+$$
+
+$$
+  \mathfrak{I}_k = [x_{k-1}, x_k]~~~\forall k=1,2\dots,n
+$$
+
+Dato che $f$ è limitata, $\forall k=1,2\dots,n$ si ha che $\displaystyle \inf_{\mathfrak{I}_k} f$ e $\sup_{\mathfrak{I}_k} f$ sono finiti.
+
+Si defiscano allora:
+
+\begin{define}[Somme inferiori]
+  Si definisce \textbf{somma inferiore} di ordine $n$ la successione:
+
+  $$
+    \sigma_n = \dfrac{b-a}{n}\sum_{k=1}^n \inf_{\mathfrak{I}_k} f
+  $$
+\end{define}
+
+\begin{define}[Somme superiori]
+  Si definisce \textbf{somma superiore} di ordine $n$ la successione:
+
+  $$
+    S_n = \dfrac{b-a}{n}\sum_{k=1}^n \sup_{\mathfrak{I}_k} f
+  $$
+\end{define}
+
+\begin{obs}
+  Dato che $\sigma_n$ è l'area di un plurirettangolo sotto il grafico della funzione, 
+  mentre $S_n$ è l'area di un plurirettangolo sopra il grafico della funzione, si ha che:
+
+  $$
+    \sigma_n \leqslant S_n~\forall n~\forall m
+  $$
+\end{obs}
+
+\begin{obs}[$\diamondsuit$]
+  Non è detto che $S_n$ sia monotona decrescente.
+\end{obs}
+
+\begin{es}
+  $$
+    f(x) =  \begin{cases*}
+              1~\text{ se } x \in \left[0, \dfrac{1}{2}\right) \\
+              0~\text{ se } x \in \left[\dfrac{1}{2}, 1\right] \\
+            \end{cases*}
+  $$
+
+  $$
+    S_2 = \dfrac{1}{2}
+  $$
+  $$
+    S_3 = \dfrac{2}{3}
+  $$
+\end{es}
+
+
+\begin{define}
+  $S := \lim S_n$, $\sigma := \lim \sigma_n$
+\end{define}
+
+\begin{obs}
+  Per il teorema della permanenza del segno, si ha che:
+
+  $$
+    \sigma_n \leqslant S
+  $$
+  $$
+    \sigma \leqslant S
+  $$
+  $$
+    \sigma_n \leqslant \sigma \leqslant S \leqslant S_n~\forall n
+  $$
+\end{obs}
+
+
+\begin{define}[Integrabilità secondo Riemann]
+  $f$ si dice \textbf{integrabile secondo Riemann} su $[a, b]$ se 
+  
+  $$
+    \lim \sigma_n = \lim S_n = S = \sigma
+  $$
+\end{define}
+
+\begin{notation}
+  $R(a, b)$, insieme delle funzioni integrabili secondo Riemann su $[a, b]$
+\end{notation}
+
+\begin{obs}
+  Se una funzione $f \in R(a, b)$, $f$ è limitata.
+\end{obs}
+
+
+\begin{define}[Integrale di Riemann]
+  Se $f \in R(a, b)$, $S = \sigma$ è detto \textbf{integrale di Riemann} di $f$ su $[a, b]$.
+\end{define}
+
+\begin{notation}
+  $\displaystyle \int_{a}^{b} f(x)dx$, $\displaystyle \int_{[a, b]} f(x)dx$, $\displaystyle \int_{a}^{b}f$
+\end{notation}
+
+\begin{notation}
+  $\Delta_{\mathfrak{I}_k}f := \sup_{\mathfrak{I}_k}f - \inf_{\mathfrak{I}_k}f$
+\end{notation}
+
+\begin{define}
+  $$
+    \omega_n(f) := S_n - \sigma_n = \dfrac{b-a}{n}\sum_{k=1}^{n} \sup_{\mathfrak{I}_k}f - \inf_{\mathfrak{I}_k}f = \dfrac{b-a}{n}\sum_{k=1}^{n} \Delta_{\mathfrak{I}_k}f
+  $$
+\end{define}
+
+\begin{thm}
+  $f \in R(a, b) \iff \omega_n(f) \to 0$
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item ($\Rightarrow$): Dato che $f \in R(a, b)$, $S_n \to S$, $\sigma_n \to \sigma = S$. Quindi:
+          $$
+            \omega_n(f) = S_n - \sigma_n \to S - S = 0
+          $$
+    \item ($\Leftarrow$): Si ha che:
+          $$
+            \sigma_n \leqslant \sigma \leqslant S \leqslant S_n
+          $$
+          quindi:
+
+          $$
+            0 \leqslant \sigma - \sigma_n \leqslant S - S_n \leqslant S_n - \sigma_n = \omega_n(f) \to 0
+          $$
+
+          dunque per confronto, $\sigma_n \to \sigma$ e $S_n \to S$. Inoltre:
+
+          $$
+            0 \leqslant S - S_n \leqslant S - \sigma_n \leqslant S_n - \sigma_n
+          $$
+
+          quindi $\sigma_n \to S = \sigma$.
+  \end{itemize}
+\end{proof}
+
+
+\begin{define}[Area]
+
+\end{define}
+
+
+\begin{define}[Funzione caratteristica]
+  Dato un insieme $A \subset \mathbb{R}$, si definisce \textbf{funzione caratteristica} di $A$:
+
+  $$
+    \chi_A(x) := \begin{cases*}
+                1~\text{ se } x \in A \\
+                0~\text{ se } x \not \in A
+              \end{cases*}  
+  $$
+\end{define}
+
+
+\begin{thm}
+  Siano $f, g: [a, b] \to \mathbb{R}$ t.che $f$ e $g$ differiscono in un numero finito 
+  di punti. Allora, se $f \in R(a, b)$, $g \in R(a, b)$ e:
+
+  $$
+    \int_{a}^{b}f(x)dx = \int_{a}^{b}g(x)dx
+  $$
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{thm}
+  Esistono funzioni reali $f$ limitate t.che $f \not \in R(a, b)$.
+\end{thm}
+
+\begin{es}[Funzione di Dirichlet]
+  Sia $D:[0, 1] \to \mathbb{R}$:
+
+  $$
+    D(x) = \chi_{[0, 1] \cap \mathbb{Q}}(x)
+  $$
+
+  si ha che $D \not \in R(a, b)$. Infatti, fissato $n \in \mathbb{N}$:
+
+  $$
+    S_n = \dfrac{1}{n}\left[\sup_{\mathfrak{I}_1}D + \sup_{\mathfrak{I}_2}D + \dots + \sup_{\mathfrak{I}_n}D\right]
+  $$
+
+  in ogni $\mathfrak{I}_k$, $\displaystyle \sup_{\mathfrak{I}_k}D = 1$ (per la densità di $\mathbb{Q}$ in $\mathbb{R}$). Quindi:
+
+  $$
+    S = 1
+  $$
+
+  ma 
+
+  $$
+    \sigma_n = \dfrac{1}{n}\left[\inf_{\mathfrak{I}_1}D + \inf_{\mathfrak{I}_2}D + \dots + \inf_{\mathfrak{I}_n}D\right] = 0 \to 0 = \sigma \neq S
+  $$
+\end{es}
+
+
+\begin{define}
+  Se $A \subset \mathbb{R}$ è limitato, preso $[-N, N] \supset A$ si può definire 
+  una misura di $A$ come:
+
+  $$
+    m(A) = \int_{-N}^{N} \chi_{A}(x)dx
+  $$
+\end{define}
+
+\begin{obs}
+  Non tutti gli insiemi sono misurabili secondo questa misura.
+\end{obs}
+
+
+\begin{lemma}
+  Siano $f, g: \mathfrak{I} \to \mathbb{R}$ limitate, si ha che:
+
+  $$
+    \sup_{\mathfrak{I}}(f + g) \leqslant \sup_{\mathfrak{I}}f + \sup_{\mathfrak{I}}g
+  $$
+  $$
+    \inf_{\mathfrak{I}}(f + g) \geqslant \inf_{\mathfrak{I}}f + \inf_{\mathfrak{I}}g
+  $$
+\end{lemma}
+
+\begin{proof}
+  Fissato $x \in \mathfrak{I}$:
+
+  $$
+    f(x) \leqslant \sup_{\mathfrak{I}}f
+  $$
+  $$
+    g(x) \leqslant \sup_{\mathfrak{I}}g
+  $$
+  $$
+    f(x) + g(x) \leqslant \sup_{\mathfrak{I}}f + \sup_{\mathfrak{I}}g
+  $$
+  $$
+    \sup_{\mathfrak{I}}(f + g) \leqslant \sup_{\mathfrak{I}}f + \sup_{\mathfrak{I}}g
+  $$
+  dove nell'ultimo passaggio si è utilizzato il teorema della permanenza del segno. In modo analogo 
+  si può procedere per gli estremi inferiori.
+\end{proof}
+
+
+\begin{thm}[Linearità dell'integrale]
+  Se $f, g \in R(a, b)$ e $\lambda \in \mathbb{R}$, allora:
+
+  $$
+    f + \lambda g \in R(a, b)
+  $$
+  $$
+    \int_{a}^{b}f(x) + \lambda g(x) dx = \int_{a}^{b}f(x)dx + \lambda\int_{a}^{b}g(x) dx
+  $$
+\end{thm}
+
+\begin{proof}
+  Consideriamo il caso in cui $f(x) = 0$. Si vuole mostrare che:
+
+  $$
+    \int_{a}^{b} \lambda g(x)dx = \lambda \int_{a}^{b}g(x)dx
+  $$
+
+  Si ha che:
+
+  $$
+    \sigma_n(\lambda g) = \lambda \sigma_n(g)~\text{ se }~\lambda > 0
+  $$
+  $$
+    \sigma_n(\lambda g) = \lambda S_n(g)~\text{ se }~\lambda < 0
+  $$
+
+  da cui segue la tesi (passando ai limiti). \\
+
+  Consideriamo ora il caso in cui $f(x) \neq 0$. Fissato $\mathfrak{I}_k$, si ha che:
+
+  $$
+    \inf_{\mathfrak{I}_k}f + \inf_{\mathfrak{I}_k}g \leqslant \inf_{\mathfrak{I}_k}(f + g) \leqslant \sup_{\mathfrak{I}_k}(f + g) \leqslant \sup_{\mathfrak{I}_k}f + \sup_{\mathfrak{I}_k}g
+  $$
+
+  $$
+    \sigma_n(f) + \sigma_n(g) \leqslant \sigma_n(f + g) \leqslant S_n(f + g) \leqslant S_n(f) + S_n(g)
+  $$
+
+  da cui segue la tesi per confronto.
+\end{proof}
+
+
+\begin{define}[Funzione costante a tratti]
+  Una funzione $h: [a, b] \to \mathbb{R}$ è \textbf{costante a tratti} se 
+  $\exists \mathfrak{I}_1, \mathfrak{I}_2, \dots, \mathfrak{I}_n$ intervalli in $[a, b]$ e 
+  $\exists \lambda_1, \lambda_2, \dots, \lambda_n$ t.che:
+  
+  $$
+    h(x) = \sum_{k=1}^{n}\lambda_k\chi_{\mathfrak{I}_k}(x)
+  $$
+\end{define}
+
+\begin{prop}
+  Se $\displaystyle h(x) = \sum_{k=1}^{n}\lambda_k \chi_{\mathfrak{I}_k}(x)$, ($\mathfrak{I}_k \subset [a, b]$), 
+  allora $h \in R(a, b)$ e:
+
+  $$
+    \int_{a}^{b}h(x)dx = \sum_{k=1}^{n}\lambda_k \int_{a}^{b}\chi_{\mathfrak{I}_k}(x) = \sum_{k=1}^{n}\lambda_k \ell(\mathfrak{I}_k)
+  $$
+\end{prop}
+
+\begin{thm}[Teorema del confronto per l'integrale di Riemann]
+  Siano $f, g \in R(a, b)$, se $f \geqslant g$ ($f(x) \geqslant g(x)~\forall x \in [a, b]$), allora:
+
+  $$
+    \int_{a}^{b}f(x)dx \geqslant \int_{a}^{b}g(x)dx
+  $$
+\end{thm}
+
+\begin{proof}
+  Dato che $f \geqslant g$, si ha che:
+
+  $$
+    \sigma_n(f) \geqslant \sigma_n(g)
+  $$
+  
+  la tesi segue dal teorema della permanenza del segno per le successioni.
+\end{proof}
+
+\begin{cor}
+  Sia $f \in R(a, b)$ t.che $f \geqslant 0$, allora:
+
+  $$
+    \int_{a}^{b}f(x)dx \geqslant 0
+  $$
+\end{cor}
+
+\begin{obs}
+  Sia $f \in R(a, b)$, $f \geqslant 0$, $\int_{a}^{b}f(x)dx = 0$ $\centernot \implies$ $f(x) = 0$
+\end{obs}
+
+\begin{es}
+  Basti prendere una $f$ che differisca da $0$ in un numero finito di punti
+\end{es}
+
+
+\begin{prop}
+  Sia $f \in R(a, b)$, $f \geqslant 0$, $\int_{a}^{b}f(x)dx = 0$, $f$ continua $implies$ $f(x) = 0$
+\end{prop}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{obs}
+  Non è necessario specificare che $f \in R(a, b)$ (dato che si vedrà in seguito che la continuità implica l'integrabilità).
+\end{obs}
+
+
+\begin{thm}[Disuguaglianza del modulo]
+  Sia $f \in R(a, b)$, allora $|f| \in R(a, b)$ e:
+
+  $$
+    \left|\int_{a}^{b}f(x)dx\right| \leqslant \int_{a}^{b}\left|f(x)\right|dx
+  $$
+\end{thm}
+
+\begin{proof}
+  Il fatto che $|f| \in R(a, b)$ sarà dimostrato successivamente. \\
+  Si ha che:
+
+  $$
+    -|f| \leqslant f \leqslant |f|
+  $$
+
+  per confronto:
+
+  $$
+    \int_{a}^{b}-|f(x)|dx \leqslant \int_{a}^{b}f(x)dx \leqslant \int_{a}^{b}|f(x)|dx
+  $$
+
+  per la linearità dell'integrale:
+
+  $$
+    -\int_{a}^{b}|f(x)|dx \leqslant \int_{a}^{b}f(x)dx \leqslant \int_{a}^{b}|f(x)|dx
+  $$
+
+  quindi:
+
+  $$
+    \left|\int_{a}^{b}f(x)dx\right| \leqslant \int_{a}^{b}\left|f(x)\right|dx
+  $$
+\end{proof}
+
+
+\begin{thm}
+  Sia $f: [a, b] \to \mathbb{R}$ limitata, allora:
+
+  $$
+    f \in R(a, b) \iff \forall \varepsilon > 0~\exists~\text{ due costanti a tratti }~h^-,~h^+~\colon~h^- \leqslant f \leqslant h^+~\wedge~\int_{a}^{b}h^+ - h^- < \varepsilon
+  $$
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{thm}[Additività dell'integrale]
+  Sia dato $[a, b]$ e $c \in (a, b)$, allora:
+
+  $$
+    f \in R(a, b) \iff f \in R(a, c) \wedge f \in R(c, b)
+  $$
+  $$
+    \int_{a}^{b}f(x)dx = \int_{a}^{c}f(x)dx + \int_{c}^{b}f(x)dx
+  $$
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{prop}
+  Sia $f \in R(-a, a)$:
+
+  $$
+    \int_{-a}^{0}f(-x)dx = \int_{0}^{a}f(x)dx
+  $$
+\end{prop}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{prop}
+  Sia $f \in R(-a, a)$ una funzione pari. Allora:
+
+  $$
+    \int_{-a}^{a}f(x)dx = 2\int_{0}^{a}f(x)dx
+  $$
+\end{prop}
+
+\begin{prop}
+  Sia $f \in R(-a, a)$ una funzione dispari. Allora:
+
+  $$
+    \int_{-a}^{a}f(x)dx = 0
+  $$
+\end{prop}
+
+
+\begin{thm}
+  Sia $f:[a, b] \to \mathbb{R}$, se $f$ è limitata in $[a, b]$ e $f \in R(c, d)~\forall a < c < d < b$, allora:
+
+  $$
+    f \in R(a, b)
+  $$
+
+  $$
+    \int_{a}^{b}f(x)dx = \lim_{c\to a~d\to b}\int_{c}^{d}f(x)dx
+  $$
+\end{thm}
+
+
+\section{Classi di funzioni integrabili}
+
+\begin{thm}[Integrabilità delle continue]
+  Sia $f:[a, b] \to \mathbb{R}$. Se $f$ è continua $\implies$ $f \in R(a, b)$.
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{thm}
+  Sia $f:[a, b] \to \mathbb{R}$ limitata e con al più un numero finito di 
+  punti di discontinuità $\implies$ $f \in R(a, b)$.
+\end{thm}
+
+\begin{proof}
+  Sia $f$ discontinua in $c \in (a, b)$. 
+  Per l'additività, se $f \in R(a, c)$ e $f \in R(c, d)$ $\implies$ $f \in R(a, b)$. \\
+
+  Siano $a < \alpha < \beta < c$. $f$ è limitata in $[a, c]$ e continua in $(a, c)$. \\
+  $f \in C([\alpha, \beta]) \implies f \in R(\alpha, \beta)$. $f$ è limitata in $[a, c]$ e 
+  $f \in R(\alpha, \beta)~\forall a < \alpha < \beta < c$. \\
+  Quindi $f \in R(a, c)$.
+\end{proof}
+
+
+\begin{thm}[Integrabilità delle monotone]
+  Sia $f: [a, b] \to \mathbb{R}$ monotona $\implies$ $f \in R(a, b)$.
+\end{thm}
+
+\begin{proof}
+  Si consideri il caso di $f$ crescente e si supponga $[a, b] = [0, 1]$ (la dimostrazione può 
+  tuttavia essere estesa a un qualsiasi intervallo). Si ha che, fissato $n \in \mathbb{N}$:
+
+  $$
+    S_n(f) = \dfrac{1}{n}\left[\sup_{\mathfrak{I}_1}f + \sup_{\mathfrak{I}_2}f + \dots + \sup_{\mathfrak{I}_n}f\right] = \dfrac{1}{n}\left[f\left(\dfrac{1}{n}\right) + f\left(\dfrac{2}{n}\right) + \dots + f\left(\dfrac{n}{n}\right)\right]
+  $$
+  $$
+    \sigma_n(f) = \dfrac{1}{n}\left[\inf_{\mathfrak{I}_1}f + \inf_{\mathfrak{I}_2}f + \dots + \inf_{\mathfrak{I}_n}f\right] = \dfrac{1}{n}\left[f\left(\dfrac{0}{n}\right) + f\left(\dfrac{1}{n}\right) + \dots + f\left(\dfrac{n-1}{n}\right)\right]
+  $$
+
+  dove nel secondo passaggio si è usata la crescenza della funzione. Quindi:
+
+  $$
+    \omega_n(f) = S_n(f) - \sigma_n(f) = \dfrac{1}{n}[f(1) - f(0)] \to 0
+  $$
+\end{proof}
+
+
+\begin{thm}
+  Sia $f \in R(a, b)$ e $\varphi: [c, d] \to \mathbb{R}$ una funzione continua t.che:
+
+  $$
+    [a, b] \stackrel{f}{\curvearrowright}\mathfrak{I} \subset [c, d] \stackrel{\varphi}{\curvearrowright} \mathbb{R}
+  $$
+
+  $\implies$ $(\varphi \circ f)(x) = \varphi(f(x)) \in R(a, b)$
+\end{thm}
+
+\begin{obs}
+  Una composta di due integrabili può non essere integrabile.
+\end{obs}
+
+\begin{cor}
+  Se $f \in R(a, b)$, allora $|f| \in R(a, b)$ e $f^2 \in R(a, b)$
+\end{cor}
+
+\begin{cor}
+  Se $f, g \in R(a, b)$ $\implies$ $(f \cdot g) \in R(a, b)$
+\end{cor}
+
+\begin{proof}
+  Si ha che:
+
+  $$
+    (f + g) \in R(a, b)
+  $$
+  $$
+    (f - g) \in R(a, b)
+  $$
+
+  quindi:
+
+  $$
+    (f + g)^2 \in R(a, b)
+  $$
+  $$
+    (f - g)^2 \in R(a, b)
+  $$
+
+  di conseguenza:
+
+  $$
+    \dfrac{1}{4}\left[(f + g)^2 - (f - g)^2\right] \in R(a, b)
+  $$
+  $$
+    \dfrac{1}{4}\left[(f + g)^2 - (f - g)^2\right] = fg
+  $$
+\end{proof}
+
+
+\section{Integrale definito}
+
+\begin{define}
+  Sia $f \in R(a, b)$, $x, y \in [a, b]$, si definisce \textbf{integrale definito} tra 
+  $x$ e $y$:
+
+  $$
+    \int_{x}^{y}f(t)dt =  \begin{cases*}
+                            \displaystyle \int_{x}^{y}f(t)dt~\text{ se }~x < y \\
+                            0~\text{ se }~x = y \\
+                            \displaystyle -\int_{y}^{x}f(t)dt~\text{ se }~x > y
+                          \end{cases*}
+  $$
+\end{define}
+
+\begin{notation}
+  $\displaystyle \int_{x}^{y}f(t)dt$, $\displaystyle \int_{[x, y]}f(t)dt$
+\end{notation}
+
+
+\begin{property}[Linearità]
+
+\end{property}
+
+\begin{property}[Additività]
+  
+\end{property}
+
+\begin{prop}[Confronto]
+  
+\end{prop}
+
+
+\section{Primitiva}
+
+\begin{define}
+  Sia $f: [a, b] \to \mathbb{R}$, si dice \textbf{primitiva} di $f$ 
+  una funzione derivabile $F: [a, b] \to \mathbb{R}$ t.che:
+
+  $$
+    F'(x) = f(x)~\forall x \in [a, b]
+  $$
+\end{define}
+
+\begin{prop}
+  Data una funzione $f$, non è detto che esista una primitiva di $F$ di $f$.
+\end{prop}
+
+\begin{proof}
+  È sufficiente scegliere una $f$ che non abbia la proprietà di Darboux.
+\end{proof}
+
+
+\begin{prop}
+  Si supponga che una funzione $f$ ammetta come primitiva $F$. Allora 
+  ogni funzione $F(x) + C$ ($C \in \mathbb{R}$) è primitiva di $F$.
+\end{prop}
+
+\begin{proof}
+  Sia $G(x) = F(x) + C$. Si ha che:
+
+  $$
+    G'(x) = F'(x) + \dfrac{d}{dx}C = F'(x) = f(x)
+  $$
+\end{proof}
+
+\begin{prop}
+  Si supponga che una funzione $f$ ammetta come primitiva $F$ e si supponga che $G$ sia anch'essa
+  una primitiva di $f$. Allora:
+
+  $$
+    G(x) = F(x) + C~~~(C \in \mathbb{R})
+  $$
+\end{prop}
+
+\begin{proof}
+  Sia $H(x) := G(x) - F(x)$, $H$ è derivabile (dato che $F$ e $G$ sono derivabili) e:
+
+  $$
+    H'(x) = G'(x) - F'(x) = f(x) - f(x) = 0~\forall x
+  $$
+
+  quindi $H(x)$ è una funzione costante.
+\end{proof}
+
+
+\begin{prop}
+  Sia $f: [a, b] \to \mathbb{R}$, $f$ ammette primitiva in $[a, b]$ $\centernot \iff$ 
+  $f \in R(a, b)$.
+\end{prop}
+
+\begin{es}[$\centernot \Leftarrow$]
+  È sufficiente prendere una $f$ costante a tratti.
+\end{es}
+
+\begin{es}[$\centernot \Rightarrow$]
+
+\end{es}
+
+
+\begin{prop}
+  Se $f$ è limitata e $f$ ammette primitiva $\centernot \implies$ $f \in R(a, b)$.
+\end{prop}
+
+\begin{notation}
+  $f \in R_P(a, b)$ se:
+
+  \begin{enumerate}[I]
+    \item $f$ ammette primitiva in $[a, b]$
+    \item $f \in R(a, b)$
+  \end{enumerate}
+\end{notation}
+
+
+\section{Teorema fondamentale del calcolo integrale}
+
+\begin{thm}[Teorema fondamentale del calcolo integrale]
+  Sia $f \in R_P(a, b)$ e sia $F$ una primitiva di $f$, allora:
+
+  $$
+    \int_{a}^{b}f(x)dx = F(b) - F(a)
+  $$
+\end{thm}
+
+\begin{notation}
+  $F\vert_{a}^{b} := F(b) - F(a)$
+\end{notation}
+
+\begin{proof}
+  Si dimostrerà il caso $[a, b] = [0, 1]$ (la dimostrazione può tuttavia essere estesa al caso 
+  generale). Si fissi $n \in \mathbb{N}$ e si consideri l'intervallo $\mathfrak{I}_k = [x_{k-1}, x_k]$. Su tale 
+  intervallo $F$ soddisfa le ipotesi del teorema di Lagrange. Quindi:
+
+  $$
+    \exists y \in [x_{k-1}, x_k]~\colon~F(x_{k-1}) - F(x_k) = F'(y)(x_{k-1} - x_k) = \dfrac{1}{n}f(y)
+  $$
+
+  dato che $y \in [x_{k-1}, x_k]$:
+
+  $$
+    \inf_{\mathfrak{I}_k}f \leqslant y \leqslant \sup_{\mathfrak{I}_k}f~~~\forall k = 1,2,\dots,n
+  $$
+  $$
+    \dfrac{1}{n}\inf_{\mathfrak{I}_k}f \leqslant F(x_{k-1}) - F(x_k) \leqslant \dfrac{1}{n}\sup_{\mathfrak{I}_k}f~~~\forall k = 1,2,\dots,n
+  $$
+
+  sommando le $n$ disuguaglianze:
+
+  $$
+    \dfrac{1}{n}\sum_{k=1}^{n}\inf_{\mathfrak{I}_k}f \leqslant \sum_{k=1}^{n}F(x_{k-1}) - F(x_k) \leqslant \dfrac{1}{n}\sum_{k=1}^{n}\sup_{\mathfrak{I}_k}f
+  $$
+
+  il termine centrale corrisponde alla succesione delle somme parziali di una serie telescopica. Quindi:
+
+  $$
+    \sigma_n \leqslant F(1) - F(0) \leqslant S_n~~~\forall n
+  $$
+
+  dato che $f \in R(a, b)$, $\sigma_n \to \sigma$, $S_n \to S$, $S = \sigma$. Quindi, per confronto:
+
+  $$
+    \int_{0}^{1}f(x)dx = F(1) - F(0)
+  $$
+\end{proof}
+
+
+\section{Media integrale}
+
+
+\begin{define}[Media integrale]
+  Data $f \in R(a, b)$, si definisce \textbf{media integrale} di $f$ su $[a, b]$:
+
+  $$
+    M_{[a, b]} := \dfrac{1}{b-a}\int_{a}^{b}f(x)dx
+  $$
+\end{define}
+
+\begin{thm}[Teorema della media integrale]
+  Sia $f \in R_P(a, b)$, allora:
+
+  $$
+    \exists c \in (a, b)~\colon~\dfrac{1}{b-a}\int_{a}^{b}f(x)dx = f(c)
+  $$
+\end{thm}
+
+\begin{proof}
+  Sia $F$ una primitiva di $f$, si ha che $F$ soddisfa le ipotesi del teorema di Lagrange in $[a, b]$. Quindi:
+
+  $$
+    \exists c \in (a, b)~\colon~F'(c) = \dfrac{F(b) - F(a)}{b-a} \implies f(c) = \dfrac{1}{b-a}\int_{a}^{b}f(x)dx
+  $$
+\end{proof}
+
+
+\section{Integrazione per parti}
+
+\begin{thm}[Integrazione per parti]
+  Siano $f, g \in R_P(a, b)$ e siano $F$ e $G$ due primitive rispettivamente di $f$ e $g$, allora:
+
+  $$
+    \int_{a}^{b}F(x)g(x)dx = F(x)G(x)\vert_{a}^{b} - \int_{a}^{b}f(x)G(x)dx
+  $$
+\end{thm}
+
+\begin{proof}
+  Sia $h(x) = F(x)g(x) + f(x)G(x)$, si ha che $h$ è integrabile ($F$ e $G$ sono continue, in quanto derivabili), inoltre:
+
+  $$
+    [F(x)G(x)]' = h(x)
+  $$
+
+  quindi $h \in R_P(a, b)$. Di conseguenza, per il teorema fondamentale del calcolo integrale:
+
+  $$
+    \int_{a}^{b}h(x)dx = F(x)G(x)\vert_{a}^{b} \implies F(x)G(x)\vert_{a}^{b} = \int_{a}^{b}F(x)g(x)dx + \int_{a}^{b}f(x)G(x)dx
+  $$
+\end{proof}
+
+
+\section{Funzione integrale}
+
+\begin{define}
+  Sia $f \in R(a, b)$, si definisce \textbf{funzione integrale} di $f$ la funzione $\mathcal{I}: [a, b] \to \mathbb{R}$ così definita:
+
+  $$
+    \mathcal{I}(x) = \int_{a}^{x}f(t)dt
+  $$
+\end{define}
+
+\begin{obs}
+  Sia $f \in R(a, b)$, se $a < x < b$, allora $f \in R(a, x)$.
+\end{obs}
+
+\begin{obs}
+  Si noti che la funzione è ben definita grazie all'integrabilità di $f$.
+\end{obs}
+
+
+\begin{thm}\leavevmode
+  \begin{enumerate}[I]
+    \item Se $f \in R_P(a, b)$ $\implies$ $\mathcal{I}$ è una primitiva di $f$
+    \item La funzione $\mathcal{I}$ è (Lipschitz) continua
+    \item Se $f$ è continua in $x_0 \in [a, b]$ $\implies$ $\mathcal{I}$ è derivabile in $x_0$ e:
+          $$
+            \mathcal{I}'(x_0) = f(x_0)
+          $$
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}[Dim. I]
+  Sia $F$ una primitiva di $f$, allora, per il teorema fondamentale del calcolo integrale:
+
+  $$
+    \mathcal{I}(x) = F(x) - F(a)
+  $$
+  
+  quindi:
+
+  $$
+    \mathcal{I}'(x) = F'(x) = f(x)
+  $$
+\end{proof}
+
+
+\begin{cor}
+  Se $f$ è continua in $[a, b]$, $\mathcal{I}(x)$ è derivabile in ogni $x \in [a, b]$:
+
+  $$
+    \mathcal{I}'(x) = f(x)~~~\forall x \in [a, b]
+  $$
+
+  quindi $\mathcal{I}$ è una primitiva di $f$, quindi $f \in R_P(a, b)$.
+\end{cor}
+
+
+\begin{prop}
+  Sia $f \in R_P(a, b)$ e siano $g, h: [\alpha, \beta] \to [a, b]$. Sia $\mathcal{J}: [\alpha, \beta] \to \mathbb{R}$:
+
+  $$
+    \mathcal{J}(x) = \int_{h(x)}^{g(x)}f(t)dt
+  $$
+
+  sia $F$ una primitiva di $f$, allora:
+
+  $$
+    \mathcal{J}(x) = F(g(x)) - F(h(x))
+  $$
+
+  se inoltre $g$ e $h$ sono derivabili, allora:
+
+  $$
+    \mathcal{J}'(x) = F'(g(x))g'(x) - F'(h(x))h'(x) = f(g(x))g'(x) - f(h(x))h'(x)
+  $$
+\end{prop}
+
+
+\section{Cambio di variabili}
+
+\begin{thm}
+  Sia $f: [a, b] \to \mathbb{R}$ una funzione continua e sia 
+  $\psi: [\alpha, \beta] \to [a, b]$ una funzione derivabile, con $\psi' \in R(a, b)$, allora:
+
+  $$
+    \int_{\psi(\alpha)}^{\psi(\beta)}f(x)dx = \int_{\alpha}^{\beta}f(\psi(t))\psi'(t)dt
+  $$
+\end{thm}
+
+\begin{proof}
+  Si ha che $f(\psi(t))\psi'(t) \in R(\alpha, \beta)$ (integrabilità della composta, con $f$ continua).
+
+  Sia $F$ una primitiva di $f$. $F(\psi(t))$ è primitiva di $f(\psi(t))\psi'(t)$, quindi:
+
+  $$
+    f(\psi(t))\psi'(t) \in R_P(\alpha, \beta)
+  $$
+
+  inoltre:
+
+  $$
+    \int_{\alpha}^{\beta}f(\psi(t))\psi'(t)dt = F(\psi(\beta)) - F(\psi(\alpha)) = \int_{\psi(\alpha)}^{\psi(\beta)}f(x)dx
+  $$
+\end{proof}
+
+
+\begin{cor}[Cambio di variabili]
+  Sia $\psi: [\alpha, \beta] \to [a, b]$ una funzione biunivoca (quindi monotona)
+
+  \begin{itemize}
+    \item Se $\psi$ è crescente $\implies$ $\psi(\alpha) = a$, $\psi(\beta) = b$, $\int_{a}^{b}f(x)dx = \int_{\alpha}^{\beta}f(\psi(t))\psi'(t)dt$
+    \item Se $\psi$ è decrescente $\implies$ $\psi(\alpha) = b$, $\psi(\beta) = a$, $\int_{a}^{b}f(x)dx = \int_{\beta}^{\alpha}f(\psi(t))\psi'(t)dt$
+  \end{itemize}
+\end{cor}
+
+
+\begin{notation}[Differenziale]
+  $d(\psi(t)) = \psi'(t)dt$
+\end{notation}
+
+
+\section{Integrale indefinito}
+
+\begin{define}[Integrale indefinito]
+  Sia $f$ una funzione che ammetta primitiva in $[a, b]$, si definisce \textbf{integrale indefinito} di 
+  $f$ in $[a, b]$ l'insieme delle primitive di $f$.
+\end{define}
+
+\begin{notation}[Integrale indefinito]
+  $\displaystyle \int f(x)dx$
+\end{notation}
+
+\begin{obs}
+  Se $F$ è una primitiva di $f$, allora:
+
+  \begin{align*}
+    \int f(x)dx &= F(x) + C~~~(C \in \mathbb{R}) \\
+                &= \bigcup_{C \in \mathbb{R}} F(x) + C 
+  \end{align*}
+\end{obs}
+
+
+\begin{property}[Linearità]
+
+\end{property}
+
+\begin{property}[Integrazione per parti]
+  
+\end{property}
+
+\begin{property}[Cambio di variabili]
+  
+\end{property}
+
+
+\section{Applicazione degli integrali allo studio delle serie numeriche}
+
+\begin{thm}
+  Se $\alpha > 1$, allora:
+
+  $$
+    \sum_{n=1}^{\infty}\dfrac{1}{n^{\alpha}}~\conv
+  $$
+
+  inoltre:
+
+  $$
+    \zeta(\alpha) < \dfrac{\alpha}{\alpha - 1}
+  $$
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{thm}
+  $$
+    \sum_{n=0}^{\infty}\dfrac{(-1)^n}{2n+1} = \dfrac{\pi}{4}
+  $$
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{thm}[Formula di Eulero-Mascheroni]
+  Detta $s_n := \sum_{k=1}^n \dfrac{1}{k}$ si ha che:
+
+  $$
+    s_n - \log{n} \to \gamma \in \left(\dfrac{1}{2}, 1\right)
+  $$
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+
+\section{Integrale improprio (generalizzato)}
+
+
+\begin{define}
+  Sia $f: (a, b) \to \mathbb{R}$ e siano $-\infty \leqslant a < b \leqslant +\infty$, $f$ si 
+  dice \textbf{localmente integrabile} in $(a, b)$ se:
+
+  $$
+    \forall [c, d] \subset [a, b]~f \in R(c, d)
+  $$
+\end{define}
+
+\begin{define}[Integrale improprio]
+  Sia $f$ localmente integrabile in $(a, b)$, se esiste finito:
+  
+  $$
+    \lim_{c\to a~d\to b}\int_{c}^{d}f(x)dx = l \in \mathbb{R}
+  $$
+
+  $f$ si dice \textbf{integrabile impropriamente} su $(a, b)$. Inoltre, $l$ si dice \textbf{integrale improprio} di $f$ 
+  su $(a, b)$
+\end{define}
+
+\begin{notation}
+  $\displaystyle \int_{a}^{b}f(d)dx := l$
+\end{notation}
+
+\begin{notation}
+  $I(a, b)$, classe delle funzioni integrabili impropriamente su $[a, b]$
+\end{notation}
+
+
+\begin{obs}
+  $\displaystyle \int_{a}^{b}f(x)dx = l \in \mathbb{R}$ se:
+
+  $$
+    \forall a_n \to a^+~\forall b_n \to b^-~\int_{a_n}^{b_n}f(x)dx \to l
+  $$
+\end{obs}
+
+
+\begin{obs}[Additività]
+
+\end{obs}
+
+\begin{obs}[$\diamondsuit$]
+  Se $a > -\infty$ e $f$ è limitata in $\mathcal{U}^+(a)$, $\rightarrow$
+
+  $$
+    \int_{a}^{b}f(x)dx = \lim_{d \to b}\int_{a}^{d}f(x)dx
+  $$
+\end{obs}
+
+\begin{prop}
+  Sia $\alpha \in \mathbb{R}$, allora:
+
+  $$
+    \int_{1}^{+\infty}\dfrac{1}{x^{\alpha}}dx = \begin{cases*}
+                                                  \dfrac{1}{\alpha-1}~\text{ se }~\alpha > 1 \\
+                                                  +\infty~\text{ se }~\alpha \leqslant 1
+                                                \end{cases*}
+  $$
+
+  $$
+    \int_{0}^{1}\dfrac{1}{x^{\alpha}}dx = \begin{cases*}
+                                            \dfrac{1}{\alpha-1}~\text{ se }~\alpha < 1 \\
+                                            +\infty~\text{ se }~\alpha \geqslant 1
+                                          \end{cases*}
+  $$
+\end{prop}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{define}
+  Sia $f: \mathfrak{D}(f) \to \mathbb{R}$, $f$ si dice \textbf{localmente integrabile} su un intervallo $[a ,b]$ se 
+  esiste una partizione $a = x_0 < x_1 < \dots < x_k = b$ di $[a, b]$ t.che $f$ è localmente integrabile (nel senso definito in precedenza) su ogni intervallo della forma 
+  $[x_{k-1}, x_k]$.
+\end{define}
+
+
+\begin{define}
+  Sia $f$ localmente integrabile su $[a, b]$, si definisce \textbf{integrale improprio} su $[a, b]$ (se esiste finito):
+
+  $$
+    \int_{a}^{b}f(x)dx = \sum_{k=1}^{n}\int_{x_{k-1}}^{x_k}f(x)dx = l \in \mathbb{R}
+  $$
+\end{define}
+
+\begin{obs}
+  $f \in I(a, b) \iff f \in I(x_{k-1}, x_k)~\forall k=1, 2, \dots, n$
+\end{obs}
+
+\begin{obs}
+  Sia $\{a_n\}$ una successione e sia:
+
+  $$
+    f(x) = a_n \chi_{[n-1, n]}(x)
+  $$
+
+  allora:
+
+  $$
+    \sum_{n=1}^{\infty}a_n~\conv~\iff~\exists \int_{0}^{+\infty}f(x)dx 
+  $$
+\end{obs}
+
+\begin{obs}
+  In analogia alle serie numeriche, un integrale improprio può convergere (se $f \in I(a, b)$), divergere o essere indeterminato.
+\end{obs}
+
+
+\begin{define}
+  $\int_{a}^{b} f$ converge \textbf{assolutamente} se $\int_{a}^{b}|f|$ converge
+\end{define}
+
+\begin{obs}
+  Se $f \geqslant 0$ su $(a, b)$ $\implies$ $\int_{a}^{b}f(x)dx$ converge a un numero non negativo o diverge a $+\infty$.
+\end{obs}
+
+
+\begin{thm}[Linearità]
+  Siano $f, g \in I(a, b)$ e $\lambda \in \mathbb{R}$ $\implies$ $f + \lambda g \in I(a, b)$ e:
+
+  $$
+    \int_{a}^{b}f + \lambda g = \int_{a}^{b}f + \lambda \int_{a}^{b}g
+  $$
+\end{thm}
+
+\begin{proof}
+  Per la linearità dell'integrale:
+
+  $$
+    \int_{c}^{d}f + \lambda g = \int_{c}^{d}f + \lambda \int_{c}^{d}g
+  $$
+
+  $$
+    \int_{a}^{b}f + \lambda g = \lim_{c\to a~d\to b}\int_{c}^{d}f + \lambda g = \lim_{c\to a~d\to b}\int_{c}^{d}f + \lambda \int_{c}^{d}g = \int_{a}^{b}f + \lambda \int_{a}^{b}g
+  $$
+\end{proof}
+
+
+\begin{thm}[Confronto per l'integrale improprio]
+  Siano $0 \leqslant f(x) \leqslant g(x)~\forall x \in (a, b)$, allora:
+  \begin{itemize}
+    \item se $g \in I(a, b)$ $\implies$ $f \in I(a, b)$
+    \item se $f \not \in I(a, b)$ $\implies$ $g \not \in I(a, b)$ 
+  \end{itemize}
+\end{thm}
+
+\begin{cor}
+  Se $\forall x \in (a, b)$ $f, g \geqslant 0$ e $\exists 0 < m < M$ t.che:
+
+  $$
+    mf(x) \leqslant g(x) \leqslant Mf(x)~\forall x \in (a, b)
+  $$
+
+  allora $f \in I(a, b)~\iff~g \in I(a, b)$
+\end{cor}
+
+
+\begin{thm}[Convergenza assoluta]
+  Sia $f$ localmente integrabile, se $|f| \in I(a, b)$ $\implies$ $f \in I(a, b)$
+\end{thm}
+
+
+\begin{obs}
+  $f \in I(a, b)$, $g \in I(a, b)$ $\centernot \implies$ $(f\cdot g) \in I(a, b)$
+\end{obs}
+
+\begin{es}
+  Sia $f(x) = g(x) = \dfrac{1}{\sqrt{x}}$ e $(a, b) = (0, 1)$
+\end{es}
+
+\begin{obs}
+  Sia $f$ localmente integrabile su $(a, b)$, $f \in I(a, b)$ $\centernot \implies$ $|f| \in I(a, b)$
+\end{obs}
+
+\begin{es}
+
+\end{es}
+
+
+\begin{thm}[Confronto asintotico per gli integrali impropri]
+  Sia $f$ una funzione di segno costante in $\dot{\mathcal{U}}(x_0)$, allora se $f \sim g$ in $\mathcal{U}(x_0)$ 
+  si ha che $\exists \mathcal{U}'(x_0) \subset \mathcal{U}(x_0)$ t.che:
+
+  $$
+    f \in I(\mathcal{U}'(x_0)) \iff g \in I(\mathcal{U}'(x_0))
+  $$
+\end{thm}
+
+\begin{proof}
+  $$
+    \dfrac{f(x)}{g(x)} \underset{x \to x_0}{\to} 1 \implies \text{ in } \mathcal{U}'(x_0)~~\dfrac{1}{2}g(x) \leqslant f(x) \leqslant 2g(x)
+  $$
+\end{proof}
+
+
+
+\begin{thm}[Funzione campione]
+  Siano $\alpha, \beta \in \mathbb{R}$ e $f$ definita come:
+
+  $$
+    f(x) = \dfrac{1}{x^{\alpha}\left|\log x\right|^\beta}~~~x \in (0, +\infty)
+  $$
+
+  allora:
+
+  $$
+    f \in I(\mathcal{U}(0)) \iff  \begin{cases*}
+                                    \alpha < 1~~~\forall \beta \\
+                                    \alpha = 1,~\beta > 1
+                                  \end{cases*}     
+  $$
+
+  $$
+    f \in I(\mathcal{U}(+\infty)) \iff  \begin{cases*}
+                                          \alpha > 1~~~\forall \beta \\
+                                          \alpha = 1,~\beta > 1
+                                        \end{cases*}     
+  $$
+\end{thm}
+
+\begin{proof}
+
+\end{proof}

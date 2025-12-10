@@ -1,0 +1,384 @@
+\chapter{Numeri complessi}
+
+\section{Introduzione}
+
+\begin{define}
+  Definiamo l'insieme dei numeri complessi $\mathbb{C}$ come:
+  $$
+    \mathbb{C} := \{x + iy~\colon~x, y \in \mathbb{R}\}
+  $$
+  con $i \in \mathbb{C}$ t.che $i^2 = -1$
+\end{define}
+
+
+\begin{define}
+  Dato $z = a + ib \in \mathbb{C}$, definiamo \textbf{parte reale} e \textbf{parte immaginaria} di $z$ rispettivamente i numeri:
+
+  $$
+    \Re{(z)} = a
+  $$
+  $$
+    \Im{(z)} = b
+  $$
+\end{define}
+
+
+\begin{obs}
+  $$
+    z = w \iff  \begin{cases}
+                  \Re{(z)} = \Re{(w)} \\
+                  \Im{(z)} = \Im{(w)}
+                \end{cases}
+  $$
+\end{obs}
+
+
+\begin{define}
+  Dati $z = a + ib$, $w = c + id$ con $a,b,c,d \in \mathbb{R}$,
+  \begin{enumerate}
+    \item $z + w = (a+b) + i(c+d)$
+    \item $z \cdot w = (ac - bd) + i(bc + ad)$
+    \item $|z| = \sqrt{a^2 + b^2}$
+    \item $\conj{z} = a - ib$
+  \end{enumerate}
+\end{define}
+
+
+\begin{property}
+  Siano $z, w \in \mathbb{C}$,
+  \begin{enumerate}
+    \item $|z| \geqslant 0$ e $|z| = 0 \iff z = 0$
+    \item $|z|^2 = |\conj{z}|^2 = z \cdot \conj{z}$
+    \item $|z \cdot w| = |z||w|$
+    \item $\Re{(z)} \leqslant |z|$, $\Im{(z)} \leqslant |z|$
+  \end{enumerate}
+\end{property}
+
+\begin{proof}(3)
+  \begin{align*}
+    |z \cdot w|^2 &= (ac - bd)^2 + (bc + ad)^2 =  \\
+                  &= (a^2c^2 + b^2d^2 - \cancel{2abcd}) + (a^2d^2 + b^2c^2 + \cancel{2abcd}) = \\
+                  &= a^2(c^2 + d^2) + b^2(c^2 + d^2) = \\
+                  &= (a^2 + b^2)(c^2 + d^2) = |z||w|
+  \end{align*}
+\end{proof}
+
+
+\begin{thm}[Disuguaglianza triangolare]
+  $$
+    |z| + |w| \geqslant |z + w|~\forall z,w \in \mathbb{C}
+  $$
+\end{thm}
+
+\begin{proof}
+  Siano $z = a + ib$ e $w = c + id$, con $a,b,c,d \in \mathbb{R}$.
+
+  \begin{align*}
+    |z + w|^2 &= (a+c)^2 + (b+d)^2 = a^2 + c^2 + 2ac + b^2 + d^2 + 2bd = \\
+              &= a^2 + b^2 + c^2 + d^2 + 2(ac + bd) = \\
+              &= |z|^2 + |w|^2 + 2(\Re{(z\cdot \conj{w})}) \leqslant \\
+              &\leqslant |z|^2 + |w|^2 + 2(|z\cdot \conj{w}|) = \\
+              &= |z|^2 + |w|^2 + 2|z||w| = (|z| + |w|)^2
+  \end{align*}
+\end{proof}
+
+
+\begin{prop}
+  Sia $z \in \mathbb{C}$, $\exists z^* \in \mathbb{C}$ t.che $z \cdot z^* = 1$
+\end{prop}
+
+\begin{proof}
+  Sia $z = a + ib$, 
+
+  $$
+    \dfrac{1}{z} = \dfrac{1}{a+ib} = \dfrac{1}{a+ib} \cdot \dfrac{a-ib}{a-ib} = \dfrac{a-ib}{a^2 + b^2} = \dfrac{a}{a^2+b^2} - i\dfrac{b}{a^2+b^2} = \dfrac{\conj{z}}{|z|^2} = z^*
+  $$
+\end{proof}
+
+\begin{obs}
+  Se $|z| = 1$, $z^* = \conj{z}$
+\end{obs}
+
+
+\begin{property}
+  Siano $z, w \in \mathbb{C}$,
+
+  \begin{enumerate}
+    \item $\conj{\conj{z}} = z$
+    \item $z = \conj{z} \iff z \in \mathbb{R}$
+    \item $\conj{z + w} = \conj{z} + \conj{w}$
+    \item $\conj{z\cdot w} = \conj{z}\cdot \conj{w}$
+    \item $\conj{\dfrac{1}{z}} = \dfrac{z}{|z|^2}$
+    \item $\Re{(z)} = \dfrac{z + \conj{z}}{2}$, $\Im{(z)} = \dfrac{z - \conj{z}}{2i}$
+  \end{enumerate}
+\end{property}
+
+
+\section{Forma trigonometrica}
+
+Un numero complesso può essere scritto in forma trigonometrica come:
+
+$$
+  z = \rho(\cos{\vartheta} + i\sin{\vartheta})
+$$
+
+con $\rho \in [0, +\infty)$, $\vartheta \in [-\pi, \pi)$
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2, >=stealth]
+
+  % Axes
+  \draw[->, thick] (-2.5,0) -- (2.5,0) node[right] {$\Re(z)$};
+  \draw[->, thick] (0,-2.5) -- (0,2.5) node[above] {$\Im(z)$};
+
+  % Complex number z = 2 + i
+  \coordinate (Z) at (2,1);
+  \draw[thick, teal, ->] (0,0) -- (Z);
+  \filldraw[teal] (Z) circle (2pt);
+  \node[black, above right] at (Z) {$z$};
+  \node[teal] at (1.0,0.8) {$\rho$};
+
+  % Projections on axes
+  \draw[dashed, gray] (Z) -- (2,0);
+  \draw[dashed, gray] (Z) -- (0,1);
+
+  % Argument angle
+  \draw[->, thick, blue] (0.8,0) arc (0:26.565:0.8);
+  \node[blue!80!black] at (1.2,0.3) {$\vartheta$};
+
+  % Labels
+  \node[below left] at (0,0) {$O$};
+
+\end{tikzpicture}
+\end{center}
+
+\begin{lemma}\label{SinCosCProd}
+  Siano $\vartheta, \varphi \in \mathbb{R}$, 
+
+  $$
+    (\cos{\vartheta} + i\sin{\vartheta})(\cos{\varphi} + i\sin{\varphi}) = \cos{(\vartheta + \varphi)} + +\sin{(\vartheta + \varphi)}
+  $$
+\end{lemma}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{obs}
+  Siano $z, w \in \mathbb{C}$ con $|w| = 1$, allora geometricamente $z\cdot w$ equivale a ruotare $z$ di $\arg{w}$.
+\end{obs}
+
+\begin{thm}[Formula di De Moivre]
+  Siano $z \in \mathbb{C}, n \in \mathbb{N}$, si ha che, detti $\rho = |z|$ e $\vartheta = \arg{z}$:
+
+  $$
+    z^n = \rho^n(\cos{n\vartheta} + i\sin{n\vartheta})
+  $$
+\end{thm}
+
+\begin{proof}
+  Per il lemma \ref{SinCosCProd}:
+  $$
+    z^n = \underset{n\text{ volte}}{\underbrace{z\cdot z\cdot \dots \cdot z}} = \rho^n(\cos{n\vartheta} + i\sin{n\vartheta})
+  $$
+\end{proof}
+
+\begin{prop}
+  Sia $z \in \mathbb{C}$ e $\arg{z} \in [-\pi, \pi)$:
+
+  $$
+    \arg{z} = 
+    \begin{cases}
+      \dfrac{\pi}{2}~\text{se}~\Re{(z)} = 0, \Im{(z)} > 0 \\[1em]
+      -\dfrac{\pi}{2}~\text{se}~\Re{(z)} = 0, \Im{(z)} < 0 \\[1em]
+      \arctan{\left[\dfrac{\Im{(z)}}{\Re{(z)}}\right]}~\text{se}~\Re{(z)} > 0 \\[1em]
+      \arctan{\left[\dfrac{\Im{(z)}}{\Re{(z)}}\right]} + \pi ~\text{se}~\Re{(z)} < 0, \Im{(z)} \geqslant 0 \\[1em]
+      \arctan{\left[\dfrac{\Im{(z)}}{\Re{(z)}}\right]} - \pi ~\text{se}~\Re{(z)} < 0, \Im{(z)} < 0 \\
+    \end{cases} 
+  $$
+\end{prop}
+
+\section{Radici $n$-esime}
+
+\begin{define}[Esponenziale complesso]
+  Sia $\lambda \in \mathbb{R}$, si definisce:
+
+  $$
+    e^{\lambda} := \cos{\lambda} + i\sin{\lambda}
+  $$
+
+  Sia $z \in \mathbb{C}$, si definisce:
+
+  $$
+    e^z := e^{\Re{(z)}}[\cos{\Im{(z)}} + i\sin{\Im{(z)}}]
+  $$
+\end{define}
+
+\begin{define}
+  Sia $z \in \mathbb{C}$, $w \in \mathbb{C}$ è una \textbf{radice $\boldsymbol{n}$-esima} di $z$, con $n \in \mathbb{N}$ se:
+  
+  $$
+    w^n = z
+  $$
+\end{define}
+
+\begin{obs}
+  $e^{i\pi} = -1$, $e^{2\pi i} = 1$
+\end{obs}
+
+\begin{obs}[Forma esponenziale di un numero complesso]
+  $$
+    z = \rho(\cos{\vartheta} + i\sin{\vartheta}) = \rho e^{i\vartheta}
+  $$
+\end{obs}
+
+
+\begin{thm}[Radici $n$-esime]
+  Sia $n \in \mathbb{N}_0$ e $z = \rho e^{i\vartheta} \in \mathbb{C}_0$, $z$ ammette 
+  $n$ radici distinte date da:
+
+  $$
+    w_k = \rho^{\frac{1}{n}}e^{i\vartheta_k},~~~\vartheta_k = \dfrac{\vartheta + 2k\pi}{n},~~~k\in \{0, 1, 2, \dots, n-1\}
+  $$
+\end{thm}
+
+\begin{proof}
+  Si provi prima che $w_k$ è una radice di $z$:
+
+  $$
+    w_k^{n} = (\rho^{\frac{1}{n}})^n e^{i\vartheta_k n} = \rho e^{i\vartheta}
+  $$
+
+  si mostri ora che $w_k$ sono le sole radici di $z$.
+
+  $$
+    t = \sqrt[n]{z} = z^{\frac{1}{n}} = \rho^{\frac{1}{n}} e^{i\frac{\vartheta}{n}}
+  $$
+
+  $$
+    t = \rho^{\frac{1}{n}} e^{i\frac{\vartheta}{n}} \iff  \begin{cases}
+                                                            |t| = \rho^{\frac{1}{n}} \\
+                                                            \arg{t} = \dfrac{\vartheta}{n} + \dfrac{2k\pi}{n}
+                                                          \end{cases}
+  $$
+  Sia:
+
+  \begin{itemize}
+    \item $k \in \{n, n+1, \dots\}$, allora:
+          $$
+            k = n\cdot q + r
+          $$
+
+          con $r \in \{0, 1, \dots, n-1\}$. Quindi:
+
+          $$
+            \arg{t} = \dfrac{\vartheta + 2\pi(nq + r)}{n}
+          $$
+
+          $$
+            t = \rho^{\frac{1}{n}}e^{i\frac{\vartheta}{n}}e^{\frac{2\pi r}{n}}e^{2\pi q} = \rho^{\frac{1}{n}} e^{\frac{\vartheta + 2\pi r}{n}}
+          $$
+
+    \item $k \in \{-1, -2, \dots, -n+1\}$
+  \end{itemize}
+\end{proof}
+
+\begin{center}
+\begin{tikzpicture}[scale=3, thick]
+
+  % Axes
+  \draw[->, black] (-1.2,0) -- (1.2,0) node[right] {$\Re$};
+  \draw[->, black] (0,-1.2) -- (0,1.2) node[above] {$\Im$};
+
+  % Unit circle
+  \draw[very thin, gray!60] (0,0) circle(1);
+
+  % 5th roots of unity
+  \foreach \k in {0,1,2,3,4} {
+    \coordinate (P\k) at ({cos(360/5*\k)}, {sin(360/5*\k)});
+    \filldraw[teal, z=10] (P\k) circle(0.02);
+  }
+
+  % Connect the points to form a pentagon
+  \draw[teal, very thick] (P0) -- (P1) -- (P2) -- (P3) -- (P4) -- cycle;
+
+  % Labels
+  \foreach \k in {1,2,3,4} {
+    \node[font=\small] at ($(0,0)!1.15!(P\k)$)
+      {$w_{\k}$};
+  }
+
+  \node[font=\small] at (1.1, 0.2)
+      {$w_{0}$};
+
+\end{tikzpicture}
+\end{center}
+
+
+\begin{define}[Molteplicità]
+  Sia $p_n(z)$ un polinomio, con $n \in \mathbb{N}$, $z \in \mathbb{C}$ e sia $\alpha \in \mathbb{C}~\colon~p_n(\alpha) = 0$. 
+  Si dice \textbf{molteplicità} di $\alpha$ l'esponente di $(z-\alpha)$ nella fattorizzazione di $p_n(z)$.
+\end{define}
+
+
+\begin{prop}
+  L'equazione a coefficienti reali:
+
+  $$
+    a_0 + a_1z + a_2z^2 + \dots + a_nz^n = 0,~~~a_i \in \mathbb{R}
+  $$
+
+  soddisfa le seguenti proprietà:
+
+  \begin{itemize}
+    \item Se $z$ è soluzione se e solo se $\conj{z}$ è soluzione
+    \item Se $z$ è soluzione, $z$ e $\conj{z}$ hanno la stessa molteplicità
+  \end{itemize}
+\end{prop}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item Sia $\alpha \in \mathbb{C}$ soluzione, allora:
+
+          $$
+            a_0 + a_1\alpha + a_2\alpha^2 + \dots + a_n\alpha^n = 0,~~~a_i \in \mathbb{R}
+          $$
+          $$
+            \conj{a_0 + a_1\alpha + a_2\alpha^2 + \dots + a_n\alpha^n} = \conj{0}
+          $$
+          $$
+            a_0 + a_1\conj{\alpha} + a_2\conj{\alpha}^2 + \dots + a_n\conj{\alpha}^n = 0
+          $$
+    \item Supponiamo che $\alpha$ sia soluzione, ma $\equalto{m(\alpha)}{s} > \equalto{m(\conj{\alpha})}{t}$. Allora il polinomio associato può 
+          essere scritto come:
+
+          $$
+            p_n(z) = (z - \alpha)^s(z - \conj{\alpha})^tq_n(z)
+          $$
+
+          Sia: 
+          
+          $$
+            \widetilde{p}(z) = \dfrac{p_n(z)}{(z-\alpha)^t(z-\conj{\alpha})^t} = (z-\alpha)^{s-t}q_n(z)
+          $$
+
+          allora $\widetilde{p}(z)$ è un polinomio a coefficienti reali ed ha $\alpha$ come radice, ma non $\conj{\alpha}$. Ciò contraddice 
+          il punto precedente.
+  \end{itemize}
+\end{proof}
+
+
+\begin{thm}[Teorema fondamentale dell'algebra]
+  Siano $a_0, a_1, \dots, a_n \in \mathbb{C}$ con $a_n \neq 0$, l'equazione:
+  
+  $$
+    a_0 + a_1z + a_2z^2 + \dots + a_nz^n = 0
+  $$
+
+  ha esattamente $n$ soluzioni in $\mathbb{C}$, contate con le loro molteplicità. 
+  Si dice che $\mathbb{C}$ è un campo \textbf{algebricamente chiuso}.
+\end{thm}
+
+
+\section{Struttura algebrica di $\mathbb{C}$}
+

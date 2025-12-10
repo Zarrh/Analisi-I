@@ -1,0 +1,1711 @@
+\chapter{Successioni}
+
+
+\section{Introduzione}
+
+\begin{define}
+  Definiamo una \textbf{successione} $\{a_n\}$ una funzione $a\colon \mathbb{N} \to \mathbb{R}$.
+\end{define}
+
+\begin{define}
+  Diciamo che una successione $a_n$ è \textbf{positiva} se $a_n \geqslant 0~\forall n$
+\end{define}
+
+\begin{define}
+  Diciamo che una successione $a_n$ è \textbf{limitata} se:
+
+  $$
+    \exists M > 0~\colon~|a_n| \leqslant M~\forall n
+  $$
+\end{define}
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+      width=12cm,
+      height=7cm,
+      xmin=0, xmax=20,
+      ymin=-0.5, ymax=2.5,
+      axis lines=middle,
+      xlabel={$n$},
+      ylabel={$a_n$},
+      % xtick={0,5,10,15,20},
+      % ytick={0,1,2},
+      ticks=none,
+      domain=0:20,
+      samples=40,
+      clip=false,
+    ]
+
+    % Upper and lower bounds
+    \addplot [name path=upper, very thick, dashed, color=teal] {2};
+    \addplot [name path=lower, very thick, dashed, color=teal] {0};
+
+    % Bounded sequence (sample data)
+    \addplot [
+      only marks,
+      mark=*,
+      blue,
+    ] table {
+      1 1.84
+      2 1.91
+      3 1.14
+      4 0.24
+      5 0.04
+      6 0.72
+      7 1.65
+      8 1.98
+      9 1.41
+      10 0.54
+      11 0.09
+      12 0.47
+      13 1.40
+      14 1.94
+      15 1.56
+      16 0.75
+      17 0.16
+      18 0.34
+      19 1.20
+      20 1.89
+    };
+
+    % Labels
+    \node[teal, anchor=west] at (axis cs:20,2) {$M$};
+    \node[teal, anchor=west] at (axis cs:20,0) {$M$};
+    \node[blue, anchor=west] at (axis cs:15,1.5) {$(a_n)$};
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{define}
+  Diciamo che una proposizione $P(n)$, con $n \in \mathbb{N}$, è vera \textbf{definitivamente} se è vera $\forall n \geqslant n_0$, con $n_0 \in \mathbb{N}$.
+\end{define}
+
+
+\begin{define}
+  Data una successione $a_n$, diciamo che $a_n$ \textbf{converge}, oppure tende a, oppure ha limite $l \in \mathbb{R}$ se $\exists l \in \mathbb{R}$ t.che:
+  $$
+    \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~|a_n - l| < \varepsilon~\forall n \geqslant n_0
+  $$
+\end{define}
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+      width=13cm,
+      height=7cm,
+      xmin=0, xmax=20,
+      ymin=-0.5, ymax=2.5,
+      axis lines=middle,
+      xlabel={$n$},
+      ylabel={$a_n$},
+      ticks=none,
+      domain=0:20,
+      samples=40,
+      clip=false,
+    ]
+
+    % Define limit and epsilon band
+    \def\L{1.2}
+    \def\eps{0.3}
+
+    % Epsilon tube (the "tube" around the limit)
+    \addplot [
+      name path=upper,
+      draw=none,
+    ] { \L + \eps };
+
+    \addplot [
+      name path=lower,
+      draw=none,
+    ] { \L - \eps };
+
+    \addplot [
+      fill=teal!20,
+      opacity=0.4,
+    ] fill between[of=upper and lower];
+
+    % Upper and lower bounds of the tube
+    \addplot [very thick, dashed, color=teal] { \L + \eps };
+    \addplot [very thick, dashed, color=teal] { \L - \eps };
+
+    % Converging sequence points
+    \addplot [
+      only marks,
+      mark=*,
+      color=blue,
+    ] table {
+      1 2.0
+      2 1.8
+      3 1.6
+      4 1.45
+      5 1.35
+      6 1.28
+      7 1.23
+      8 1.22
+      9 1.21
+      10 1.20
+      11 1.19
+      12 1.20
+      13 1.21
+      14 1.20
+      15 1.20
+      16 1.19
+      17 1.20
+      18 1.21
+      19 1.20
+      20 1.20
+    };
+
+    % Limit line
+    \addplot [very thick, color=blue!70!black] { \L };
+    \node[anchor=west, blue!70!black] at (axis cs:20,\L) {$L$};
+
+    % Labels
+    \node[blue, anchor=west] at (axis cs:10,1.6) {$(a_n)$};
+    \node[teal!60!black, anchor=west] at (axis cs:20,\L+\eps) {$L + \varepsilon$};
+    \node[teal!60!black, anchor=west] at (axis cs:20,\L-\eps) {$L - \varepsilon$};
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{thm}
+  $a_n \to l \in \mathbb{R}$ $\iff$ $|a_n - l| \to 0$.
+\end{thm}
+
+\begin{proof}
+  Dato che $|a_n - l| \to 0$, si ha che:
+
+  $$
+    \forall \varepsilon > 0~\exists n_0~\colon~||a_n - l| - 0| < \varepsilon~\forall n \geqslant n_0
+  $$
+
+  ne segue che
+
+  $$
+    \forall \varepsilon > 0~\exists n_0~\colon~|a_n - l| < \varepsilon~\forall n \geqslant n_0
+  $$
+
+  quindi $a_n \to l$
+\end{proof}
+
+\begin{thm}
+  Sia $\{a_n\}$ definitivamente positiva. Se $a_n \to a \in \mathbb{R}$, $\sqrt{a_n} \to \sqrt{a}$.
+\end{thm}
+
+\begin{proof}
+  Si noti che dati $x, y \in \mathbb{R}^+$, si ha:
+
+  $$
+    |\sqrt{x} - \sqrt{y}| \leqslant \sqrt{|x - y|}
+  $$
+
+  quindi:
+
+  $$
+    |\sqrt{a_n} - \sqrt{a}| \leqslant \sqrt{|a_n - a|}
+  $$
+
+  dato che $a_n \to a$, si ha che, fissato $\varepsilon > 0$:
+
+  $$
+    |a_n - a| < \varepsilon~\definit \implies \sqrt{|a_n - a|} < \sqrt{\varepsilon}~\definit
+  $$
+
+  preso $\varepsilon' = \sqrt{\varepsilon}$, ciò dimostra la tesi.
+
+  $$
+    |\sqrt{a_n} - \sqrt{a}| < \varepsilon'~\definit
+  $$
+  
+\end{proof}
+
+\begin{thm}
+  Sia $\{a_n\}$. Se $a_n \to a \in \mathbb{R}$, $|a_n| \to |a|$.
+\end{thm}
+
+\begin{proof}
+
+  Si noti che dati $a, b \in \mathbb{R}$, si ha:
+
+  $$
+    ||a| - |b|| \leqslant |a-b|
+  $$
+
+  quindi:
+
+  $$
+    ||a_n| - |a|| \leqslant |a_n - a|
+  $$
+
+  dato che $a_n \to a$, si ha che, fissato $\varepsilon > 0$:
+  
+  $$
+    |a_n - a| < \varepsilon~\definit \implies ||a_n| - |a|| < \varepsilon~\definit
+  $$
+  
+\end{proof}
+
+
+\begin{define}
+  Data una successione $a_n$, diciamo che $a_n$ \textbf{diverge}, oppure tende a, oppure ha limite $+\infty$ se:
+
+  $$
+    \forall M > 0~\exists n_0 \in \mathbb{N}~\colon~a_n > M~\forall n \geqslant n_0
+  $$
+\end{define}
+
+
+\section{Unicità del limite}
+
+\begin{thm}
+  Se $a_n \to l \in \mathbb{R}$, $l$ è unico.
+\end{thm}
+
+\begin{proof}
+  P.A. supponiamo che esistano due numeri reali $l_1$ e $l_2$, tali che $l_1 \neq l_2$ e tali che:
+
+  \begin{center}
+    $\forall \varepsilon > 0~\exists n_1 \in \mathbb{N}~\colon~|a_n - l_1| < \varepsilon~\forall n \geqslant n_1$\\
+    $\forall \varepsilon > 0~\exists n_2 \in \mathbb{N}~\colon~|a_n - l_2| < \varepsilon~\forall n \geqslant n_2$
+  \end{center}
+
+  Sia $\varepsilon = \dfrac{|l_1 - l_2|}{3}$, si ha che:
+
+  $$
+    |l_1 - l_2| = |l_1 - a_n + a_n - l_2| \leqslant |l_1 - a_n| + |l_2 - a_n| < 2\varepsilon~\definit
+  $$
+  $$
+    \implies |l_1 - l_2| < 2\varepsilon = 2\dfrac{|l_1 - l_2|}{3} \implies 1 < \dfrac{2}{3}
+  $$
+
+  il che è un assurdo.
+
+  
+  \begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[
+        width=13cm,
+        height=7cm,
+        xmin=0, xmax=20,
+        ymin=0.5, ymax=2.5,
+        axis lines=middle,
+        xlabel={$n$},
+        ylabel={$a_n$},
+        ticks=none,
+        domain=0:20,
+        samples=40,
+        clip=false,
+      ]
+
+      % Define two hypothetical limits
+      \def\Lone{1.0}
+      \def\Ltwo{1.8}
+      \def\eps{0.2}
+
+      % Epsilon neighborhoods for L1 and L2
+      \addplot [name path=upperA, draw=none] { \Lone + \eps };
+      \addplot [name path=lowerA, draw=none] { \Lone - \eps };
+      \addplot [fill=red!20, opacity=0.4] fill between[of=upperA and lowerA];
+
+      \addplot [name path=upperB, draw=none] { \Ltwo + \eps };
+      \addplot [name path=lowerB, draw=none] { \Ltwo - \eps };
+      \addplot [fill=blue!20, opacity=0.4] fill between[of=upperB and lowerB];
+
+      % Dashed bounds for epsilon bands
+      \addplot [very thick, dashed, color=red!70!black] { \Lone + \eps };
+      \addplot [very thick, dashed, color=red!70!black] { \Lone - \eps };
+      \addplot [very thick, dashed, color=blue!70!black] { \Ltwo + \eps };
+      \addplot [very thick, dashed, color=blue!70!black] { \Ltwo - \eps };
+
+      % Sequence (points "trying" to converge)
+      \addplot [
+        only marks,
+        mark=*,
+        color=purple!70!black,
+      ] table {
+        1 1.9
+        2 1.7
+        3 1.5
+        4 1.3
+        5 1.2
+        6 1.1
+        7 1.05
+        8 1.0
+        9 1.1
+        10 1.2
+        11 1.3
+        12 1.5
+        13 1.7
+        14 1.8
+        15 1.85
+        16 1.8
+        17 1.75
+        18 1.7
+        19 1.8
+        20 1.8
+      };
+
+      % Limit lines and labels
+      \addplot [very thick, color=red!80!black] { \Lone };
+      \addplot [very thick, color=blue!80!black] { \Ltwo };
+
+      \node[red!80!black, anchor=west] at (axis cs:20,\Lone) {$L_1$};
+      \node[blue!80!black, anchor=west] at (axis cs:20,\Ltwo) {$L_2$};
+
+      % Annotate disjoint neighborhoods
+      \node[anchor=west, red!70!black] at (axis cs:13,\Lone+0.4)
+        {$|a_n - l_1| < \varepsilon$};
+      \node[anchor=west, blue!70!black] at (axis cs:13,\Ltwo+0.4)
+        {$|a_n - l_2| < \varepsilon$};
+
+      % \draw[<->, thick, gray!70!black] (axis cs:19,\Lone+\eps) -- (axis cs:19,\Ltwo-\eps)
+      %   node[midway, right, text=gray!70!black] {disjoint bands};
+
+    \end{axis}
+  \end{tikzpicture}
+  \end{center}
+\end{proof}
+
+\section{Permanenza del segno}
+
+\begin{thm}
+  Sia $a_n \to l$, si ha che:
+  \begin{itemize}
+    \item Se $l > 0$, $a_n > 0~\definit$
+    \item Se $a_n \geqslant 0~\definit$, allora $l \geqslant 0$;
+  \end{itemize}
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item Sia $\varepsilon = \dfrac{l}{2}$. Si ha che:
+
+    $$
+      0 < |a_n - l| < \dfrac{l}{2} \implies 0 < \dfrac{l}{2} < a_n < \dfrac{3l}{2}
+    $$
+  
+    \item In modo analogo, se $l < 0$, $a_n < 0$, quindi se $a_n \geqslant 0$, $l \geqslant 0$.
+  \end{itemize}
+\end{proof}
+
+
+\section{Teorema del confronto}
+
+\begin{thm}[Primo teorema del confronto]
+  Siano $\{a_n\}$, $\{b_n\}$ e $\{c_n\}$ tre successioni tali che:
+
+  $$
+    a_n \leqslant c_n \leqslant b_n~\definit
+  $$
+
+  se $a_n \to l$, $b_n \to l$ con $l \in \mathbb{R}$, allora $c_n \to l$.
+\end{thm}
+
+\begin{proof}
+  Dato che $a_n$ e $b_n$ convergono allo stesso $l$:
+
+  $$
+    \forall \varepsilon' > 0~\exists n_0'~\colon~ -\varepsilon' + l < a_n < \varepsilon' + l ~\forall n \geqslant n_0'
+  $$
+  $$
+    \forall \varepsilon'' > 0~\exists n_0''~\colon~ -\varepsilon'' + l < b_n < \varepsilon'' + l~\forall n \geqslant n_0''
+  $$
+
+  sia ora $n_0 = \max{\{n_0', n_0''\}}$, dato che $a_n \leqslant b_n$:
+
+  $$
+    \forall \varepsilon'~\forall \varepsilon''~\exists n_0~\colon~-\varepsilon' + l < a_n \leqslant b_n < \varepsilon'' + l~\forall n \geqslant n_0
+  $$
+  $$
+    \forall \varepsilon'~\forall \varepsilon''~\exists n_0~\colon~-\varepsilon' + l < a_n \leqslant c_n \leqslant b_n < \varepsilon'' + l~\forall n \geqslant n_0
+  $$
+
+  per giungere a $c_n \to l$, basta prendere $\varepsilon = \min{\{\varepsilon', \varepsilon''\}}$.
+\end{proof}
+
+\begin{thm}[Secondo teorema del confronto]
+  Siano $\{a_n\}$ e $\{b_n\}$ due successioni tali che:
+
+  $$
+    a_n \leqslant b_n~\definit
+  $$
+
+  se $a_n \to \infty$, allora $b_n \to \infty$.
+\end{thm}
+
+\begin{proof}
+  Dato che $a_n \to \infty$, si ha che:
+
+  $$
+    \forall M > 0~\exists n_0~\colon~a_n > M~\forall n \geqslant n_0
+  $$
+
+  avendo $b_n \geqslant a_n$:
+
+  $$
+    \forall M > 0~\exists n_0~\colon~M < a_n \leqslant b_n~\forall n \geqslant n_0
+  $$
+\end{proof}
+
+
+\begin{cor}
+  Se $\{a_n\}$ è una successione limitata e $\{\varepsilon_n\}$ è una successione 
+  infinitesima, $a_n \cdot \varepsilon_n \to 0$
+\end{cor}
+
+\begin{proof}
+  Dato che $a_n$ è limitata:
+
+  $$
+    \exists M > 0~\colon~-M \leqslant a_n \leqslant M~\forall n
+  $$
+
+  si supponga $\varepsilon_n > 0~\definit$ (ciò tuttavia non fa perdere di generalità). Allora: 
+
+  $$
+    \exists M > 0~\colon~-M\cdot \varepsilon_n \leqslant a_n\cdot \varepsilon_n \leqslant M \cdot \varepsilon_n~\forall n
+  $$
+
+  Quindi $a_n \cdot \varepsilon_n \to 0$ per il teorema del confronto.
+\end{proof}
+
+
+\section{Monotonia}
+
+\begin{define}
+  Data una successione $\{a_n\}$, diciamo che essa è \textbf{monotona}:
+
+  \begin{itemize}
+    \item \textbf{crescente} se $a_{n+1} \geqslant a_{n}~\forall n$;
+    \item \textbf{strettamente crescente} se $a_{n+1} > a_{n}~\forall n$;
+    \item \textbf{decrescente} se $a_{n+1} \leqslant a_{n}~\forall n$;
+    \item \textbf{strettamente decrescente} se $a_{n+1} < a_{n}~\forall n$.
+  \end{itemize}
+\end{define}
+
+
+\begin{thm}
+  Se una successione $\{a_n\}$ è definitivamente monotona, allora è regolare. In particolare:
+
+  \begin{itemize}
+    \item Se $\{a_n\}$ è illimitata, $\{a_n\}$ diverge.
+    \item Se $\{a_n\}$ è limitata, $\{a_n\}$ converge;
+  \end{itemize}
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item Consideriamo il caso in cui $\{a_n\}$ sia monotona crescente. Dato che non è limitata, si ha che:
+          $$
+            \forall M > 0~\exists a_{n_0}~\colon~|a_{n_0}| > M
+          $$
+          dato che $\{a_n\}$ è crescente, $a_n \geqslant a_{n_0}~\forall n \geqslant n_0$. Quindi:
+
+          $$
+            \forall M > 0~\exists n_0~\colon~a_n > M~\forall n \geqslant n_0
+          $$
+    \item Consideriamo nuovamente il caso in cui $\{a_n\}$ sia crescente. Sia:
+          $$
+            A = \{a_0, a_1, \dots\}
+          $$
+          per la completezza di $\mathbb{R}$, $A$ ammette estremo superiore. Sia $\gamma = \sup_{A}$. Per la definizione di estremo superiore:
+
+          $$
+            \forall \varepsilon > 0~\exists a_{n_0} \in A~\colon~\gamma - \varepsilon < a_{n_0}
+          $$
+          Dato che $\{a_n\}$ è crescente:
+          $$
+            \forall \varepsilon > 0~\exists n_0~\colon~\gamma - a_n < \varepsilon~\forall n \geqslant n_0
+          $$
+          $$
+            \forall \varepsilon > 0~\exists n_0~\colon~\gamma - \varepsilon < a_n \leqslant \gamma~\forall n \geqslant n_0
+          $$
+  \end{itemize}
+\end{proof}
+
+
+\begin{notation}
+  $a_n \uparrow \gamma$, $b_n \downarrow \gamma$ ($a_n$ tende a $\gamma$ dal basso, $b_n$ tende a $\gamma$ dall'alto)
+\end{notation}
+
+
+\section{Numero di Eulero}
+
+\begin{define}
+  $$
+    e_n = \left(1 + \dfrac{1}{n}\right)^n
+  $$
+\end{define}
+
+\begin{thm}
+  $e_n$ converge.
+\end{thm}
+
+\begin{proof}
+  Dimostriamo che $e_n$ è monotona crescente:
+
+  \begin{align*}
+    a_{n+1} \geqslant a_n &\iff \left(1 + \dfrac{1}{n+1}\right)^{n+1} \geqslant \left(1 + \dfrac{1}{n}\right)^n \\
+                          &\iff \left[\dfrac{1 + \dfrac{1}{n+1}}{1 + \dfrac{1}{n}}\right]^{n+1} \geqslant \dfrac{1}{1 + \dfrac{1}{n}} \\
+                          &\iff \left[\dfrac{\dfrac{n+2}{n+1}}{\dfrac{n+1}{n}}\right]^{n+1} \geqslant \dfrac{n}{n+1} \\
+                          &\iff \left[\dfrac{n(n+2)}{(n+1)^2}\right]^{n+1} \geqslant 1 - \dfrac{1}{n+1} \\
+                          &\iff \left[\dfrac{n^2 + 2n + 1 - 1}{n^2 + 2n + 1}\right]^{n+1} \geqslant 1 - \dfrac{1}{n+1} \\
+                          &\iff \left[1 - \dfrac{1}{(n+1)^2}\right]^{n+1} \geqslant 1 - \dfrac{1}{n+1} \\
+  \end{align*}
+
+  che è la disuguaglianza di Bernoulli con $x = -\dfrac{1}{(n+1)^2}$.
+
+  In modo analogo si dimostra che $\displaystyle \left(1 + \dfrac{1}{n}\right)^{n+1}$ è decrescente.
+
+  Dato che $e_n < \displaystyle \left(1 + \dfrac{1}{n}\right)^{n+1}~\forall n$, $e_n$ è superiormente limitata. Dato che $e_n$ è monotona, ne segue che $e_n$ 
+  converge.
+\end{proof}
+
+\begin{define}[Numero di Eulero]
+  $e := \lim{e_n}$
+\end{define}
+
+
+\section{Sottosuccessioni}
+
+\begin{define}
+  Data una successione $a_n$ e una successione $n_k: \mathbb{N} \to \mathbb{N}$, si dice \textbf{sottosuccessione} di $a_n$ la funzione composta 
+  $a_{n_k} = a_n \circ n_k$
+\end{define}
+
+\begin{obs}
+  Le possibili Sottosuccessioni di una data successione $a_n$ sono infinite di cardinalità $\mathfrak{C}$
+\end{obs}
+
+\begin{thm}
+  Se una successione $a_n \to l \in \overline{\mathbb{R}}$, allora ogni sottosuccessione $a_{n_k} \to l$.
+\end{thm}
+
+\begin{obs}
+  Se una successione $a_n$ ammette due Sottosuccessioni che hanno limite diverso, $a_n$ è oscillante.
+\end{obs}
+
+\begin{lemma}[Lemma dei picchi]
+  Ogni successione ammette una sottosuccessione monotona.
+\end{lemma}
+
+\begin{proof}
+  Sia $\{a_n\}$ una generica successione. Definiamo \textit{picco} una coppia $(n_0, a_{n_0})$ se $a_{n_0} \geqslant a_{n}~\forall n \geqslant n_0$. 
+
+  \begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=10cm,
+      height=7cm,
+      axis lines=middle,
+      xlabel={$n$},
+      ylabel={$a_n$},
+      samples=10,
+      domain=0:9,
+      xtick=\empty, % Hide x ticks
+      ytick=\empty, % Hide y ticks
+      grid=both,
+      every axis label/.append style={font=\small},
+    ]
+    % Plotting the sequence
+    \addplot[blue, mark=*, thick] coordinates {
+      (0,2) (1,3) (2,6) (3,4) (4,5) (5,3) (6,4) (7,4.5) (8,3) (9,2.5)
+    };
+    
+    % Highlighting peaks
+    \addplot[only marks, mark=*, mark options={fill=tyrian, scale=1.5}] coordinates {
+      (2,6) (4,5) (7,4.5)
+    };
+
+    \end{axis}
+  \end{tikzpicture}
+  \end{center}
+
+  La successione $a_n$ può quindi avere:
+
+  \begin{itemize}
+    \item Un numero infinito di picchi. In tal caso, si costruisca una sottosuccessione di $a_n$ che abbia come elementi i 
+          picchi. In tal modo, la sottosuccessione sarà decrescente (per la definizione di picco) e quindi monotona.
+    \item Un numero finito di picchi. In tal caso si prenda l'ultimo picco (quello con $n_0$ maggiore). Si ha che 
+          $\exists n_1 > n_0+1~\colon~a_{n_1} > a_{n_0+1}$ (altrimenti $(n_0 + 1, a_{n_0 + 1})$ sarebbe un picco). Si può così 
+          iterare la procedura e costruire una sottosuccessione crescente.
+  \end{itemize}
+\end{proof}
+
+\begin{thm}[Teorema di Bolzano-Weierstrass]
+  Ogni successione limitata ammette una sottosuccessione convergente.
+\end{thm}
+
+\begin{proof}
+  Per il \textit{lemma dei picchi} ogni successione $a_n$ ammette una sottosuccessione $a_{n_k}$ monotona. 
+  Per un teorema precedentemente dimostrato, se $a_{n_k}$ è monotona è limitata, allora converge.
+\end{proof}
+
+
+\section{Limite superiore e limite inferiore}
+
+\begin{define}
+  Sia $a_n$ una successione, si definisce \textbf{limite superiore} di $a_n$:
+
+  $$
+    \lim_{m \to \infty}\left(\sup_{m \geqslant n}{a_n}\right)
+  $$
+\end{define}
+
+\begin{define}
+  Sia $a_n$ una successione, si definisce \textbf{limite inferiore} di $a_n$:
+
+  $$
+    \lim_{m \to \infty}\left(\inf_{m \geqslant n}{a_n}\right)
+  $$
+\end{define}
+
+\begin{notation}
+  $\limsup a_n$, $\liminf a_n$, $\overline{\lim{}} a_n$, $\underline{\lim{}} a_n$
+\end{notation}
+
+\begin{define}
+  Sia $a_n$ una successione, $l \in \overline{\mathbb{R}}$ è \textbf{limite sottosuccesionale} di $a_n$ se 
+  $\exists a_{n_k} \to l$.
+\end{define}
+
+\begin{property}
+$$
+  \underline{\lim{}} a_n \leqslant \overline{\lim{}} a_n
+$$
+In particolare, se $\underline{\lim{}} a_n = \overline{\lim{}} a_n$, $a_n \to \underline{\lim{}} a_n = \overline{\lim{}} a_n$.
+\end{property}
+
+\begin{thm}
+  Il limite superiore è il più grande limite sottosuccesionale possibile di una successione.
+\end{thm}
+
+
+\section{Proprietà dei limiti}
+
+\begin{thm}[Operazioni con i limiti]
+  Siano $a_n \to a \in \mathbb{R}$, $b_n \to b \in \mathbb{R}$:
+  \begin{enumerate}
+    \item $a_n + b_n \to a + b$
+    \item $a_n \cdot b_n \to a\cdot b$
+    \item Se $b \neq 0$, $\dfrac{a_n}{b_n} \to \dfrac{a}{b}$
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{enumerate}
+    \item $$
+            |a_n + b_n - (a+b)| = |a_n - a + b_n - b| \leqslant |a_n - a| + |b_n - b| < 2\varepsilon~\forall \varepsilon~\definit
+          $$
+    \item \begin{align*}
+            |a_n\cdot b_n - a\cdot b| &= |a_nb_n - a_nb + a_nb - ab| = |a_n(b_n - b) + b(a_n - a)| \leqslant \\
+                                      &\leqslant |a_n||b_n - b| + |b||a_n - a|
+          \end{align*}
+          dato che $a_n \to a$, $|b||a_n - a| \to 0$. Dato che $a_n$ converge, $|a_n|$ converge ed è limitata. Quindi $|a_n||b_n - b| \to 0$. 
+          Quindi $|a_n - ab| \to 0$ per confronto $\implies$ $a_nb_n \to ab$.
+    \item Per il terzo punto, basta provare che $\dfrac{1}{b_n} \to \dfrac{1}{b}$:
+          \begin{align*}
+            \left|\dfrac{1}{b_n} - \dfrac{1}{b}\right| &= \left|\dfrac{b - b_n}{b_nb}\right| = |b_n - b|\dfrac{1}{|b_n||b|} \leqslant \dfrac{2}{|b^2|}|b_n - b| \to 0
+          \end{align*}
+          dove nell'utlimo passaggio si è utilizzato il fatto che se $|b_n| \to |b|$ allora $|b_n| \geqslant \dfrac{|b|}{2}~\definit$
+  \end{enumerate}
+\end{proof}
+
+
+\begin{prop}
+  $\sin{n}$ non converge.
+\end{prop}
+
+\begin{proof}
+  P.A. si supponga che $\sin{n} \to l \in [-1, 1]$ (se $\sin{n}$ converge ad $l$, per 
+  il teorema della permanenza del segno si deve avere $-1 \leqslant l \leqslant 1$). \\
+
+  Si considerino:
+
+  $$
+    \sin{(n+1)} = \sin{n}\cdot\cos{1} + \sin{1}\cdot\cos{n} \to l
+    \sin{(n-1)} = \sin{n}\cdot\cos{1} - \sin{1}\cdot\cos{n} \to l
+  $$
+  
+  entrambe convergono ad $l$ poiché sottosuccessioni di $\sin{n}$. Quindi:
+
+  $$
+    \sin{(n+1)} + \sin{(n-1)} = 2\sin{n}\cdot\cos{1} \implies l + l = 2l\cdot\cos{1}
+  $$
+
+  dato che $\cos{1} \neq 1$, $l = 0$. Si consideri ora:
+
+  $$
+    \sin{(n+1)} - \sin{(n-1)} = 2\sin{1}\cdot\cos{n} \to l - l = 0
+  $$
+
+  dato che $\sin{1} \neq 0$, $\cos{n} \to 0$. Ma si ha che:
+
+  $$
+    \sin^2{n} + \cos^2{n} \to 0 + 0 \neq 1
+  $$
+
+  ciò è un assurdo.
+\end{proof}
+
+
+\section{Aritmetica estesa}
+
+\begin{itemize}
+  \item $+\infty + \infty = +\infty$
+  \item $+\infty \cdot c = +\infty~c \in \mathbb{R}^+$
+  \item $+\infty \cdot (-c) = -\infty~c \in \mathbb{R}^+$
+  \item $\dfrac{c}{+\infty} = 0^+~c \in \mathbb{R}^+$
+  \item $\dfrac{c}{0^+} = +\infty~c \in \mathbb{R}^+$
+  \item $[\dots]$
+\end{itemize}
+
+\subsection{Forme indeterminate}
+
+\begin{enumerate}
+  \item $+\infty \cdot 0$
+  \item $+\infty - \infty$
+  \item $\dfrac{+\infty}{+\infty}$
+  \item $\dfrac{0}{0}$
+  \item $1^{\infty}$
+  \item $\infty^0$
+  \item $0^0$
+\end{enumerate}
+
+Si noti che le ultime tre possono essere ricondotte alle 2., 3. e 4., che a loro volta possono essere ricondotte alla prima.
+
+
+\section{Limiti notevoli}
+
+Sia $\varepsilon_n \to 0$ una successione infinitesima, con $\varepsilon \neq 0~\definit$, valgono i seguenti limiti notevoli:
+
+\begin{limnot}
+  Sia $a \in \mathbb{R}$:
+  $$
+    a^n = 
+    \begin{cases}
+      +\infty~\text{se}~a > 1 \\
+      1~\text{se}~a = 1 \\
+      0~\text{se}~|a| < 1 \\
+      \not \exists~\text{se}~a \leqslant -1
+    \end{cases}
+  $$
+  \begin{proof}
+    Se $a > 1$, $a = 1 + b$, con $b > 0$. Quindi, per la disuguaglianza di Bernoulli:
+    $$
+      a^n = (1 + b)^n \geqslant 1 + nb \to \infty
+    $$
+    Se $a = 1$, la successione è costante. \\
+    Se $|a| < 1$, $a = \dfrac{1}{b}$, con $|b| > 1$. Quindi:
+    $$
+      a^n = \dfrac{1}{b^n} \to 0
+    $$
+    Se $a \leqslant 1$, allora può essere scritta come:
+    $$
+      a^n = (-1)^n b
+    $$
+    con $b = |a|$.
+  \end{proof}
+\end{limnot}
+
+\begin{lemma}\label{SinIneq}
+  Sia $x \in \mathbb{R} \cap \left[0, \dfrac{\pi}{2}\right)$:
+  $$
+    \sin{x} \leqslant x \leqslant \tan{x}
+  $$
+\end{lemma}
+\begin{proof}
+  Si ha che:
+  \begin{center}
+  \begin{tikzpicture}[scale=3.5, line cap=round, line join=round]
+    % Colors
+    \definecolor{sector}{HTML}{B3E5FC}
+    \definecolor{triangle1}{HTML}{C8E6C9}
+    \definecolor{triangle2}{HTML}{FFCDD2}
+
+    % Circle
+    % \draw[thick] (0,0) circle(1);
+    \draw[thick] (1,0) arc(0:90:1);
+
+    % Points
+    \coordinate (O) at (0,0);
+    \coordinate (B) at (1,0);
+    \coordinate (A) at ({cos(30)},{sin(30)});
+    \coordinate (C) at (1,{tan(30)});
+
+    % Fill areas
+    % Small triangle OAB (sin x)
+    \fill[triangle1!70!white] (O) -- (A) -- (B) -- cycle;
+
+    % Sector OAB
+    \fill[sector, opacity=0.5] (0,0) -- (B) arc(0:30:1) -- cycle;
+
+    % Large triangle OAC (tan x)
+    \fill[triangle2!70!white, opacity=0.6] (O) -- (A) -- (C) -- cycle;
+
+    % Axes
+    \draw[->, thick] (-0.1,0) -- (1.2,0) node[right] {$x$};
+    \draw[->, thick] (0,-0.1) -- (0,1.2) node[above] {$y$};
+
+    % Labels
+    \draw[thick] (O) -- (A) node[midway, above left] {$1$};
+    \draw[thick] (O) -- (B);
+    \draw[thick] (A) -- (C);
+
+    \node[below left] at (O) {$O$};
+    \node[below right] at (B) {$B$};
+    \node[above] at ({cos(30)},{sin(30)+0.05}) {$A$};
+    \node[right] at (C) {$C$};
+
+    % Angle marker
+    \draw[->, thick, teal] (0.3,0) arc(0:30:0.3);
+    \node at (0.38,0.08) {$x$};
+
+    % Legends
+    % \node[triangle1!70!black] at (0.6,0.1) {\small $\frac{1}{2}\sin x$};
+    % \node[sector!80!black] at (0.4,0.3) {\small $\frac{x}{2}$};
+    % \node[triangle2!70!black] at (0.9,0.3) {\small $\frac{1}{2}\tan x$};
+
+    % Tangent line
+    \draw[dashed, gray] (1,-0.1) -- (1,1.1);
+
+  \end{tikzpicture}
+  \end{center}
+
+  $$
+    \mathfrak{A}_{O\overset{\triangle}{A}B} \leqslant \mathfrak{A}_{OAB} \leqslant \mathfrak{A}_{O\overset{\triangle}{C}B}
+  $$
+  $$
+    \dfrac{1}{2}\sin{x} \leqslant \dfrac{1}{2}x \leqslant \dfrac{1}{2} \tan{x}
+  $$
+\end{proof}
+
+\begin{limnot}\leavevmode
+  $$
+    \dfrac{\sin{\varepsilon_n}}{\varepsilon_n}
+  $$
+
+  \begin{proof}
+    Mostriamo che se $\delta_n \to 0$, $\sin{\delta_n} \to 0$. Dato che $\delta_n \to 0$, $\delta_n \in \left(-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right)~\definit$.
+    Allora, per il lemma \ref{SinIneq} si ha che:
+
+    $$
+      0 \leqslant |\sin{\delta_n}| = \sin{|\delta_n|} \leqslant |\delta_n|
+    $$
+
+    quindi $\sin{|\delta_n|} \to 0$ per confronto. \\
+    Dimostriamo ora che se $\delta_n \to 0$, $\cos{\delta_n} \to 0$:
+
+    $$
+      \cos{\delta_n} = \sqrt{1 - \sin^2{\delta_n}} \to \sqrt{1} = 1
+    $$
+
+    Infatti $a_n \to a \implies \sqrt{a_n} \to \sqrt{a}$. \\
+    Si può supporre, senza perdita di generalità, che $\varepsilon_n \in \left(0, \dfrac{\pi}{2}\right)~\definit$. 
+    Per il lemma \ref{SinIneq}:
+
+    $$
+      \sin{\varepsilon_n} < \varepsilon_n < \dfrac{\sin{\varepsilon_n}}{\cos{\varepsilon_n}} \implies 1 < \dfrac{\varepsilon_n}{\sin{\varepsilon_n}} < \dfrac{1}{\cos{\varepsilon_n}}
+    $$
+
+    di conseguenza:
+
+    $$
+      \cos{\varepsilon_n} < \dfrac{\sin{\varepsilon_n}}{\varepsilon_n} < 1
+    $$
+
+    quindi $\dfrac{\sin{\varepsilon_n}}{\varepsilon_n} \to 1$ per confronto.
+  \end{proof}
+\end{limnot}
+
+
+\begin{limnot}\leavevmode
+  $$
+    \dfrac{\arcsin{\varepsilon_n}}{\varepsilon_n} \to 1
+  $$
+  \begin{proof}
+    Si supponga, senza perdere di generalità, che $\varepsilon_n \in \left(0, 1\right)$.
+    Sia $\delta_n = \arcsin{\varepsilon_n} \implies \varepsilon_n = \sin{\delta_n}$. Si vuole mostrare che $\delta_n \to 0$. Si ha che:
+
+    $$
+      0 \leqslant \sin{\delta_n} \leqslant \delta_n \leqslant \dfrac{\sin{\delta_n}}{\cos{\delta_n}} = \dfrac{\varepsilon_n}{\sqrt{1 - \varepsilon^2_n}} \to 0
+    $$
+
+    quindi $\delta_n \to 0$ per confronto. Di conseguenza:
+
+    $$
+      \dfrac{\arcsin{\varepsilon_n}}{\varepsilon_n} = \dfrac{\delta_n}{\sin{\delta_n}} = \dfrac{1}{\dfrac{\sin{\delta_n}}{\delta_n}} \to 1
+    $$
+  \end{proof}
+\end{limnot}
+
+
+\begin{limnot}\leavevmode
+  $$
+    \dfrac{\tan{\varepsilon_n}}{\varepsilon_n} \to 1
+  $$
+  \begin{proof}\leavevmode
+    $$
+      \dfrac{\tan{\varepsilon_n}}{\varepsilon_n} = \dfrac{\sin{\varepsilon_n}}{\varepsilon_n} \cdot \dfrac{1}{\cos{\varepsilon_n}} \to 1
+    $$
+  \end{proof}
+\end{limnot}
+
+
+\begin{limnot}\leavevmode
+  $$
+    \dfrac{\arctan{\varepsilon_n}}{\varepsilon_n} \to 1
+  $$
+  \begin{proof}
+    Senza perdità di generalità, sia $0 < \varepsilon_n < 1~\definit$. 
+    Sia $\delta_n = \arctan{\varepsilon_n} \implies \varepsilon_n = \tan{\delta_n}$. Si vuole mostrare che $\delta_n \to 0$. Si ha che:
+
+    $$
+      0 \leqslant \sin{\delta_n} \leqslant \delta_n \leqslant \tan{\delta_n} = \varepsilon_n \to 0
+    $$
+
+    quindi $\delta_n \to 0$ per confronto. Dunque:
+
+    $$
+      \dfrac{\arctan{\varepsilon_n}}{\varepsilon_n} = \dfrac{\delta_n}{\tan{\delta_n}} = \dfrac{1}{\dfrac{\tan{\delta_n}}{\delta_n}} \to 1
+    $$
+  \end{proof}
+\end{limnot}
+
+
+\begin{limnot}\leavevmode
+  $$
+    \dfrac{1 - \cos{\varepsilon_n}}{\varepsilon^2_n} \to \dfrac{1}{2}
+  $$
+  \begin{proof}\leavevmode
+    $$
+      \dfrac{1 - \cos{\varepsilon_n}}{\varepsilon^2_n} = \dfrac{1 - \cos{\varepsilon_n}}{\varepsilon^2_n}\dfrac{1 + \cos{\varepsilon_n}}{1 + \cos{\varepsilon_n}} = \dfrac{1 - \cos^2{\varepsilon_n}}{\varepsilon^2_n}\dfrac{1}{1+\cos{\varepsilon_n}} = \left(\dfrac{\sin{\varepsilon_n}}{\varepsilon_n}\right)^2\dfrac{1}{1 + \cos{\varepsilon_n}} \to \dfrac{1}{2}
+    $$
+  \end{proof}
+\end{limnot}
+
+
+\begin{limnot}\leavevmode
+  $$
+    (1 + \varepsilon_n)^{\frac{1}{\varepsilon_n}} \to e
+  $$
+\end{limnot}
+
+
+\begin{limnot}\leavevmode
+  $$
+    \dfrac{\log{(1 + \varepsilon_n)}}{\varepsilon_n} \to 1
+  $$
+  \begin{proof}
+    Per il limite notevole precedente:
+    $$
+      (1 + \varepsilon_n)^{\frac{1}{\varepsilon_n}} \to e
+    $$
+    quindi:
+    $$
+      \exp{\left(\dfrac{\log{(1 + \varepsilon_n)}}{\varepsilon_n}\right)} \to e \implies \dfrac{\log{(1 + \varepsilon_n)}}{\varepsilon_n} \to 1
+    $$
+  \end{proof}
+\end{limnot}
+
+
+\begin{limnot}\leavevmode
+  $$
+    \dfrac{e^{\varepsilon_n} - 1}{\varepsilon_n} \to 1
+  $$
+  \begin{proof}
+    Sia $\delta_n = e^{\varepsilon_n}-1 \implies \varepsilon_n = \log{(\delta_n + 1)}$. Dato che $e^{\varepsilon_n} \to 1$, $\delta_n \to 0$. Quindi:
+
+    $$
+      \dfrac{e^{\varepsilon_n} - 1}{\varepsilon_n} = \dfrac{\delta_n}{\log{(\delta_n + 1)}} \to 1
+    $$
+  \end{proof}
+\end{limnot}
+
+
+\begin{limnot}\leavevmode
+  $$
+    \dfrac{\sinh{\varepsilon_n}}{\varepsilon_n} \to 1
+  $$
+  \begin{proof}\leavevmode
+    $$
+      \dfrac{\sinh{\varepsilon_n}}{\varepsilon_n} = \dfrac{e^{\varepsilon_n} - e^{-\varepsilon_n}}{2\varepsilon_n} = \dfrac{1}{e^{\varepsilon_n}}\dfrac{e^{2\varepsilon_n} - 1}{2\varepsilon_n} \to 1
+    $$
+  \end{proof}
+\end{limnot}
+
+
+\begin{limnot}\leavevmode
+  $$
+    \dfrac{\tanh{\varepsilon_n}}{\varepsilon_n} \to 1
+  $$
+  \begin{proof}\leavevmode
+    $$
+      \dfrac{\tanh{\varepsilon_n}}{\varepsilon_n} = \dfrac{\sinh{\varepsilon_n}}{\varepsilon_n}\dfrac{1}{\cosh{\varepsilon_n}} \to 1
+    $$
+  \end{proof}
+\end{limnot}
+
+
+\begin{limnot}\leavevmode
+  $$
+    \dfrac{\cosh{\varepsilon_n} - 1}{\varepsilon^2_n} \to \dfrac{1}{2}
+  $$
+  \begin{proof}\leavevmode
+    $$
+      \dfrac{\cosh{\varepsilon_n} - 1}{\varepsilon^2_n} = \dfrac{\cosh{\varepsilon_n} - 1}{\varepsilon^2_n}\cdot \dfrac{\cosh{\varepsilon_n} + 1}{\cosh{\varepsilon_n} + 1} = \dfrac{\cosh^2{\varepsilon_n} - 1}{\varepsilon^2_n}\dfrac{1}{\cosh{\varepsilon_n} + 1} = \left(\dfrac{\sinh{\varepsilon_n}}{\varepsilon_n}\right)^2\dfrac{1}{\cosh{\varepsilon_n} + 1} \to \dfrac{1}{2}
+    $$
+  \end{proof}
+\end{limnot}
+
+
+\begin{limnot}
+  Sia $a \in \mathbb{R}$:
+
+  $$
+    \dfrac{(1 + \varepsilon_n)^a - 1}{\varepsilon_n} \to a
+  $$
+
+  \begin{proof}\leavevmode
+    $$
+      \dfrac{(1 + \varepsilon_n)^a - 1}{\varepsilon_n} = \dfrac{e^{a\log{(1 + \varepsilon_n)}} - 1}{a\log{(1 + \varepsilon_n)}}\dfrac{\log{(1 + \varepsilon_n)}}{\varepsilon_n}a \to a
+    $$
+  \end{proof}
+\end{limnot}
+
+
+\begin{limnot}
+  Sia $a_n$ una successione tale che $a_n\varepsilon_n \to 0$:
+
+  $$
+    \dfrac{(1 + \varepsilon_n)^{a_n} - 1}{a_n\varepsilon_n} \to 1
+  $$
+
+  \begin{proof}\leavevmode
+    $$
+      \dfrac{(1 + \varepsilon_n)^{a_n} - 1}{a_n\varepsilon_n} = \dfrac{e^{a_n\log{(1 + \varepsilon_n)}} - 1}{a_n\log{(1 + \varepsilon_n)}}\dfrac{\log{(1 + \varepsilon_n)}}{\varepsilon_n} \to 1~{se}~a_n\log{(1 + \varepsilon_n)} \to 0 \implies a_n\varepsilon_n \to 0
+    $$
+  \end{proof}
+\end{limnot}
+
+
+\section{Gerarchie di infinito}
+
+
+\begin{thm}[Teorema del confronto per le successioni]
+  Sia $a_n$ una successione definitivamente positiva. Sia $l = \lim{\dfrac{a_{n+1}}{a_n}}$, si ha che:
+
+  \begin{itemize}
+    \item Se $l > 1$, $a_n$ diverge;
+    \item Se $0 \leqslant l < 1$, $a_n$ converge;
+    \item Se $l = 1$, il criterio è inconcludente.
+  \end{itemize}
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item Se $l < 1$, $\exists \beta$ t.che $l < \beta < 1$. Si ha che:
+          $$
+            \dfrac{a_{n+1}}{a_n} \leqslant \beta~\definit
+          $$
+          $$
+            a_{n+1} \leqslant \beta a_n~\definit
+          $$
+          $$
+            a_{n+2} \leqslant \beta a_{n+1} \leqslant \beta^2 a_n~\definit
+          $$  
+          $$
+            0 < a_{n+k} \leqslant \beta^k a_n \to 0~\definit
+          $$
+          quindi $a_{n+k} \to 0$ per confronto.
+    \item Se $l > 1$, $\exists \beta$ t.che $1 < \beta < l$. Si ha che:
+          $$
+            \dfrac{a_{n+1}}{a_n} \geqslant \beta~\definit
+          $$
+          $$
+            a_{n+k} \geqslant \beta^ka_n \to +\infty~\definit
+          $$
+          quindi $a_{n+k} \to +\infty$ per confronto.
+  \end{itemize}
+\end{proof}
+
+
+\begin{notation}
+  $a_n \ll b_n \iff \dfrac{a_n}{b_n} \to 0$
+\end{notation}
+
+\begin{thm}[Gerarchie di infinito]
+  Siano $p, q, r > 0$, si ha che:
+
+  $$
+    \left(\log{n}\right)^p \ll n^q \ll e^r \ll n! \ll n^n
+  $$
+\end{thm}
+
+\begin{proof}
+  Dimostriamo il primo, in particolare che:
+
+  $$
+    \dfrac{\log{n}}{n} \to 0
+  $$
+
+  Sia $q_n = \log{n} \implies n = e^{q_n} \implies \dfrac{\log{n}}{n} = \dfrac{q_n}{e^{q_n}}$. Si ha che, fissato $n$:
+
+  \begin{align*}
+    \exists k \in \mathbb{Z}^+~\colon~&0 < k \leqslant q_n \leqslant k+1 \\
+                                      &e^k \leqslant e^{q_n} \leqslant e^{k+1} \implies \dfrac{1}{e^k} \geqslant \dfrac{1}{e^{q_n}}
+  \end{align*}
+
+  Quindi:
+
+  $$
+    \dfrac{\log{n}}{n} = \dfrac{q_n}{e^{q_n}} < \dfrac{k+1}{e^k} = \dfrac{k}{e^k} + \dfrac{1}{e^k}
+  $$
+
+  dato che se $n \to \infty$, $k \to \infty$, $\dfrac{\log{n}}{n} \to 0$ per confronto.
+\end{proof}
+
+
+
+\section{Asintoticità}
+
+
+\begin{define}
+  Due successioni $a_n$ e $b_n$ si dicono \textbf{asintotiche} se:
+
+  $$
+    \dfrac{a_n}{b_n} \to 1
+  $$
+\end{define}
+
+\begin{notation}
+  $a_n \sim b_n$
+\end{notation}
+
+\begin{obs}
+  Se $a_n \sim b_n$, $a_n \neq 0~\definit$, $b_n \neq 0~\definit$.
+\end{obs}
+
+\begin{prop}
+  Sia $A$ l'insieme delle successioni diverse da $0$ definitivamente. Allora l'asintoticità è una relazione d'equivalenza.
+\end{prop}
+
+\begin{obs}\leavevmode
+  $$
+    a_n \sim b_n \iff a_n = b_n(1 + \varepsilon_n)
+  $$
+\end{obs}
+
+\begin{proof}\leavevmode
+  $$
+    \dfrac{a_n}{b_n} = \dfrac{b_n(1 + \varepsilon_n)}{b_n} = 1 + \varepsilon_n \to 1
+  $$
+\end{proof}
+
+
+\begin{prop}
+  Sia $a_n \sim b_n$ e $c_n$ una successione diversa da $0$ definitivamente. Allora:
+
+  \begin{itemize}
+    \item $a_n \cdot c_n \sim b_n \cdot c_n$
+    \item $\dfrac{a_n}{c_n} \sim \dfrac{b_n}{c_n}$
+  \end{itemize}
+\end{prop}
+
+\begin{prop}
+  Sia $a_n \sim b_n$ e $c_n$ una successione limitata. Allora:
+
+  $$
+    a_n^{\displaystyle c_n} \sim b_n^{\displaystyle c_n}
+  $$
+\end{prop}
+
+\begin{prop}\leavevmode
+  $a_n \sim b_n \centernot \implies a_n + c_n \sim b_n + c_n$
+\end{prop}
+
+
+\begin{prop}[Polinomio in $n$]
+  Sia $p_n = a_1n^{\alpha_1} + a_2n^{\alpha_2} + \dots + a_kn^{\alpha_k}$, con $a_1, a_2, \dots, a_k \in \mathbb{R}_0$ e 
+  $\alpha_1 > \alpha_2 > \dots > \alpha_k$, si ha che:
+
+  $$
+    p_n \sim a_1n^{\alpha_1}
+  $$
+\end{prop}
+
+\begin{proof}\leavevmode
+  $$
+    p_n = a_1n^{\alpha_1}\left(1 + \underset{\underset{\displaystyle 0}{\displaystyle \downarrow}}{\dfrac{a_2}{a_1n^{\alpha_1 - \alpha_2}}} + \dots + \underset{\underset{\displaystyle 0}{\displaystyle \downarrow}}{\dfrac{a_k}{a_1n^{\alpha_1 - \alpha_k}}}\right) = a_1n^{\alpha_1}(1 + \varepsilon_n)
+  $$
+\end{proof}
+
+\begin{obs}
+  I coefficienti $a_k$ possono essere anche successioni limitate.
+\end{obs}
+
+
+\subsection{Formula di De Moivre-Stirling}
+
+\begin{thm}[Formula di De Moivre-Stirling]\leavevmode
+  $$
+    n! \sim \sqrt{2\pi n}\cdot n^n e^{-n}
+  $$
+\end{thm}
+
+\begin{cor}\leavevmode
+  $$
+    \log{n!} \sim n\log{n}
+  $$
+\end{cor}
+
+\begin{proof}
+  $n! \to +\infty$, quindi, usando la formula di Stirling:
+
+  \begin{align*}
+    \log{n!}  &\sim \log{(\sqrt{2\pi n}\cdot n^ne^{-n})} = \\
+              & = \log{\sqrt{2\pi n}} + n\log{n} - n \sim n\log{n}
+  \end{align*}
+\end{proof}
+
+
+\section{Continuità per successioni di alcune funzioni}
+
+\begin{thm}[Continuità del logaritmo per successioni]
+  Sia $\{a_n\}$ una successione t.che $a_n > 0$ e $a_n \to a \in [0, +\infty]$, allora:
+
+  $$
+    \log{a_n} \to l =
+    \begin{cases}
+      \log{a}~\text{se}~a \in (0, +\infty) \\
+      +\infty~\text{se}~a = +\infty \\
+      -\infty~\text{se}~a = 0
+    \end{cases}
+  $$
+
+  Il logaritmo si dice \textit{continuo per successioni}.
+\end{thm}
+
+\begin{proof}
+  Sia $a \in (0, +\infty)$
+
+  \begin{align*}
+    |\log{a_n} - \log{a}| = \left|\log{\left(\dfrac{a_n}{a}\right)}\right| < \varepsilon  &\iff -\varepsilon < \log{\left(\dfrac{a_n}{a}\right)} < \varepsilon \\
+                                                                                          &\iff e^{-\varepsilon} < \dfrac{a_n}{a} < e^{\varepsilon} \\
+                                                                                          &\iff ae^{-\varepsilon} < a_n < ae^{\varepsilon} \\
+                                                                                          &\iff \equalto{a(e^{-\varepsilon} - 1)}{-\beta,\beta > 0} < a_n - a < \equalto{a(e^{\varepsilon} + 1)}{\alpha,\alpha>0} \\
+  \end{align*}
+
+  dato che $a_n \to a$:
+  $$
+    \forall \varepsilon > 0~\exists n_0~\colon~|a_n - a| < \varepsilon~\forall n \geqslant n_0
+  $$
+
+  Sia $\delta = \min{(\beta, \alpha)}$, allora $|a_n - a| < \delta \implies |\log{a_n} - \log{a}| < \varepsilon$
+\end{proof}
+
+\begin{thm}[Continuità dell'esponenziale per successioni]
+  Sia $\{a_n\}$ una successione t.che e $a_n \to a \in \overline{\mathbb{R}}$, allora:
+
+  $$
+    e^{a_n} \to l =
+    \begin{cases}
+      e^{a}~\text{se}~a \in \mathbb{R} \\
+      +\infty~\text{se}~a = +\infty \\
+      0~\text{se}~a = -\infty
+    \end{cases}
+  $$
+\end{thm}
+
+\begin{proof}
+  Sia $a \in \mathbb{R}$:
+
+  \begin{align*}
+    |e^{a_n} - e^{a}| < \varepsilon &\iff -\varepsilon < e^{a_n} - e^a < \varepsilon \\
+                                    &\iff -\varepsilon + e^a < e^{a_n} < \varepsilon + e^a
+  \end{align*}
+
+  senza perdità di generalità, si supponga $-\varepsilon + e^a > 0 \implies \varepsilon < e^a$:
+
+  \begin{align*}
+    |e^{a_n} - e^{a}| < \varepsilon &\iff \log{(-\varepsilon + e^a)} < a_n < \log{(\varepsilon + e^a)} \\
+                                    &\iff \log{(-\varepsilon + e^a)} - a < a_n - a < \log{(\varepsilon + e^a)} - a \\
+                                    &\iff \equalto{\log{(-\varepsilon e^{-a} + 1)}}{-\beta,\beta>0} < a_n - a < \equalto{\log{(\varepsilon e^{-1} + 1)}}{\alpha,\alpha>0}
+  \end{align*}
+
+  dato che $a_n \to a$:
+  $$
+    \forall \varepsilon > 0~\exists n_0~\colon~|a_n - a| < \varepsilon~\forall n \geqslant n_0
+  $$
+
+  Sia $\delta = \min{(\beta, \alpha)}$, allora $|a_n - a| < \delta \implies |e^{a_n} - e^a| < \varepsilon$
+\end{proof}
+
+\begin{thm}[Continuità per successioni dell'arcotangente]
+  Sia $a_n \to a \in \overline{\mathbb{R}}$:
+
+  $$
+    \arctan{a_n} \to l = 
+    \begin{cases}
+      \arctan{a}~\text{se}~a \in \mathbb{R} \\
+      \dfrac{\pi}{2}~\text{se}~a \to +\infty \\
+      -\dfrac{\pi}{2}~\text{se}~a \to -\infty
+    \end{cases}
+  $$
+\end{thm}
+
+\subsection{Formula di Cesaro}
+
+\begin{thm}[Formula di Cesaro]
+  Sia $\{a_n\}$ una successione e $\displaystyle \sigma_n := \dfrac{1}{n}\sum_{k=1}^n a_k$ la successione delle medie di $a_n$. 
+  Se $a_n \to \overline{a} \in \mathbb{R}$, $\sigma_n \to \overline{a}$.
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{align*}
+    |\sigma_n - \overline{a}| &= \left|\dfrac{1}{n}\sum_{k=1}^n a_k - \overline{a}\right| = \\
+                              &= \left|\dfrac{1}{n}\sum_{k=1}^n a_k - \dfrac{1}{n}\sum_{k=1}^n\overline{a}\right| = \\
+                              &= \dfrac{1}{n}\left|\sum_{k=1}^n (a_k - \overline{a})\right| \leqslant \\
+                              &\leqslant \dfrac{1}{n}\left(\sum_{k=1}^n|a_k - \overline{a}|\right)
+  \end{align*}
+
+  Dato che $a_n \to \overline{a}$:
+
+  $$
+    \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~|a_n - \overline{a}| < \varepsilon~\forall n \geqslant n_0
+  $$
+
+  quindi, fissato $\varepsilon > 0$:
+
+  \begin{align*}
+    |\sigma_n - \overline{a}| \leqslant \dfrac{1}{n}\sum_{k=1}^n|a_k - \overline{a}|  &= \dfrac{1}{n}\sum_{k=1}^{n_0}|a_k - \overline{a}| + \dfrac{1}{n}\sum_{k=n_0+1}^n|a_k - \overline{a}| \leqslant \\
+                                                                                      &\leqslant \dfrac{1}{n}C + \dfrac{1}{n}\varepsilon(n-n_0)
+  \end{align*}
+
+  con $C \in \mathbb{R}$
+
+  $$
+    \forall \varepsilon > 0~\exists n_0~\colon~|\sigma_n - \overline{a}| \leqslant \dfrac{C}{n} + \varepsilon\dfrac{n-n_0}{n} \leqslant \dfrac{C}{n} + \varepsilon~\forall n\geqslant n_0
+  $$
+  $$
+    \dfrac{C}{n} \to 0 \implies \forall \varepsilon > 0~\exists n_1 \in \mathbb{N}~\colon~\dfrac{C}{n} \leqslant \varepsilon~\forall n \geqslant n_1
+  $$
+  $$
+    |\sigma_n - \overline{a}| \leqslant 2\varepsilon~\forall n \geqslant \max{(n_0, n_1)}
+  $$
+\end{proof}
+
+
+\section{Asintotici di esponenziali e logaritmi}
+
+\begin{thm}
+  Siano $a_n$ e $b_n$ due successioni tali che $a_n \sim b_n$, allora:
+
+  $$
+    e^{a_n} \sim e^{b_n}
+  $$
+
+  se $a_n$ e $b_n$ sono limitate.
+\end{thm}
+
+\begin{proof}
+  Si ha che:
+
+  $$
+    \dfrac{e^{a_n}}{e^{b_n}} = e^{a_n - b_n} \to 1~\iff a_n - b_n \to 0
+  $$
+
+  dato che $\dfrac{a_n}{b_n} \to 1$:
+
+  $$
+    a_n - b_n = b_n\equalto{\left(\dfrac{a_n}{b_n} - 1\right)}{\varepsilon_n} \to 0 \iff b_n~\text{è limitata}
+  $$
+
+  si può concludere lo stesso per $a_n$.
+\end{proof}
+
+
+\begin{thm}
+  Siano $a_n$ e $b_n$ due successioni tali che $a_n \sim b_n$, allora:
+
+  $$
+    \log{a_n} \sim \log{b_n}
+  $$
+
+  se $a_n \not \to 1$, $b_n \not \to 1$.
+\end{thm}
+
+\begin{proof}
+  Si ha che:
+
+  $$
+    \dfrac{\log{a_n}}{\log{b_n}} = \dfrac{\log{\left(\dfrac{a_n}{b_n}b_n\right)}}{\log{b_n}} = \dfrac{\log{\dfrac{a_n}{b_n}} + \log{b_n}}{\log{b_n}} = 1 + \dfrac{\log{\dfrac{a_n}{b_n}}}{\log{b_n}} \to 1 \iff \dfrac{\log{\dfrac{a_n}{b_n}}}{\log{b_n}} \to 0
+  $$
+
+  dato che $\dfrac{a_n}{b_n} \to 1$, $\log{a_n} \sim \log{b_n}$ se $\log{b_n} \not \to 0$, $b_n \not \to 1$. Lo stesso si può dire per $a_n$.
+\end{proof}
+
+
+\section{Successioni di Cauchy}
+
+
+\begin{define}
+  Sia $\{a_n\}$ una successione, $\{a_n\}$ è \textbf{di Cauchy} se:
+
+  $$
+    \forall \varepsilon > 0~\exists n_0~\colon~|a_m - a_n| < \varepsilon~\forall m, n \geqslant n_0
+  $$
+\end{define}
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+      width=12cm,
+      height=6.5cm,
+      xmin=0, xmax=20,
+      ymin=0, ymax=2.5,
+      axis lines=middle,
+      xlabel={$n$},
+      ylabel={$a_n$},
+      % xtick={5,10,15,20},
+      % ytick=\empty,
+      ticks=none,
+      clip=false,
+      domain=0:20,
+      samples=40
+    ]
+
+    % Limit line
+    \addplot [very thick, teal, dashed, domain=0:20] {1.5} node [pos=1.01, right] {$L$};
+
+    % ε-tube around the limit
+    \addplot [name path=upper, draw=none, domain=0:20] {1.5 + 0.3};
+    \addplot [name path=lower, draw=none, domain=0:20] {1.5 - 0.3};
+    \addplot [fill=teal!10] fill between [of=upper and lower];
+
+    % Sequence points
+    \addplot [
+      only marks,
+      mark=*,
+      blue
+    ] table {
+      1 0.5
+      2 1.3
+      3 1.7
+      4 1.2
+      5 1.55
+      6 1.42
+      7 1.47
+      8 1.52
+      9 1.48
+      10 1.51
+      11 1.50
+      12 1.48
+      13 1.52
+      14 1.49
+      15 1.51
+      16 1.50
+      17 1.50
+      18 1.50
+      19 1.51
+      20 1.49
+    };
+
+    % Label ε tube
+    % \draw[decorate, decoration={brace, mirror, amplitude=5pt}, thick, teal]
+    %   (axis cs:20,1.8) -- (axis cs:20,1.2)
+    %   node[midway,xshift=1.3cm,teal] {$2\varepsilon$};
+
+    % N marker
+    \draw[dashed, gray] (axis cs:9,0) -- (axis cs:9,2.5);
+    \node[gray, below] at (axis cs:9,0) {$n_0$};
+
+    % Text annotations
+    \node[teal!70!black] at (axis cs:17,2.1) {\small $\forall \varepsilon > 0,\ \exists n_0 :\ |a_n - a_m| < \varepsilon~\forall n,m \geqslant n_0$};
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{thm}
+  Se $a_n \to l \in \mathbb{R}$, $a_n$ è di Cauchy.
+\end{thm}
+
+\begin{proof}
+  Dato che $a_n \to \mathbb{R}$, si ha che:
+
+  $$
+    \forall \varepsilon > 0~\exists n_0~\colon~|a_n - l| < \varepsilon~\forall n \geqslant n_0
+  $$
+
+  quindi, se $n, m \geqslant n_0$:
+
+  $$
+    |a_n - a_m| = |a_n - l + l - a_m| \leqslant |a_n - l| + |a_m - l| < 2\varepsilon~\forall n,m \geqslant n_0
+  $$
+\end{proof}
+
+\begin{obs}
+  Il viceversa è vero ed equivale alla completezza di $\mathbb{R}$.
+\end{obs}
+
+
+\begin{thm}
+  Se $a_n$ è di Cauchy, $a_n$ è convergente.
+\end{thm}
+
+\begin{proof}
+  Si inizi dal dimostrare che se $a_n$ è di Cauchy, $a_n$ è limitata. Si vuole mostrare quindi che:
+
+  $$
+    \exists M > 0~|a_n| \leqslant M~\forall n \in \mathbb{N}
+  $$
+
+  dato che $a_n$ è di Cauchy:
+
+  $$
+    \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~|a_n - a_m| < \varepsilon~\forall n,m \geqslant n_0
+  $$
+
+  si fissi $\varepsilon > 0$ e quindi $n_0$. $\{a_0, a_1, \dots, a_{n_0}\}$ è un insieme finito, quindi ammette massimo. Sia $M = \max{\{a_0, a_1, \dots, a_n\}}$, senza 
+  perdità di generalità si supponga $n > m$ e si fissi $m$:
+
+  $$
+    -\varepsilon < a_n - a_m < \varepsilon \implies -\varepsilon + a_n < a_n < \varepsilon + a_m
+  $$
+
+  dato che $m$ dipende da $n_0$ e $n_0$ dipende da $\varepsilon$, $m$ dipende da $\varepsilon$. Quindi:
+
+  $$
+    a_n < \max{(M, \varepsilon + a_m)}
+  $$
+
+  ossia $a_n$ è superiormente limitata. Si può procedere in modo analogo dimostrando che è inferiormente limitata. \\
+
+  Dato che $a_n$ è limitata, per il teorema di Bolzano-Weierstrass ammette una sottosuccessione $a_{n_k}$ convergente. 
+  Sia $a_{n_k} \to l \in \mathbb{R}$, allora:
+
+  $$
+    |a_n - l| = |a_n - a_{n_k} + a_{n_k} - l| \leqslant |a_n - a_{n_k}| + |a_{n_k} - l|
+  $$
+
+  dato che $a_{n_k} \to l$:
+
+  $$
+    \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~|a_{n_k} - l| < \varepsilon~\forall n \geqslant n_0  
+  $$
+
+  e dato che $a_n$ è di Cauchy:
+
+  $$
+    \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~|a_n - a_m| < \varepsilon~\forall n,m \geqslant n_0  
+  $$
+
+  detto $m = n_{k}$:
+
+  $$
+    \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~|a_n - a_{n_k}| < \varepsilon~\forall n,n_{k} \geqslant n_0  
+  $$
+
+  quindi:
+
+  $$
+    \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~|a_n - l| < \varepsilon~\forall n \geqslant n_0  
+  $$
+\end{proof}
+
+
+\begin{thm}
+  Siano $\{a_n\}$ e $\{b_n\}$ due successioni tali che:
+
+  \begin{itemize}
+    \item $a_n \leqslant b_n$
+    \item $a_n \uparrow $, $b_n \downarrow$
+    \item $0 \leqslant b_n - a_n \to 0$
+  \end{itemize}
+
+  allora $a_n \to l \in \mathbb{R}$, $b_n \to l$ e:
+
+  $$
+    |a_n - l| \leqslant |a_n - b_k|~\forall k \in \mathbb{N}
+  $$
+  $$
+    |b_n - l| \leqslant |a_k - b_n|~\forall k \in \mathbb{N}
+  $$
+\end{thm}
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=10cm,
+    height=7cm,
+    axis lines=middle,
+    xlabel={$n$},
+    ylabel={$x_n$},
+    samples=15,
+    domain=2:30,
+    xtick=\empty, % Hide x ticks
+    ytick=\empty, % Hide y ticks
+    grid=both,
+    every axis label/.append style={font=\small},
+  ]
+    % Plot for a_n (increasing)
+    \addplot[mark=*, blue, domain=2:30, samples=20, thick] {(1 + 1/x)^x};
+
+    % Plot for b_n (decreasing)
+    \addplot[mark=*, teal, domain=2:30, samples=20, thick] {(1 + 1/x)^(x+1)};
+    
+    \node[anchor=north, blue!70!black] at (axis cs:5, {(1 + 1/5)^5 + 0.15}) {$a_n$};
+    \node[anchor=south, teal!70!black] at (axis cs:5, {(1 + 1/5)^6 - 0.15}) {$b_n$};
+      
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{proof}
+  Dato che $a_n \leqslant b_n$, $a_n$ è superiormente limitata e $b_n$ è inferiormente limitata. Inoltre, dato che $a_n$ è crescente, 
+  $a_n$ è inferiormente limitata, mentre $b_n$ è superiormente limitata. Dato che $a_n$ e $b_n$ sono monotone e limitate, convergono. Sia $a_n \to a$ e $b_n \to b$ e 
+  $a \neq b$, allora:
+
+  $$
+    0 \leqslant |a - b| = |a - a_n + a_n - b_n + b_n - b| \leqslant |a - a_n| + |a_n - b_n| + |b_n - b|
+  $$
+
+  ma, dato che $a_n \to a$, $b_n \to b$ e $|a_n - b_n| \to 0$, i tre termini tendono a zero, quindi:
+
+  $$
+    0 \leqslant \lim{|a-b|} \leqslant 0
+  $$
+
+  quindi $a-b = 0$, $a = b := l$. \\
+  Dato che $b_n \downarrow l$, $b_k \geqslant l~\forall k$. Allo stesso modo $a_n \leqslant l~\forall n$. Dunque:
+
+  $$
+    |a_n - b_k| = |a_n - l| + |b_k - l| \geqslant |a_n - l|
+  $$
+\end{proof}
+
+
+\section{Spazi metrici}
+
+\begin{define}
+  Siano $X$ un insieme e $d:X \times X \to [0, +\infty)$. $(X, d)$ è uno spazio metrico se:
+
+  \begin{itemize}
+    \item $d(x, y) = 0 \iff x = y~\forall x,y \in X$ 
+    \item $d(x, y) = d(y, x)~\forall x,y \in X$ (simmetria)
+    \item $d(x, y) \leqslant d(x, z) + d(z, y)~\forall x,y,z \in X$ (disuguaglianza triangolare)
+  \end{itemize}
+\end{define}
+
+\begin{es}
+  $X = \mathbb{R}$, $d(x, y) = |x - y|$
+\end{es}
+
+\begin{define}
+  Uno spazio metrico $(X, d)$ è \textbf{completo} se le successioni di Cauchy in $(X, d)$ sono convergenti.
+\end{define}
+

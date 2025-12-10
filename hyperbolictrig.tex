@@ -1,0 +1,136 @@
+\chapter{Trigonometria iperbolica}
+
+\begin{define}[Coseno iperbolico]
+  Si definisce \textbf{coseno iperbolico} la funzione $\cosh : \mathbb{R} \to \mathbb{R}$:
+
+  $$
+    \cos{x} := \dfrac{e^x + e^{-x}}{2}
+  $$
+\end{define}
+
+\begin{define}[Seno iperbolico]
+  Si definisce \textbf{seno iperbolico} la funzione $\sinh : \mathbb{R} \to \mathbb{R}$:
+
+  $$
+    \sinh{x} := \dfrac{e^x - e^{-x}}{2}
+  $$
+\end{define}
+
+\begin{define}[Tangente iperbolica]
+  Si definisce \textbf{tangente iperbolica} la funzione $\tanh : \mathbb{R} \to \mathbb{R}$:
+
+  $$
+    \tanh{x} := \dfrac{\sinh{x}}{\cosh{x}} = \dfrac{e^x - e^{-x}}{e^{x} + e^{-x}}
+  $$
+\end{define}
+
+\begin{define}[Cotangente iperbolica]
+  Si definisce \textbf{cotangente iperbolica} la funzione $\tanh : \mathbb{R}_0 \to \mathbb{R}$:
+
+  $$
+    \coth{x} := \dfrac{\cosh{x}}{\sinh{x}} = \dfrac{e^x + e^{-x}}{e^{x} - e^{-x}}
+  $$
+\end{define}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{groupplot}[
+  group style={
+    group size=2 by 1,
+    horizontal sep=2.5cm,
+    ylabels at=edge left,
+    xlabels at=edge bottom,
+    vertical sep=0pt
+  },
+  width=8.25cm,
+  height=8.5cm,
+  axis lines=middle,
+  xlabel={$x$},
+  samples=300,
+  domain=-3:3,
+  ticks=none,
+  ymin=-3, ymax=6,
+  legend style={font=\small, cells={anchor=west}},
+  every axis title/.append style={yshift=-1ex}
+]
+
+\nextgroupplot[
+  xmin=-2.5, xmax=2.5,
+  ylabel={$y$},
+  ylabel style={xshift=2.5pt}
+]
+\addplot[blue, thick] {sinh(x)};
+\addlegendentry{$\sinh(x)$}
+\addplot[teal, thick, dashed] {cosh(x)};
+\addlegendentry{$\cosh(x)$}
+
+\nextgroupplot[
+  xmin=-3, xmax=3,
+  ylabel={$y$}, 
+  ylabel style={xshift=2.5pt}
+]
+\addplot[blue, thick] {tanh(x)};
+\addlegendentry{$\tanh(x)$}
+\addplot[teal, thick, dashed, domain=-3:-0.2] {cosh(x)/sinh(x)};
+\addplot[teal, thick, dashed, domain=0.2:3] {cosh(x)/sinh(x)};
+\addlegendentry{$\coth(x)$}
+
+\end{groupplot}
+\end{tikzpicture}
+\end{center}
+
+
+\begin{prop}\leavevmode
+  $$
+    \cosh^2{x} - \sinh^2{x} = 1~\forall x \in \mathbb{R}
+  $$
+\end{prop}
+
+\begin{prop}
+  Siano $\alpha, \beta \in \mathbb{R}$:
+
+  \begin{itemize}
+    \item $\sinh{(\alpha + \beta)} = \sinh{\alpha}\cosh{\beta} + \sinh{\beta}\cosh{\alpha}$
+    \item $\cosh{(\alpha + \beta)} = \cosh{\alpha}\cosh{\beta} + \sinh{\alpha}\sinh{\beta}$
+  \end{itemize}
+\end{prop}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{cor}
+  Siano $\alpha, \beta \in \mathbb{R}$:
+
+  \begin{itemize}
+    \item $\sinh{(\alpha - \beta)} = \sinh{\alpha}\cosh{\beta} - \sinh{\beta}\cosh{\alpha}$
+    \item $\cosh{(\alpha - \beta)} = \cosh{\alpha}\cosh{\beta} - \sinh{\alpha}\sinh{\beta}$
+  \end{itemize}
+\end{cor}
+
+\begin{cor}
+  Sia $\alpha \in \mathbb{R}$:
+
+  \begin{itemize}
+    \item $\sinh{(2\alpha)} = 2\sinh{\alpha}\cosh{\alpha}$
+    \item $\cosh{(2\alpha)} = \cosh^2{\alpha} + \sinh^2{\alpha}$
+  \end{itemize}
+\end{cor}
+
+\begin{prop}
+  Sia $\alpha \in \mathbb{R}$:
+
+  \begin{itemize}
+    \item $\sinh{\left(\dfrac{\alpha}{2}\right)} = \sgn{(\alpha)}\sqrt{\dfrac{\cosh{\alpha} - 1}{2}}$
+    \item $\cosh{\left(\dfrac{\alpha}{2}\right)} = \sqrt{\dfrac{\cosh{\alpha} + 1}{2}}$
+  \end{itemize}
+\end{prop}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{prop}
+  La funzione $\sinh : \mathbb{R} \to \mathbb{R}$ è invertibile e l'inversa è data da:
+\end{prop}

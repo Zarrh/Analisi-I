@@ -1,0 +1,280 @@
+\chapter{Successioni e serie di funzioni}
+
+
+\section{Successioni di funzioni}
+
+
+\begin{define}[Successione di funzioni]
+  Sia $f_n: \mathfrak{I} \to \mathbb{R}$ una funzione reale, con $n \in \mathbb{N}$, la successione 
+  $\{f_n\}$ si dice \textbf{successione di funzioni}.
+\end{define}
+
+\begin{notation}
+  $\{f_n\}$, $f_n$, $\{f_n\}_{n \in \mathbb{N}}$
+\end{notation}
+
+\begin{obs}
+  Fissato $x_0 \in \mathfrak{I}$, $f_n(x_0)$ è una successione numerica.
+\end{obs}
+
+\begin{define}[Convergenza puntuale]
+  Sia $f_n$ una successione di funzioni e sia $f: \mathfrak{I} \to \mathbb{R}$, si dice che 
+  $f_n$ \textbf{converge puntualmente} a $f$ se:
+
+  $$
+    \forall x_0 \in \mathfrak{I}~f_n(x_0) \to f(x_0)
+  $$
+\end{define}
+
+
+\begin{es}[I]
+  Sia $\mathfrak{I} = [0, 1]$ e sia $f_n$:
+
+  $$
+    f_n(x) = x^n
+  $$
+
+  $f_n$ converge puntualmente a:
+
+  $$
+    f(x) =  \begin{cases*}
+              0~\text{ se }~x \in [0, 1) \\
+              1~\text{ se }~x = 1
+            \end{cases*}
+  $$
+\end{es}
+
+\begin{es}[II]
+  Sia $\mathfrak{I} = [0, 1]$ e sia $f_n$:
+
+  $$
+    f_n(x) = \dfrac{\sin{(nx)}}{\sqrt{n}}
+  $$
+
+  $$
+    f_n(x) \to f(x) = 0
+  $$
+
+  $$
+    f'_n(x) = \sqrt{n}\cos{(nx)}
+  $$
+  $$
+    f'_n(x) \to +\infty
+  $$
+\end{es}
+
+\begin{es}[III]
+  Sia $\mathfrak{I} = [0, 1]$ e sia $f_n$ così definita:
+
+  ***grafico***
+
+  $$
+    f_n(x) \to f(x) = 0
+  $$
+
+  $$
+    \int_{0}^{1}f_n(x)dx = 1~\forall n \in \mathbb{N}_0
+  $$
+  $$
+    \lim_{n \to \infty} \int_{0}^{1}f_n(x)dx = 1 \neq \int_{0}^{1}\lim_{n \to \infty} f(x)dx = 0
+  $$
+\end{es}
+
+
+\begin{prop}
+  Se $f_n$ è continua $\forall n$ $\centernot \implies$ $f$ è continua.
+\end{prop}
+
+\begin{prop}
+  Se $f_n$ è derivabile $\forall n$ $\centernot \implies$ $f$ è derivabile.
+\end{prop}
+
+\begin{prop}
+  Se $f_n \in R(\mathfrak{I})$ $\forall n$ $\centernot \implies$ $f \in R(\mathfrak{I})$.
+\end{prop}
+
+\begin{es}
+  Sia $f_n$ così definita nell'intervallo $[0, 1]$:
+
+  $$
+    f_n(x) =  \begin{cases*}
+                \dfrac{1}{x}~\text{ se }~x \geqslant \dfrac{1}{n} \\
+                0~\text{ se }~x < \dfrac{1}{n} \\
+              \end{cases*}
+  $$
+
+  $$
+    f_n(x) \to f(x) = \dfrac{1}{x}
+  $$
+
+  ma $f$ non è limitata in $[0, 1]$, quindi non è integrabile.
+\end{es}
+
+\begin{prop}
+  Se $f_n \in R(\mathfrak{I})$ $\forall n$ e $f \in R(\mathfrak{I})$ $\centernot \implies$ $\lim_{n \to \infty}\int_{\mathfrak{I}}f_n(x)dx = \int_{\mathfrak{I}}f(x)dx = \int_{\mathfrak{I}}\lim_{n \to \infty}f_n(x)dx$.
+\end{prop}
+
+
+\subsection{Convergenza uniforme}
+
+\begin{define}[Convergenza uniforme]
+  Sia $\{f_n\}$ una successione di funzioni e sia $f: \mathfrak{I} \to \mathbb{R}$, $f_n$ 
+  \textbf{converge uniformemente} a $f$ se:
+
+  $$
+    \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~|f_n(x) - f(x)| < \varepsilon~\forall n \geqslant n_0~\forall x \in \mathfrak{I}
+  $$
+\end{define}
+
+\begin{notation}
+  $f_n \uniformto f$
+\end{notation}
+
+\begin{obs}
+  La scelta di $n_0$ non dipende da $x$.
+\end{obs}
+
+\begin{obs}
+  $$
+    f_n \uniformto f~\iff~\lim_{n \to \infty}\sup_{x \in \mathfrak{I}}|f_n(x) - f(x)| = 0
+  $$
+\end{obs}
+
+
+\begin{thm}[Convergenza uniforme e continuità]
+  Sia $f_n: \mathfrak{I} \to \mathbb{R}$ una successioni di funzioni, se $f_n$ è continua $\forall n$ e 
+  $f_n \uniformto f$ $\implies$ $f$ è continua.
+\end{thm}
+
+\begin{proof}
+  Dato che $f_n$ converge uniformemente a $f$, si ha che, fissato $x_0 \in \mathfrak{I}$:
+
+  $$
+    \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~|f_n(x) - f(x)| < \varepsilon~\forall n \geqslant n_0~\forall x \in \mathfrak{I}
+  $$
+
+  dato che $f_n$ è continua:
+
+  $$
+    \forall \varepsilon > 0~\exists \delta > 0~\text{ se } |x - x_0| < \delta \implies |f_{n_0}(x) - f_{n_0}(x_0)| < \varepsilon
+  $$
+
+  quindi, fissato $\varepsilon > 0$, se $|x - x_0| < \delta$:
+
+  \begin{align*}
+    |f(x) - f(x_0)| &= |f(x) - f_{n_0}(x) + f_{n_0}(x) - f_{n_0}(x_0) + f_{n_0}(x_0) - f(x_0)| \leqslant \\
+                    &\leqslant |f(x) - f_{n_0}(x)| + |f_{n_0}(x) - f_{n_0}(x_0)| + |f_{n_0}(x_0) - f(x_0)| < 3 \varepsilon
+  \end{align*}
+\end{proof}
+
+
+\begin{thm}[Convergenza uniforme e continuità]
+  Sia $f_n: [a, b] \to \mathbb{R}$ una successioni di funzioni, se $f_n \in R(a, b)~\forall n$ e 
+  $f_n \uniformto f$ $\implies$ $f \in R(a, b)$ e:
+
+  $$
+    \lim_{n \to \infty} \int_{a}^{b}|f_n(x) - f(x)|dx = 0
+  $$
+\end{thm}
+
+\begin{proof}
+  Si dimostrerà solo il secondo punto. Si ha che:
+
+  $$
+    \int_{a}^{b}|f_n(x) - f(x)|dx \leqslant \int_{a}^{b}\sup_{x \in [a, b]}|f_n(x) - f(x)|dx = (b - a)\sup_{x \in [a, b]}|f_n(x) - f(x)| \to 0
+  $$
+
+  dove nell'ultimo passaggio si è usata la convergenza uniforme di $f_n$.
+\end{proof}
+
+
+\begin{thm}[Convergenza uniforme e derivabilità]
+  Sia $f_n: [a, b] \to \mathbb{R}$ una successione di funzioni derivabili. Si supponga che esista $g: [a, b] \to \mathbb{R}$ t.che 
+  $f'_n \uniformto g$ e che esista un $x_0 \in [a, b]$ t.che $f_n(x_0)$ converge. Allora $f_n \uniformto f$, dove $f$ è 
+  derivabile e:
+
+  $$
+    f' = g
+  $$
+  $$
+    \lim f'_n = \left(\lim f_n\right)'
+  $$
+\end{thm}
+
+\begin{proof}
+  Si dimostrerà il caso in cui $f_n \in \mathcal{C}'([a, b])$. Si supponga inoltre che 
+  $x_0 = a$. $f_n$ si può scrivere come (dato che $f'_n$ è continua e quindi integrabile):
+
+  $$
+    f_n(x) = f_n(a) + \int_{a}^{x}f_n'(t)dt
+  $$
+
+  si definisca allora:
+
+  $$
+    l := \lim f_n(a)
+  $$
+
+  e:
+
+  $$
+    f(x) := l + \int_{a}^{x}g(t)dt
+  $$
+
+  si ha che $f$ è continua e derivabile. Inoltre:
+
+  $$
+    f'(x) = g'(x)
+  $$
+
+  inoltre:
+
+  \begin{align*}
+    |f_n(x) - f(x)| &= |f_n(a) + \int_{a}^{x}f_n'(t)dt - l - \int_{a}^{x}g(t)dt| \leqslant \\
+                    &\leqslant |f_n(a) - l| + |\int_{a}^{x}f_n'(t) - g(t)dt| \leqslant \\
+                    &\leqslant |f_n(a) - l| + \int_{a}^{x}|f_n'(t) - g(t)|dt \leqslant \\
+                    &\leqslant |f_n(a) - l| + \int_{a}^{b}|f_n'(t) - g(t)|dt
+  \end{align*}
+
+  di conseguenza:
+
+  $$
+    \sup_{x \in [a, b]}|f_n(x) - f(x)| \leqslant |f_n(a) - l| + \int_{a}^{b}|f_n'(t) - g(t)|dt \to 0
+  $$
+
+  la tesi segue per confronto.
+\end{proof}
+
+
+\section{Serie di funzioni}
+
+\begin{define}[Serie di funzioni]
+  Sia $\{f_n\}$ una successione di funzioni. Si definisca la successione di funzioni $s_n$ (detta successione delle somme parziali) come:
+
+  $$
+    s_n := \sum_{k=1}^{n}f_n(x)
+  $$
+
+  si definisce \textbf{serie di funzioni} di termine generale $f_n$, se esiste, la funzione $s: \mathfrak{I} \to \mathbb{R}$:
+
+  $$
+    s := \lim s_n
+  $$
+\end{define}
+
+\begin{notation}
+  $\sum f_n$, $\displaystyle \sum_{n=1}^{\infty}f_n$, $\displaystyle \sum_{n=1}^{\infty}f_n(x)$
+\end{notation}
+
+
+\subsection{Convergenza totale}
+
+\begin{define}[Convergenza totale]
+  Sia $\sum f_n$ una serie di funzioni, con $f_n: \mathfrak{I} \to \mathbb{R}$, si dice che $\sum f_n$ \textbf{converge totalmente} se esiste una successione numerica 
+  $M_n \geqslant 0$ t.che:
+
+  \begin{itemize}
+    \item $\displaystyle \sup_{x \in \mathfrak{I}}|f_n(x)| \leqslant M_n$
+    \item $\sum M_n$ converge
+  \end{itemize}
+\end{define}

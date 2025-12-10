@@ -1,0 +1,852 @@
+\chapter{Funzioni Reali}
+
+\section{Topologia}
+
+\begin{define}
+  Sia $x \in \overline{\mathbb{R}}$, si definisce \textbf{intorno} 
+  $\mathcal{U}(x)$ di $x$:
+
+  $$
+    \mathcal{U}(x) = 
+    \begin{cases}
+      (x - \varepsilon, x + \varepsilon)~(\varepsilon > 0)~\text{se}~x \in \mathbb{R} \\
+      (M, +\infty)~(M > 0)~\text{se}~x = +\infty \\
+      (-\infty, -M)~(M > 0)~\text{se}~x = -\infty
+    \end{cases}
+  $$
+\end{define}
+
+\begin{define}
+  Sia $x \in \overline{\mathbb{R}}$, si definisce \textbf{intorno bucato} 
+  $\dot{\mathcal{U}}(x)$ di $x$:
+
+  $$
+    \dot{\mathcal{U}}(x) = 
+    \begin{cases}
+      \mathcal{U}(x)\setminus \{x\}~\text{se}~x \in \mathbb{R} \\
+      \mathcal{U}(x)~\text{se}~x = \pm \infty \\
+    \end{cases}
+  $$
+\end{define}
+
+
+\begin{obs}
+  $x_n \to x \iff~\forall \mathcal{U}(x)$ si ha che $x_n \in \mathcal{U}(x)~\definit$
+\end{obs}
+
+
+\begin{define}[Punto di accumulazione]
+  Un punto $x \in \overline{\mathbb{R}}$ è detto \textbf{punto di accumulazione} di un insieme $A \subset \mathbb{R}$ 
+  se: 
+
+  $$
+    \forall \mathcal{U}(x)~~~\dot{\mathcal{U}}(x) \cap A \neq \emptyset
+  $$
+\end{define}
+
+\begin{center}
+  \begin{tikzpicture}[scale=1.2]
+
+  \draw[thick] (-3,0) -- (3,0);
+  \draw[thick] (-3,0.15) -- (-3,-0.15);
+  \draw[thick,->] (2.9,0) -- (3.3,0);
+
+  \node[below] at (1,-0.25) {$x_0$};
+
+  \foreach \x in {-5, -2.3, -1.4, -0.8, -0.4, -0.15, 0.05, 0.18, 0.28, 0.34}
+  {
+    \filldraw[blue] ({1 + \x/3},0) circle (2.2pt);
+  }
+
+  \filldraw[amber] (1,0) circle (2pt);
+
+  \end{tikzpicture}
+\end{center}
+
+\begin{thm}
+  $x \in \overline{\mathbb{R}}$ è un punto di accumulazione di $A$ $\iff$ $\exists\{a_n\}$, $a_n \neq x~\forall n \in \mathbb{R}~\colon~a_n \to x$.
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item ($\Leftarrow$, $x \in \mathbb{R}$): per ipotesi, si ha che $a_n \to x$. Quindi, per definizione di limite, 
+          $$
+            \forall \mathcal{U}(x)~\exists n_0 \in \mathbb{N}~\colon~a_n \in \mathcal{U}(x)~\forall n\geqslant n_0
+          $$
+          quindi:
+          $$
+            \forall \mathcal{U}(x)~~~\dot{\mathcal{U}}(x) \cap A \neq \emptyset
+          $$
+    \item ($\Rightarrow$, $x \in \mathbb{R}$): per ipotesi, si ha che, fissato $\mathcal{U}(x)$:
+          $$
+            \dot{\mathcal{U}}(x) \cap A \neq \emptyset
+          $$
+          Sia:
+          $$
+            \mathcal{U}(x) = \left(x - \dfrac{1}{n}, x + \dfrac{1}{n}\right)
+          $$
+          allora:
+          $$
+            \exists a_n \in A~\colon~a_n \neq x~\wedge a_n \in \mathcal{U}(x)
+          $$
+          $$
+            0 < |a_n - x| < \dfrac{1}{n}
+          $$
+          quindi $a_n \to x$ per confronto.
+  \end{itemize}
+\end{proof}
+
+
+\begin{cor}
+  Se $x$ è un punto di accumulazione di $A$, si ha che $\dot{\mathcal{U}}(x) \cap A$ contiene infiniti 
+  elementi.
+\end{cor}
+
+\begin{define}[Punto isolato]
+  Dato un insieme $A \subset \mathbb{R}$, $x \in A$ è un \textbf{punto isolato} di $A$ se:
+
+  $$ 
+    \exists \mathcal{U}(x)~\colon~\mathcal{U}(x) \cap A = \{x\}
+  $$
+\end{define}
+
+\begin{center}
+  \begin{tikzpicture}[scale=1.2]
+
+  \draw[thick] (-3,0) -- (3,0);
+  \draw[thick] (-3,0.15) -- (-3,-0.15);
+  \draw[thick,->] (2.9,0) -- (3.3,0);
+
+  \node[below] at (1,-0.25) {$x_0$};
+
+  \foreach \x in {-5, -4, -3, -2, 2, 3, 4, 5}
+  {
+    \filldraw[blue] ({1 + \x/3},0) circle (2.2pt);
+  }
+
+  \filldraw[amber] (1,0) circle (2pt);
+
+  \end{tikzpicture}
+\end{center}
+
+\begin{define}[Punto di frontiera]
+  Dato $x \in \mathbb{R}$ e $A \subset \mathbb{R}$, $x$ è un \textbf{punto di frontiera} 
+  di $A$ se:
+
+  $$
+    \forall \mathcal{U}(x)~~~\mathcal{U}(x) \cap A \neq \emptyset ~~~ \wedge ~~~ \mathcal{U}(x) \cap A^C \neq \emptyset
+  $$
+\end{define}
+
+\begin{center}
+  \begin{tikzpicture}[scale=1.2]
+
+  \draw[thick] (-3,0) -- (3,0);
+  \draw[thick] (-3,0.15) -- (-3,-0.15);
+  \draw[thick,->] (2.9,0) -- (3.3,0);
+
+  \node[below] at (1,-0.25) {$x_0$};
+
+  \foreach \x in {-5, -2.3, -1.4, -0.8, -0.4, -0.15}
+  {
+    \filldraw[blue] ({1 + \x/3},0) circle (2.2pt);
+  }
+
+  \foreach \x in {5, 2.3, 1.4, 0.8, 0.4, 0.15}
+  {
+    \filldraw[teal] ({1 + \x/3},0) circle (2.2pt);
+  }
+
+  \filldraw[amber] (1,0) circle (2pt);
+
+  \end{tikzpicture}
+\end{center}
+
+\begin{obs}
+  I punti isolati sono punti di frontiera banali
+\end{obs}
+
+\begin{define}[Punto interno]
+  Sia $A \subset \mathbb{R}$, $x \in A$ è un \textbf{punto interno} di $A$ se:
+
+  $$
+    \exists \mathcal{U}(x)~\colon~\mathcal{U}(x) \subset A
+  $$
+\end{define}
+
+\begin{center}
+  \begin{tikzpicture}[scale=1.2]
+
+  \draw[thick, blue] (-3,0) -- (3,0);
+  \draw[thick] (-3,0.15) -- (-3,-0.15);
+  \draw[thick,->] (2.9,0) -- (3.3,0);
+
+  \node[below] at (1,-0.25) {$x_0$};
+
+  \filldraw[amber] (1,0) circle (2pt);
+
+  \end{tikzpicture}
+\end{center}
+
+
+\begin{define}[Insieme aperto]
+  $A \subset \mathbb{R}$ si definisce \textbf{aperto} se ogni $a \in A$ è punto interno di $A$.
+\end{define}
+
+\begin{define}[Insieme chiuso]
+  $A \subset \mathbb{R}$ si definisce \textbf{chiuso} contiene tutti i suoi punti di accumulazione finiti.
+\end{define}
+
+
+\begin{es}\leavevmode
+  \begin{itemize}
+    \item $\{a\}$ è chiuso
+    \item $\mathbb{R}$ e $\emptyset$ sono sia aperti che chiusi
+  \end{itemize}
+\end{es}
+
+\begin{thm}
+  Un insieme $A$ è aperto $\iff$ $A^C$ è chiuso.
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{thm}
+  Un insieme $A$ è chiuso $\iff$ Se $\forall a_n \in A$ t.che $a_n \to x$ $x \in A$.
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{define}[Compattezza sequenziale]
+  Un insieme $A \subset \mathbb{R}$ si definisce \textbf{compatto} se $\forall a_n \in A~\exists x \in A$ ed 
+  esiste una sottosuccessione $a_{n_k} \to x$
+\end{define}
+
+\begin{thm}[Heine-Borel]
+  Un insieme $A \subset$ è compatto $\iff$ $A$ è chiuso e limitato.
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item ($\Leftarrow$): Sia $x_n \in A$. Dato che $A$ è limitato, $x_n$ è limitata.
+          Quindi per il teorema di Bolzano-Weierstrass, $\exists x_{n_k}~\colon~x_{n_k} \to x \in \mathbb{R}$.
+          Quindi $x$ è un punto di accumulazione di $A$. Dato che $A$ è chiuso, contiene tutti i suoi 
+          punti di accumulazione, quindi $x \in A$.
+    \item ($\Rightarrow$):
+  \end{itemize}
+\end{proof}
+
+
+\section{Limiti}
+
+\subsection{Introduzione}
+
+\begin{define}[Limite]
+  Sia $f: \mathbb{R} \to \mathbb{R}$ di dominio $\mathfrak{D}$ e sia $x_0 \in \overline{\mathbb{R}}$ 
+  un punto di accumulazione di $\mathfrak{D}$, si dice che $f$ ammette \textbf{limite} uguale a $l \in \overline{\mathbb{R}}$ per $x$ 
+  che tende a $x_0$ se:
+
+  $$
+    \forall \mathcal{U}(l)~\exists \mathcal{U}(x_0)~\colon~\text{ se } x \in \mathfrak{D} \cap \dot{\mathcal{U}}(x_0) \implies f(x) \in \mathcal{U}(l)
+  $$
+\end{define}
+
+\begin{notation}
+  $\displaystyle \lim_{x\to x_0}f(x) = l$, $f(x) \underset{x\to x_0}{\to} l$
+\end{notation}
+
+
+\begin{define}[Limite successionale]
+  Data $f: \mathbb{R} \to \mathbb{R}$ di dominio $\mathfrak{D}$, si dice che $f$ ammette \textbf{limite successionale} uguale 
+  a $l \in \overline{\mathbb{R}}$ per $x$ che tende a $x_0$ se:
+
+  $$
+    \forall a_n \in \mathfrak{D}~\colon~a_n\neq x_0,~a_n \to x_0~~~f(a_n) \to l
+  $$
+\end{define}
+
+\begin{notation}
+  $\displaystyle \slim_{x\to x_0}f(x) = l$
+\end{notation}
+
+
+\begin{thm}[Teorema traghettatore]
+  $\displaystyle \lim_{x\to x_0}f(x) = l \iff \slim_{x\to x_0}f(x) = l$
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item ($\Rightarrow$): per ipotesi, fissato $\mathcal{U}(l)$:
+          $$
+            \exists \mathcal{U}(x_0)~\colon~\text{ se } x \in \mathfrak{D} \cap \dot{\mathcal{U}}(x_0) \implies f(x) \in \mathcal{U}(l)
+          $$
+          sia $a_n \in \mathfrak{D}$ t.che $a_n \neq x_0$, $a_n \to x_0$, si ha che:
+
+          $$
+            a_n \in \dot{\mathcal{U}}(x_0)~\definit
+          $$
+
+          quindi:
+
+          $$
+            f(a_n) \in \mathcal{U}(l)~\definit
+          $$
+    \item ($\Leftarrow$): per l'implicazione inversa si mostrerà che $\lnot \text{Th.} \implies \lnot \text{Hp.}$ \\
+          La negazione della tesi è:
+
+          $$
+            \exists \mathcal{U}(l)~\colon~\forall \mathcal{U}(x_0)~\exists x \in \mathfrak{D}\cap \dot{\mathcal{U}}(x_0)~\colon~ f(x) \not \in \mathcal{U}(l)
+          $$
+
+          mentre la negazione dell'ipotesi è:
+
+          $$
+            \exists a_n \in \mathfrak{D},~a_n \neq x_0,~a_n \to x_0~\colon~f(a_n) \not \to l
+          $$
+
+          sia $\mathcal{U}(x_0) = \left(x_0 - \dfrac{1}{n}, x_0 + \dfrac{1}{n}\right)$, fissato $n \in \mathbb{N}~\exists a_n \in \mathfrak{D}\cap \dot{\mathcal{U}}(x_0)\colon f(a_n) \not \in \mathcal{U}(l) \implies f(a_n) \not \to l$. 
+          La possibilità di costruire $a_n$ è garantita dall'assioma della scelta.
+  \end{itemize}
+\end{proof}
+
+
+\subsection{Teoremi sui limiti}
+
+Molti dei teoremi sui limiti di successioni hanno una "controparte" per i limiti di funzioni 
+reali ottenibili tramite il teorema traghettatore.
+
+\begin{thm}[Unicità del limite]
+
+\end{thm}
+
+\begin{thm}[Permanenza del segno]
+
+\end{thm}
+
+\begin{thm}[Teorema del confronto]
+
+\end{thm}
+
+\begin{thm}[Operazioni con i limiti]
+
+\end{thm}
+
+
+\begin{obs}
+  Siano $f$ e $g$ due funzioni reali, se $x_0$ è punto di accumulazione di $\mathfrak{D}(f)$ e $\mathfrak{D}(g)$, 
+  non è detto che sia punto di accumulazione di $\mathfrak{D}(f+g)$.
+\end{obs}
+
+\begin{es}
+  $f(x) = \sqrt{x}$, $g(x) = \sqrt{-x}$, $x_0 = 0$
+\end{es}
+
+
+\begin{define}[$\diamondsuit$]
+  Dato $A \subset \mathbb{R}$, $x \in \mathbb{R}$ è \textbf{punto di accumulazione destro} di $A$ se:
+
+  $$
+    \forall \mathcal{U}(x)~\dot{\mathcal{U}}(x) \cap A \cap (x, +\infty) \neq \emptyset
+  $$
+\end{define}
+
+\begin{define}[$\diamondsuit$]
+  Sia $f: \mathbb{R} \to \mathbb{R}$ di dominio $\mathfrak{D}$ e $x_0$ un punto di accumulazione destro di $\mathfrak{D}$, 
+  $f$ ha \textbf{limite destro} $l$ per $x$ che tende a $x_0$ se:
+
+  $$
+    \forall a_n \in \mathfrak{D}~\colon~a_n > x_0~\wedge~a_n \to x_0 \implies f(a_n) \to l
+  $$
+\end{define}
+
+\begin{notation}[$\diamondsuit$]
+  $\displaystyle \lim_{x\to x_0^+}f(x) = l$
+\end{notation}
+
+\begin{define}
+  $x_0$ è un \textbf{punto di accumulazione bilatero} di $A$ se è un sia un punto di accumulazione destro che un punto di accumulazione 
+  sinistro di $A$.
+\end{define}
+
+\begin{obs}
+  Se $x_0$ è un punto di accumulazione bilatero:
+
+  $$
+    \exists \lim_{x\to x_0}f(x) \iff \lim_{x\to x_0^+}f(x) = \lim_{x\to x_0^-}f(x)
+  $$
+\end{obs}
+
+
+\subsection{Continuità}
+
+\begin{define}[Continuità]
+  Sia $f: \mathbb{R} \to \mathbb{R}$ una funzione di dominio $\mathfrak{D}$ e sia 
+  $x_0 \in \mathfrak{D}$, $f$ è \textbf{continua} in $x_0$ se:
+
+  $$
+    \forall \mathcal{U}(f(x_0))~\exists \mathcal{U}(x_0)~\colon~\text{ se } x \in \mathfrak{D} \cap \mathcal{U}(x_0) \implies f(x) \in \mathcal{U}(f(x_0))
+  $$
+\end{define}
+
+\begin{obs}
+  La definizione è equivalente a dire che: \\
+  \begin{itemize}
+    \item Se $x_0$ è un punto di accumulazione di $\mathfrak{D}$, allora $\displaystyle \lim_{x\to x_0}f(x) = f(x_0)$ 
+    \item Se $x_0$ è un punto isoltato di $\mathfrak{D}$, allora $f$ è continua in $x_0$
+  \end{itemize}
+\end{obs}
+
+\begin{define}[Continuità successionale]
+  Sia $f:\mathbb{R} \to \mathbb{R}$ una funzione di dominio $\mathfrak{D}$ e sia $x_0 \in \mathfrak{D}$, 
+  $f$ è \textbf{continua per successioni} in $x_0$ se:
+
+  $$
+    \forall a_n \in \mathfrak{D},~a_n \to x_0~~~f(a_n) \to f(x_0)
+  $$
+\end{define}
+
+
+\begin{thm}
+  $f$ è continua in $x_0$ $\iff$ $f$ è continua per successioni in $x_0$
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item Se $x_0$ è un punto isolato si prenda $a_n = x_0~\definit$. Allora $f(a_n) \to f(x_0)$
+    \item Se $x_0$ è un punto di accumulazione, si ha che $\displaystyle \lim_{x\to x_0}f(x) = f(x_0) \iff \slim_{x\to x_0}f(x) = f(x_0)$
+  \end{itemize}
+\end{proof}
+
+\begin{define}[$\diamondsuit$]
+  Sia $x_0 \in \mathfrak{D}(f)$ t.che $x_0$ è un punto di accumulazione destro di $\mathfrak{D}(f)$, 
+  $f$ è \textbf{continua da destra} in $x_0$ se:
+
+  $$
+    \lim_{x\to x_0^+}f(x) = f(x_0)
+  $$
+\end{define}
+
+\begin{prop}
+  Se $x_0 \in \mathfrak{D}(f)$ è un punto di accumulazione bilatero, allora $f$ 
+  è continua in $x_0$ $\iff$ $f$ è continua sia da destra che da sinistra in $x_0$. 
+\end{prop}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{thm}[Permanenza del segno per funzioni continue]
+  Sia $f$ continua in $x_0$ e $f(x_0) > 0$, allora:
+
+  $$
+    \exists \mathcal{U}(x_0)~\colon~\text{ se } x \in \mathfrak{D}\cap \mathcal{U}(x_0) \implies f(x) > 0
+  $$
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item Se $x_0$ è un punto isolato, sia $\mathcal{U}(x_0) = \{x_0\}$
+    \item Se $x_0$ è un punto di accumulazione, segue dal teorema della permanenza del segno
+  \end{itemize}
+\end{proof}
+
+\begin{thm}[Continuità per le operazioni]
+  Siano $f$ e $g$ continue in $x_0$, allora:
+
+  \begin{enumerate}[I]
+    \item $[f + g]$ è continua in $x_0$
+    \item $[f\cdot g]$ è continua in $x_0$
+    \item se $g(x_0) \neq 0$, $\left[\dfrac{f}{g}\right]$ è continua in $x_0$
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  Sia $a_n \in \mathfrak{D}(f + g)$, con $a_n \to x_0$. Dato che $f$ e $g$ sono continue in $x_0$:
+
+  $$
+    f(a_n) \to f(x_0)
+  $$
+  $$
+    g(a_n) \to g(x_0)
+  $$
+
+  quindi:
+
+  $$
+    [f + g](a_n) = f(a_n) + g(a_n) \to f(x_0) + g(x_0) = [f + g](x_0)
+  $$
+
+  In modo analogo si dimostrano i punti II e III.
+\end{proof}
+
+\begin{thm}[Continuità della composta]
+  Sia $f$ continua in $x_0$ e $g$ continua in $y_0 = f(x_0)$, allora la funzione composta 
+  $h = g \circ f$ è continua in $x_0$ 
+\end{thm}
+
+\begin{proof}
+  Sia $a_n \in \mathfrak{D}(h)$, $a_n \to x_0$ ($a_n \in \mathfrak{D}(f)$, $f(a_n) \in \mathfrak{D}(g)$). \\ 
+  Dato che $f$ è continua in $x_0$:
+
+  $$
+    f(a_n) \to f(x_0)
+  $$
+
+  dato che $g$ è continua in $f(x_0)$
+
+  $$
+    g(f(a_n)) \to g(f(x_0))
+  $$
+
+  quindi:
+
+  $$
+    h(a_n) = g(f(a_n)) \to g(f(x_0)) = h(x_0)
+  $$
+\end{proof}
+
+
+\begin{define}
+  Una funzione $f: \mathbb{R} \to \mathbb{R}$ è \textbf{globalmente continua} se è continua in ogni $x \in \mathfrak{D}(f)$.
+\end{define}
+
+
+\begin{define}[Punto di discontinuità]
+  $x_0 \in \mathfrak{D}(f)$ è un \textbf{punto di discontinuità} di $f$ se $f$ non è continua 
+  in $x_0$
+\end{define}
+
+
+
+\begin{define}[Discontinuità eliminabile (III specie)]
+  $x_0$ è un punto di \textbf{discontinuità eliminabile} di $f$ se:
+
+  $$
+    \exists \lim_{x\to x_0} f(x) = l \in \mathbb{R}~~~\text{ ma }~~~l \neq f(x_0)
+  $$
+\end{define}
+
+\begin{es}
+
+\end{es}
+
+\begin{center}
+  \begin{tikzpicture}
+  \begin{axis}[
+    width=12cm,
+    height=7cm,
+    xmin=-20, xmax=20,
+    ymin=-0.3, ymax=1.1,
+    axis lines=middle,
+    axis line style={->, thick},
+    xlabel={$x$},
+    ylabel={$y$},
+    domain=-20:20,
+    samples=400,
+    smooth,
+    enlargelimits=false,
+    ticks=none,
+  ]
+
+  \addplot[blue, thick] ({x},{sin(deg(x))/x});
+
+  \addplot[
+    only marks,
+    mark=o,
+    mark size=3pt,
+    blue,
+    line width=1pt
+  ] coordinates {(0,1)};
+  \addplot[blue, only marks, mark=*] coordinates {(0,0)};
+
+  \end{axis}
+  \end{tikzpicture}
+\end{center}
+
+
+\begin{define}[Discontinuità salto (I specie)]
+  $x_0$ è un punto di \textbf{discontinuità salto} di $f$ se:
+
+  $$
+    \exists \lim_{x\to x_0^-} f(x) = l_1 \in \mathbb{R}~~~~\exists \lim_{x\to x_0^+} f(x) = l_2 \in \mathbb{R}~~~\text{ ma }~~~l_1 \neq l_2
+  $$
+\end{define}
+
+\begin{es}
+
+\end{es}
+
+\begin{center}
+  \begin{tikzpicture}
+  \begin{axis}[
+    width=10cm,
+    height=6cm,
+    xmin=-3, xmax=3,
+    ymin=-1.5, ymax=1.5,
+    axis lines=middle,
+    axis line style={->, thick},
+    xlabel={$x$},
+    ylabel={$y$},
+    ticks=none
+  ]
+
+  \addplot[blue, thick, domain=-3:0] {-1};
+
+  \addplot[blue, thick, domain=0:3] {1};
+
+  \addplot[only marks, mark=o, blue, mark size=3pt] coordinates {(0,-1)};
+
+  \addplot[only marks, mark=*, blue, mark size=2pt] coordinates {(0,0)};
+
+  \addplot[only marks, mark=o, blue, mark size=3pt] coordinates {(0,1)};
+
+  \end{axis}
+  \end{tikzpicture}
+\end{center}
+
+
+\begin{define}[Discontinuità di II specie]
+  $x_0$ è un punto di \textbf{discontinuità di II specie} di $f$ se:
+
+  $$
+    \lim_{x\to x_0^-} f(x) = \pm \infty~(\text{o } \not \exists)~~~~\lim_{x\to x_0^+} f(x) = \pm \infty~(\text{o } \not \exists)
+  $$
+\end{define}
+
+\begin{es}
+
+\end{es}
+
+***grafico***
+
+
+\begin{thm}[$\diamondsuit$]
+  Sia $f: (a,b) \to \mathbb{R}$ una funzione monotona crescente e sia $c \in (a,b)$, 
+  allora esistono in $c$ entrambi i limiti destro e sinistro e:
+
+  $$
+    \lim_{x \to x_0^-}f(x) \leqslant f(x_0) \leqslant \lim_{x \to x_0^+}f(x)
+  $$
+\end{thm}
+
+***grafico***
+
+\subsection{Prolungamento per continuità}
+
+
+
+\section{Teoremi sulle funzioni continue}
+
+\begin{thm}[Teorema degli zeri]
+  Sia $f: [a,b] \to \mathbb{R}$ una funzione continua. Se $f(a)\cdot f(b) < 0$, allora 
+
+  $$
+    \exists c \in [a, b]~\colon~f(c) = 0
+  $$
+\end{thm}
+
+\begin{proof}
+  Si supponga che sia $f(a) > 0$ e $f(b) < 0$. Sia $P := \{x \in [a,b]~\colon~f(x) > 0\}$. Dato che $P$ è limitato e non vuoto ($a$ appartiene a $P$), ammette estremo superiore. 
+  Sia $c := \sup_P$, esiste $x_{n} \in P$ t.che $x_n \to c$. Si ha inoltre che $f(x_n) > 0~\forall n \in \mathbb{N}$. Dato che $f$ è continua:
+
+  $$
+    f(x_n) \to f(c) \geqslant 0~(\text{per il th. della perm. del segno})
+  $$
+
+  Sia ora $x'_n := c + \dfrac{1}{n}$. Si ha che $f(x'_n) < 0$ e $x'_n \to c$, quindi:
+
+  $$
+    f(x'_n) \to f(c) \leqslant 0~(\text{per il th. della perm. del segno})
+  $$
+
+  quindi si conclude che $f(c) = 0$.
+\end{proof}
+
+\begin{center}
+  \begin{tikzpicture}[
+    dot/.style={fill, circle, inner sep=1.5pt},
+    >=Stealth
+  ]
+
+  % --- 1. Define Coordinates and Draw Axes ---
+  \def\xmin{0}
+  \def\xmax{6}
+  \def\ymin{-3}
+  \def\ymax{4}
+  \def\a{1}
+  \def\b{5}
+  \def\fa{3}
+  \def\fb{-2}
+  \def\c{3.2} % The root c where f(c)=0
+
+  % Draw the axes
+  \draw[->] (\xmin, 0) -- (\xmax, 0) node[right] {$x$};
+  \draw[->] (0, \ymin) -- (0, \ymax) node[above] {$y$};
+  \node at (0, 0) [below left] {$0$};
+
+  % --- 2. Draw the Continuous Function f(x) ---
+  \draw[thick, blue, smooth]
+      (\a, \fa) -- (\c, 0) -- (\b, \fb);
+
+  % --- 3. Mark and Label the Key Points ---
+
+  % Mark a and f(a)
+  \draw[dashed, gray] (\a, 0) -- (\a, \fa);
+  \draw[dashed, gray] (0, \fa) -- (\a, \fa);
+  \node[dot, label={below:$a$}] at (\a, 0) {};
+  \node[dot, label={left:$f(a)$}] at (0, \fa) {};
+  \node[dot, blue, label={above right:$(\text{a}, \text{f}(\text{a}))$}] at (\a, \fa) {};
+
+  % Mark b and f(b)
+  \draw[dashed, gray] (\b, 0) -- (\b, \fb);
+  \draw[dashed, gray] (0, \fb) -- (\b, \fb);
+  \node[dot, label={below:$b$}] at (\b, 0) {};
+  \node[dot, label={left:$f(b)$}] at (0, \fb) {};
+  \node[dot, blue, label={below right:$(\text{b}, \text{f}(\text{b}))$}] at (\b, \fb) {};
+
+  % Mark c (the root)
+  \node[dot, amber, label={below:$c$}] at (\c, 0) {};
+  \node[dot, amber, label={above right:$(\text{c}, 0)$}] at (\c, 0) {};
+
+  \end{tikzpicture}
+\end{center}
+
+
+\begin{obs}
+  Sia $A \subset \mathbb{R}$ t.che $\forall x,y \in A,~x < y \implies [x, y] \subset A$ $\iff$ $A$ è un intervallo
+\end{obs}
+
+
+\begin{define}[Proprietà di Darboux]
+  Sia $\mathfrak{I}$ un intervallo non banale, $f:\mathfrak{I} \to \mathbb{R}$ ha 
+  la \textbf{proprietà di Darboux} (o è di Darboux, o ha la proprietà dei valori intermedi) se:
+
+  $$
+    \forall x,y \in \mathfrak{I},~x < y~~~f \text{ assume tutti i valori tra } f(x) \text{ e } f(y) \text{ nell'intervallo } [x,y] 
+  $$
+\end{define}
+
+\begin{obs}
+  Se $f: \mathfrak{I} \to \mathbb{R}$ è di Darboux:
+
+  $$
+    \forall \mathfrak{J} \subset \mathfrak{I} \text{ si ha che } f(\mathfrak{J}) \text{ è un intervallo }
+  $$
+\end{obs}
+
+\begin{obs}
+  Se $f: \mathfrak{I} \to \mathbb{R}$ è di Darboux, non può avere discontinuità eliminabili.
+\end{obs}
+
+\begin{thm}[Teorema di Darboux]
+  Sia $f:\mathfrak{I} \to \mathbb{R}$, se $f$ è continua allora è di Darboux.
+\end{thm}
+
+\begin{proof}
+  Si vuole mostrare che, fissati $x, y \in \mathfrak{I},~x < y$:
+
+  $$
+    \forall \gamma~\colon~f(x) < \gamma < f(y)~\exists c \in [x, y]~\colon~f(c) = \gamma
+  $$
+
+  \begin{itemize}
+    \item Se $f(x) = f(y)$, la tesi è verificata
+    \item Se $f(x) \neq f(y)$, si supponga $f(x) < f(y)$. Si fissi $\gamma$ t.che $f(x) < \gamma < f(y)$. 
+          Sia $g(t) = f(t) - \gamma$. Si ha che $g$ è continua (somma tra una funzione continua e una costante). Inoltre:
+
+          $$g(x) = f(x) - \gamma < 0$$
+          $$g(y) = f(y) - \gamma > 0$$
+
+          quindi per il teorema degli zeri si ha che:
+
+          $$
+            \exists c \in [x, y]~\colon~g(c) = 0 \implies f(c) - \gamma = 0 \implies f(c) = \gamma
+          $$
+  \end{itemize}
+
+\end{proof}
+
+
+\begin{lemma}
+  Presa $x_n \in [a, b]$, $\exists x \in [a, b]$ ed una sottosuccessione $x_{n_k}$ t.che $x_{n_k} \to x$.
+\end{lemma}
+
+\begin{proof}
+  Sia $x_n \in [a, b]$, dato che $[a, b]$ è limitato, $x_n$ è limitata. Quindi per il teorema di Bolzano-Weierstrass, 
+  $\exists x_{n_k}~\colon~x_{n_k} \to x \in \mathbb{R}$. Dato che $x_n \in [a, b]$, per il teorema della permanenza del segno si ha che:
+  
+  $$x_{n_k} \geqslant a \implies x \geqslant a$$
+  $$x_{n_k} \leqslant b \implies x \leqslant b$$
+
+  quindi $x \in [a,b]$.
+\end{proof}
+
+
+\begin{thm}[Teorema di Weierstrass]
+  Sia $f:[a, b] \to \mathbb{R}$ una funzione continua, $f$ ammette massimo e minimo.
+\end{thm}
+
+\begin{proof}
+  Sia $M := \sup_f$ (o $+\infty$ se f è illimitata). Si ha che:
+
+  $$
+    \exists x_n \in [a,b]~\colon~f(x_n) \to M
+  $$
+  Per il lemma precedentemente dimostrato, $\exists x \in [a, b]$ e $\exists x_{n_k} \to x \in [a, b]$
+
+  $$
+    f(x_n) \to M \implies f(x_{n_k}) \to M
+  $$
+
+  ma $x_{n_k} \to x$ e, dato che $f$ è continua:
+
+  $$
+    f(x_{n_k}) \to f(x) = M = \max{f}
+  $$
+
+  si può procedere in modo analogo per il minimo.
+\end{proof}
+
+
+\begin{cor}
+  $f:[a,b] \to \mathbb{R}$ continua $\implies$ $f([a, b]) = [m, M]~~~m = \min_f,~M = \max_f$ 
+\end{cor}
+
+\begin{proof}
+  Per il teorema di Weierstrass, $m, M \in f([a, b])$. Per il teorema di Darboux, $f([a, b]) = [m, M]$.
+\end{proof}
+
+
+\begin{thm}
+  Sia $f:[a, b] \to \mathbb{R}$ monotona, allora: \\
+
+  $f$ è continua $\iff$ $f([a, b]) = [m, M]~~~m = \min_n,~M = \max_f$
+\end{thm}
+
+\begin{proof}
+  ($\Leftarrow$): Se $f$ non fosse continua, $f$ avrebbe un salto (poiché monotona), quindi $[m, M]$ avrebbe un "buco".
+\end{proof}
+
+\begin{cor}
+  Sia $f:[a,b] \to [c,d]$ strettamente monotona, allora $f$ è invertibile e $f^{-1}:[c,d] \to [a,b]$ è continua.
+\end{cor}
+
+\begin{proof}
+  La dimostrazione segue dal fatto che $f^{-1}$ è monotona.
+\end{proof}
+
+
+\begin{prop}
+  Sia $f:[a,b] \to [m,M]$ continua e invertibile $\implies$ $f$ è strettamente monotona.
+\end{prop}
+
+
+\section{Continuità uniforme}
+
+

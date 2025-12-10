@@ -1,0 +1,740 @@
+\chapter{Serie numeriche}
+
+\section{Introduzione}
+
+\begin{define}
+  Data una successione $\{a_n\}$, si construisca la successione $\{s_n\}$ (detta delle somme parziali):
+
+  $$
+    s_n := a_0 + a_1 + a_2 + \dots + a_n = \sum_{k=0}^{n}a_k
+  $$
+
+  Definiamo \textbf{serie} di termine generale $a_n$ il limite $\displaystyle \sum_{n=0}^{\infty}a_n := \lim s_n$. \\
+
+  \begin{itemize}
+    \item Se $\lim s_n = s \in \mathbb{R}$, diciamo che la serie \textbf{converge};
+    \item Se $\lim s_n = \pm \infty$, diciamo che la serie \textbf{diverge};
+    \item Se $\cancel{\exists}\lim s_n$, diciamo che la serie è \textbf{oscillante}.
+  \end{itemize}
+
+\end{define}
+
+\begin{notation}
+  $\lim s_n$, $\displaystyle \sum_{n=0}^{\infty}a_n$, $\sum_n a_n$, $\sum a_n$
+\end{notation}
+
+
+\begin{prop}[Problema di Basilea]
+  $\displaystyle \sum_{n=1}^{\infty} \dfrac{1}{n^2}$ converge. In particolare:
+
+  $$
+    \sum_{n=1}^{\infty} \dfrac{1}{n^2} = \dfrac{\pi^2}{6}
+  $$
+\end{prop}
+
+
+\begin{prop}
+  Sia $k \in \mathbb{R}$, $\sum ka_n = k\sum a_n$
+\end{prop}
+
+\begin{proof}
+  $$\sigma_n = ka_0 + ka_1 + \dots + ka_n = k(a_0 + a_1 + \dots + a_n) = ks_n$$
+\end{proof}
+
+
+\begin{prop}
+  Siano $\sum a_n$ e $\sum b_n$ due serie convergenti $\implies$ $\sum (a_n + b_n)$ converge e $\sum (a_n + b_n) = \sum a_n + \sum b_n$
+\end{prop}
+
+\begin{proof}
+  Sia $s_n = a_0 + a_1 + \dots + a_n$ e $\sigma_n = b_0 + b_1 + \dots + b_n$.
+
+  $$
+    s_n + \sigma_n = a_0 + a_1 + \dots + a_n + b_0 + b_1 + \dots + b_n
+  $$
+  $$
+    \sum (a_n + b_n) = \lim (s_n + \sigma_n) = \lim s_n + \lim \sigma_n = \sum a_n + \sum b_n
+  $$
+\end{proof}
+
+\begin{obs}
+  Lo stesso si può estendere a serie divergenti utilizzando l'aritmetica estesa.
+\end{obs}
+
+
+\begin{thm}
+  Il carattere di una serie non cambia se si modificano un numero finito di termini.
+\end{thm}
+
+\begin{proof}
+  Siano $\{a_n\}$ e $\{b_n\}$ due successioni tali che $a_n = b_n~\forall n \geqslant n_0 \in \mathbb{N}$.
+
+  $$
+    s_n = a_0 + a_1 + \dots + a_{n_0} + \dots + a_n
+  $$
+  $$
+    \sigma_n = b_0 + b_1 + \dots + b_{n_0} + \dots + b_n
+  $$\\
+
+  $$
+    s_n - \sigma_n = a_0 + a_1 + \dots + a_{n_0} - b_0 - b_1 - \dots - b_{n_0} = k \in \mathbb{R}
+  $$
+  $$
+    s_n = k + \sigma_n \implies \lim s_n = \lim \sigma_n + \lim k = \lim \sigma_n + k
+  $$
+\end{proof}
+
+
+\begin{thm}[Criterio di Cauchy]
+  Una serie $\sum a_n$ converge se e solo se:
+
+  $$
+    \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~\left|\sum_{k = n}^{n+p}a_k\right| < \epsilon~\forall n \geqslant n_0~\forall p \geqslant 0
+  $$
+\end{thm}
+
+\begin{proof}
+  Sia $s_n$ la successione delle somme parziali. $s_n$ converge $\iff$ $s_n$ è di Cauchy $\implies$
+
+  $$
+    \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~|s_m - s_n| < \varepsilon~\forall m,n \geqslant n_0
+  $$
+
+  equivalentemente:
+
+  $$
+    \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~|s_{n+p} - s_{n-1}| < \varepsilon~\forall n \geqslant n_0~\forall p \geqslant 0
+  $$
+  $$
+    \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~\left|\sum_{k=0}^{n+p}a_k - \sum_{k=0}^{n-1}\right| < \varepsilon~\forall n \geqslant n_0~\forall p \geqslant 0
+  $$
+  $$
+    \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~\left|\sum_{k=n}^{n+p}a_k\right| < \varepsilon~\forall n \geqslant n_0~\forall p \geqslant 0
+  $$
+\end{proof}
+
+
+\begin{thm}[Condizione necessaria di convergenza]
+  Se $\sum a_n$ converge, allora $a_n \to 0$.
+\end{thm}
+
+\begin{proof}
+  Sia $s_n = a_0 + a_1 + \dots a_n$:
+
+  $$
+    s_n - s_{n-1} = a_n
+  $$
+
+  Se $s_n \to s \in \mathbb{R}$, $s_{n-1} \to s$ (sottosuccessione di una successione convergente). Quindi:
+
+  $$
+    \lim (s_n - s_{n-1}) = \lim s_n - \lim s_{n-1} = s - s = 0 = \lim a_n \implies a_n \to 0
+  $$
+\end{proof}
+
+\begin{obs}
+  L'inverso non vale.
+\end{obs}
+
+
+\section{Serie telescopiche}
+
+Sia $\displaystyle \sum_{n=n_0}^{\infty} a_n$, con $a_n = b_n - b_{n+1}$, la serie $\sum a_n$ è detta serie telescopica \\
+Sia $s_n = a_{n_0} + a_{n_0+1} + \dots + a_{n}$, si ha che:
+
+\begin{align*}
+  s_n &= b_{n_0} - \cancel{b_{n_0+1}} + \cancel{b_{n_0+1}} - \cancel{b_{n_0+2}} + \cancel{b_{n_0+2}} - \dots - b_{n+1} = \\
+      &= b_{n_0} - b_{n+1}
+\end{align*}
+
+quindi:
+
+$$
+  \sum_{n=n_0}^{\infty} a_n = \lim s_n = \lim (b_{n_0} - b_{n+1}) = b_{n_0} - \lim b_n
+$$
+
+\subsection{Serie di Mengoli}
+
+Caso particolare di una serie telescopica è la serie di Mengoli, il cui termine generale è $a_n = \dfrac{1}{n(n+1)}$
+
+
+
+\section{Serie a termini positivi}
+
+
+\begin{define}
+  Una serie $\sum a_n$ si dice a \textbf{termini positivi} se $a_n \geqslant 0~\forall n$
+\end{define}
+
+\begin{thm}
+  Una serie a termini positivi è regolare (o diverge o converge).
+\end{thm}
+
+\begin{proof}
+  Dato che $a_n \geqslant 0~\forall n$, $s_n$ è una successione monotona crescente (somma di termini positivi o nulli). Quindi la successione $s_n$ 
+  è regolare.
+\end{proof}
+
+\begin{obs}
+  Se $\sum a_n$ è a termini positivi e $a_n \not \to 0$, $\sum a_n = +\infty$
+\end{obs}
+
+
+\begin{thm}[Teorema del confronto]
+  Siano $\{a_n\}$, $\{b_n\}$ due successioni tali che $0 \leqslant a_n \leqslant b_n~\forall n$. Si ha che:
+  \begin{itemize}
+    \item Se $\sum a_n$ diverge, $\sum b_n$ diverge;
+    \item Se $\sum b_n$ converge, $\sum a_n$ converge.
+  \end{itemize}
+\end{thm}
+
+\begin{proof}
+  Siano $s_n = a_0 + a_1 + \dots + a_n$ e $\sigma_n = b_0 + b_1 + \dots b_n$, si ha che:
+
+  $$
+    0 \leqslant s_n \leqslant \sigma_n~\forall n
+  $$
+  \begin{itemize}
+    \item Se $s_n \to +\infty$, $\sigma_n \to +\infty$ per il teorema del confronto per le successioni;
+    \item Se $\sigma_n \to \sigma \in \mathbb{R}$, allora: 
+          $$
+            \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~-\varepsilon + \sigma < \sigma_n < \varepsilon + \sigma~\forall n \geqslant n_0
+          $$
+          $$
+            \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~0 < s_n \leqslant \sigma_n < \varepsilon + \sigma~\forall n \geqslant n_0
+          $$
+    Quindi $s_n$ è limitata e monotona e dunque converge.
+  \end{itemize}
+\end{proof}
+
+\begin{obs}
+  Se $0 \leqslant a_n \leqslant b_n$ e $\sum b_n$ converge $\implies$ $\sum a_n \leqslant \sum b_n$ (teorema della permanenza del segno).
+\end{obs}
+
+\begin{cor}[Teorema del panino imbottito]
+  Siano $\{a_n\}$, $\{b_n\}$ due successioni positive. Se $\exists M,N \in \mathbb{R}$, con $N \leqslant M$ $\colon$ $N a_n \leqslant b_n \leqslant M a_n$, allora 
+  $$
+    \sum a_n \conv \iff \sum b_n \conv
+  $$
+\end{cor}
+
+
+\section{Serie geometrica}
+
+Si definisce serie geometrica la serie: 
+
+$$
+  \sum_{n=0}^{\infty} q^n
+$$
+
+con $q \in \mathbb{R}$. Detta $s_n$ la successione delle somme parziali, si ha che:
+
+\begin{align*}
+  s_n &= q^0 + q^1 + \dots + q^n \\
+  q\cdot s_n &= q^1 + q^2 + \dots + q^{n+1} \\
+  s_n - q\cdot s_n &= q^0 + \cancel{q^1} - \cancel{q^1} + \cancel{q^2} - \cancel{q^2} + \dots - q^{n+1} \\
+  s_n &= \dfrac{1 - q^{n+1}}{1-q},~~q \neq 1
+\end{align*}
+
+Di conseguenza, si ottiene che:
+
+
+$$
+  s_n = 
+  \begin{cases}
+    n+1~\text{se}~q = 1\\
+    \dfrac{1-q^{n+1}}{1-q}~\text{se}~q\neq 1
+  \end{cases}
+$$
+
+quindi:
+
+$$
+  \sum_{n=0}^{\infty} q^n = \lim s_n = 
+  \begin{cases}
+    +\infty~\text{se}~q \geqslant 1 \\
+    \dfrac{1}{1-q}~\text{se}~|q| < 1 \\
+    \not \exists~\text{se}~q \leqslant -1
+  \end{cases}
+$$
+
+
+\section{Rappresentazione decimale dei reali}
+
+Sia $a \in \mathbb{R} \cap (0, 1)$, a può essere scritto come:
+
+$$
+  a = 0.a_1a_2a_3\dots
+$$
+
+dove $a_i$ è una cifra tra $0$ e $9$. Quindi $a_n$ (a troncato all'$n$-esima cifra) 
+può essere scritto come:
+
+$$
+  a_n = \sum_{k=1}^n a_k \dfrac{1}{10^k}
+$$
+
+\begin{prop}
+  $a_n$ converge.
+\end{prop}
+
+\begin{proof}
+  Sia $\alpha_k := a_k \dfrac{1}{10^k}$. Si ha che:
+
+  $$
+    0 \leqslant a_k \leqslant 9 \implies 0 \leqslant \alpha_k \leqslant 9\dfrac{1}{10^k}
+  $$
+
+  quindi $\sum \alpha_k$ converge per confronto con una serie geometrica di ragione $\dfrac{1}{10}$.
+\end{proof}
+
+\begin{prop}
+  $0.\overline{9} = 1$
+\end{prop}
+
+\begin{proof}
+  Si ha che:
+
+  \begin{align*}
+    0.\overline{9} = \sum_{n=1}^{+\infty} 9\dfrac{1}{10^n}  &= 9\sum_{n=0}^{+\infty}\left(\dfrac{1}{10}\right)^n - 9 = \\
+                                                            &= 9\dfrac{1}{1 - \dfrac{1}{10}} - 9 = \\
+                                                            &= 9\dfrac{10}{10-1} - 9 = 1
+  \end{align*}
+\end{proof}
+
+
+\section{Serie armonica}
+
+Si definisce serie armonica la serie:
+
+$$
+  \sum_{n=1}^{\infty} \dfrac{1}{n}
+$$
+
+\begin{thm}
+  $$
+    \sum_{n=1}^{\infty} \dfrac{1}{n} = +\infty
+  $$
+\end{thm}
+
+\begin{proof}[Dim. I]
+  P.A. si supponga che $\sum \dfrac{1}{n} = l \in \mathbb{R}$. Sia $s_n$ la successione delle somme parziali:
+
+  $$
+    s_n = \dfrac{1}{1} + \dfrac{1}{2} + \dots + \dfrac{1}{n} \to l
+  $$
+
+  si consideri $s_{2n}$
+
+  $$
+    s_{2n} = \dfrac{1}{1} + \dfrac{1}{2} + \dots + \dfrac{1}{n} + \dfrac{1}{n+1} + \dots + \dfrac{1}{2n}
+  $$
+
+  a sua volta, $s_{2n} \to l$. Quindi:
+
+  $$
+    s_{2n} - s_n = \dfrac{1}{n+1} + \dfrac{1}{n+2} + \dots + \dfrac{1}{2n} \geqslant n\cdot \dfrac{1}{2n} = \dfrac{1}{2}
+  $$
+
+  Quindi $s_{2n} - s_n \geqslant \dfrac{1}{2}$, ma $s_{2n} - s_n \to 0$, quindi $s_{2n} - s_n < \dfrac{1}{2}$ definitivamente.
+\end{proof}
+
+\begin{lemma}
+  $$
+    \sum_{k=1}^n \log{\left(1 + \dfrac{1}{k}\right)} = \log{(1 + n)}
+  $$
+\end{lemma}
+
+\begin{proof}[Dim. II]
+  $$
+    \log{\left(1 + \dfrac{1}{k}\right)} = \log{\left(\dfrac{k+1}{k}\right)} = \log{(k+1)} - \log{(k)}
+  $$
+
+  tale è il termine generale di una serie telescopica. Quindi si ha che:
+
+  $$
+    \sum_{k=1}^n \log{\left(1 + \dfrac{1}{k}\right)} = -\log{(1)} + \cancel{\log{(2)}} - \cancel{\log{(2)}} + \dots + \log{(n+1)} = \log{(n+1)}
+  $$
+\end{proof}
+
+\begin{proof}[Dim. II]
+  Per la monotonia della successione $e_n$, si ha che: 
+
+  $$
+    \left(1+\dfrac{1}{k}\right)^k < e~\forall k \in \mathbb{N}_0
+  $$
+
+  Dato che $a \leqslant b \implies \log{(a)} \leqslant \log{(b)}$, si trova:
+
+  $$
+    k\log{\left(1 + \dfrac{1}{k}\right)} < 1 \implies \log{\left(1 + \dfrac{1}{k}\right)} < \dfrac{1}{k}~\forall k \in \mathbb{N}_0
+  $$
+
+  quindi $\sum \dfrac{1}{n} = +\infty$ per il teorema del confronto.
+\end{proof}
+
+
+\section{Formula di Eulero-Mascheroni}
+
+\begin{prop}
+  Sia $s_n$ la successione delle somme parziali della serie armonica:
+  $$
+    s_n - \log{n} \to \gamma
+  $$
+
+  dove $\gamma$ è la costante di \textit{Eulero-Mascheroni}:
+
+  $$
+    \gamma = \sum_{n=1}^{\infty}\left[\dfrac{1}{n} - \log{\left(1 + \dfrac{1}{n}\right)}\right] \simeq 0.5772
+  $$
+\end{prop}
+
+\begin{thm}[Formula di Eulero-Mascheroni]\leavevmode
+  $$
+    \sum_{k=1}^n \dfrac{1}{k} \sim \log{n}
+  $$
+\end{thm}
+
+
+\section{Serie armonica generalizzata}
+
+Chiamiamo serie armonica generalizzata la serie:
+
+$$
+  \sum_{n=1}^{\infty} \dfrac{1}{n^{\alpha}}
+$$
+
+con $\alpha \in \mathbb{R}$.
+
+\begin{thm}
+  La serie armonica:
+
+  \begin{itemize}
+    \item Converge se $\alpha > 1$;
+    \item Diverge se $\alpha \leqslant 1$.
+  \end{itemize}
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item Si consideri il caso $\alpha \geqslant 2$. Si ha che:
+          $$
+            \dfrac{1}{n^{\alpha}} \leqslant \dfrac{1}{n^2}
+          $$    
+          quindi $\sum \dfrac{1}{n^{\alpha}}$ converge per confronto con una serie convergente.
+    \item Si consideri ora il caso $\alpha \leqslant 1$. In tal caso si ha che:
+          $$
+            \dfrac{1}{n} \leqslant \dfrac{1}{n^{\alpha}}
+          $$
+          quindi $\sum \dfrac{1}{n^{\alpha}}$ diverge per confronto.
+    \item Il caso $1 < \alpha < 2$ non sarà trattato.
+  \end{itemize}
+\end{proof}
+
+
+\section{Criterio del confronto asintotico}
+
+\begin{thm}
+  Siano $\sum a_n$ e $\sum b_n$ due serie a termini positivi. Se $a_n \sim b_n$, 
+  $\sum a_n$ e $\sum b_n$ hanno lo stesso carattere.
+\end{thm}
+
+\begin{proof}
+  Dato che $a_n \sim b_n$, si ha che:
+
+  $$
+    \lim \dfrac{a_n}{b_n} = 1 \implies \forall \varepsilon > 0~-\varepsilon + 1 < \dfrac{a_n}{b_n} < \varepsilon + 1~\definit
+  $$
+  $$
+    \implies b_n(-\varepsilon + 1) < a_n < b_n(\varepsilon + 1)~\definit
+  $$
+  $$
+    \implies -\varepsilon + 1 > 0~\definit~\wedge~-\varepsilon + 1 < \varepsilon + 1
+  $$
+  Quindi $\sum a_n$ e $\sum b_n$ hanno lo stesso carattere per il \textit{teorema del panino imbottito}.
+\end{proof}
+
+
+
+\section{Serie campione}
+
+Definiamo serie campione la serie:
+
+$$
+  \sum_{n=2}^{\infty} \dfrac{1}{n^{\alpha}\left(\log{n}\right)^{\beta}}
+$$
+
+con $\alpha, \beta \in \mathbb{R}$.
+
+
+\begin{thm}
+  La serie campione:
+
+  \begin{itemize}
+    \item Se $\alpha > 1$, converge $\forall \beta$
+    \item Se $\alpha < 1$, diverge $\forall \beta$
+    \item Se $\alpha = 1$, converge se $\beta > 1$
+    \item Se $\alpha = 1$, diverge se $\beta \leqslant 1$
+  \end{itemize}
+\end{thm}
+
+
+
+\section{Criteri del rapporto e della radice}
+
+\begin{thm}[Criterio del rapporto per le serie]
+  Sia $\sum a_n$ una serie a termini positivi e sia $l = \lim \dfrac{a_{n+1}}{a_n}$:
+
+  \begin{itemize}
+    \item Se $l > 1$, $\sum a_n$ diverge;
+    \item Se $l < 1$, $\sum a_n$ converge;
+    \item Se $l = 1$, il criterio è inoncludente.
+  \end{itemize}
+\end{thm}
+
+\begin{thm}[Criterio della radice per le serie]
+  Sia $\sum a_n$ una serie a termini positivi e sia $l = \lim \sqrt[n]{a_n}$:
+
+  \begin{itemize}
+    \item Se $l > 1$, $\sum a_n$ diverge;
+    \item Se $l < 1$, $\sum a_n$ converge;
+    \item Se $l = 1$, il criterio è inoncludente.
+  \end{itemize}
+\end{thm}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item Se $l < 1$, sia $l < \beta < 1$. 
+          Si ha che:
+          \begin{align*}
+            \sqrt[n]{a_n} &< \beta~\definit \\
+                      a_n &< \beta^n~\definit
+          \end{align*}
+          dato che $\beta < 1$, $\sum \beta^n$ converge, 
+          quindi $\sum a_n$ a sua volta converge per il criterio del confronto.
+    \item Se $l > 1$:
+          \begin{align*}
+            \sqrt[n]{a_n} &> 1~\definit \\
+                      a_n &> 1~\definit \\
+          \end{align*}
+          dato che $a_n > 1~\definit$, $a_n \not \to 0$, quindi diverge.
+  \end{itemize}
+\end{proof}
+
+
+
+\section{Serie fattoriale}
+
+Si definisce serie fattoriale la serie:
+
+$$
+  \sum_{n=0}^{\infty} \dfrac{1}{n!}
+$$
+
+\begin{thm}
+  La serie fattoriale converge.
+\end{thm}
+
+\begin{proof}
+  $\dfrac{1}{n!} < \dfrac{1}{n^2}~\definit~\implies$ la serie converge per confronto.
+\end{proof}
+
+
+Si ha inoltre che:
+
+$$
+  \sum_{n=0}^{\infty}\dfrac{x^n}{n!} = e^x~\forall x \in \mathbb{R}
+$$
+
+
+\begin{thm}
+  Sia $\displaystyle e_n = \sum_{k=0}^{n}\dfrac{1}{k!}$, allora:
+
+  $$
+    0 < e - e_n < \dfrac{1}{n\cdot n!}~\forall n \in \mathbb{N}_0
+  $$
+\end{thm}
+
+\begin{proof}
+  Dato che $e_n \uparrow  e$, $e_n < e \implies 0 < e - e_n$
+  \begin{align*}
+    e - e_n &= \sum_{n=0}^{\infty}\dfrac{1}{n!} - \sum_{k=0}^{n}\dfrac{1}{k!} = \sum_{k=n+1}^{\infty} \dfrac{1}{k!} = \\
+            &= \left[\dfrac{1}{(n+1)!} + \dfrac{1}{(n+2)!} + \dfrac{1}{(n+3)!} + \dots\right] = \\
+            &= \dfrac{1}{(n+1)!}\left[1 + \dfrac{1}{(n+2)} + \dfrac{1}{(n+2)(n+3)} + \dots\right] < \\
+            &< \dfrac{1}{(n+1)!}\left[1 + \dfrac{1}{(n+1)} + \dfrac{1}{(n+1)^2} + \dots\right] = \\
+            &= \dfrac{1}{(n+1)!}\sum_{j=0}^{\infty}\left(\dfrac{1}{n+1}\right)^j = \dfrac{1}{(n+1)!}\dfrac{1}{1 - \dfrac{1}{n+1}} = \\
+            &= \dfrac{1}{(n+1)n!}\dfrac{n+1}{n+1-1} = \dfrac{1}{n\cdot n!}
+  \end{align*}
+\end{proof}
+
+
+\begin{obs}
+  $$
+    n!\cdot e_n \in \mathbb{N}~\forall n \in \mathbb{N}_0
+  $$
+\end{obs}
+
+\begin{proof}
+  $$
+    n!\cdot e_n = \sum_{k=0}^{n}\dfrac{n!}{k!}
+  $$
+  $\dfrac{n!}{k!}$ è un intero (dato che $n \geqslant k$).
+\end{proof}
+
+
+\begin{thm}
+  $e \not \in \mathbb{Q}$
+\end{thm}
+
+\begin{proof}
+  P.A. si supponga che $e \in \mathbb{Q}$ e che quindi $e = \dfrac{m}{k}$, con $m, k \in \mathbb{Z}^+$ coprimi. Per la disuguaglianza precedentemente
+  dimostrata, si ha che:
+  $$
+    0 < e - e_k < \dfrac{1}{k\cdot k!} \implies 0 < \dfrac{m}{k} - e_k < \dfrac{1}{k\cdot k!}
+  $$
+  quindi, moltiplicando per $n!$:
+  $$
+    0 < m(k-1)! - e_k\cdot k! < \dfrac{1}{k} \leqslant 1
+  $$
+  detto $p = m(k-1)! - e_k\cdot k!$, si ha che $p \in \mathbb{Z}$ (differenza di due interi). 
+  Quindi $0 < p < 1$, $p \in \mathbb{Z}$, che è un assurdo.
+\end{proof}
+
+
+
+\section{Criterio di Leibniz}
+
+\begin{thm}
+  Sia $\sum a_n = \sum (-1)^n \cdot b_n$ una serie a segno alterno, se:
+  \begin{itemize}
+    \item $b_n \geqslant 0$
+    \item $b_{n+1} \leqslant b_{n}$ 
+    \item $b_n \to 0$
+  \end{itemize}
+  o, equivalentemente $b_n \downarrow 0$, allora $\sum a_n$ converge.
+\end{thm}
+
+\begin{proof}
+  Si considerino i termini della successione delle somme parziali con $n$ pari o nullo:
+
+  $$
+    s_0 = b_0,~~s_2 = b_0 - b_1 + b_2 = b_0 - (b_1 - b_2),~~s_4 = b_0 - (b_1 - b_2) - (b_3 - b_4)
+  $$
+  
+  dato che $b_n$ è decrescente, i termini $b_1 - b_2$, $b_3 - b_4$ ecc. sono negativi, e quindi $s_{2n}$ è decrescente.\\
+  Si considerino ora i termini ad indice dispari:
+
+  $$
+    s_1 = b_0 - b_1,~~s_3 = (b_0 - b_1) + (b_2 - b_3),~~s_5 = (b_0 - b_1) + (b_2 - b_3) + (b_4 - b_5)
+  $$
+
+  nuovamente, dato che $b_n$ è decrescente, i termini $b_0 - b_1$, $b_2 - b_3$, $b_4 - b_5$ ecc. sono positivi, quindi $s_{2n+1}$ è crescente. \\
+  Inoltre, si ha che $s_{2n} \geqslant s_{2n+1}$ e $s_{2n} - s_{2n+1} \to 0$. Quindi, per un teorema noto si ha che $\exists l \in \mathbb{R}$:
+
+  $$
+    s_{2n} \to l,~~s_{2n+1} \to l
+  $$
+
+  e di conseguenza:
+
+  $$
+    s_{n} \to l
+  $$
+\end{proof}
+
+\begin{obs}
+  È sufficiente che $b_n \downarrow~\definit$ 
+\end{obs}
+
+
+\section{Criterio di Dirichlet}
+
+\begin{thm}
+  Sia $\sum c_n = \sum a_n\cdot b_n$. Detta $A_n$ la successione delle somme parziali di $a_n$, se 
+  $b_n \downarrow 0$ e $A_n$ è limitata, $\sum c_n$ converge.
+\end{thm}
+
+
+\section{Convergenza assoluta}
+
+\begin{define}
+  Data una serie $\sum a_n$, diciamo che essa converge \textbf{assolutamente} se la serie $\sum |a_n|$ converge
+\end{define}
+
+\begin{thm}
+  Se una serie converge assolutamente, allora converge.
+\end{thm}
+
+\begin{proof}
+  Sia $\sum a_n$ t.che $\sum |a_n|$ converge. Sia $b_n = a_n + |a_n|$, si ha che:
+
+  $$
+    0 \leqslant b_n \leqslant 2|a_n|
+  $$
+  
+  quindi $b_n$ converge per confronto. Inoltre:
+
+  $$
+    a_n = b_n - |a_n| \implies \sum a_n = \sum (b_n - |a_n|) = \sum b_n + \sum -|a_n|
+  $$
+
+  Dato che $\sum b_n$ e $\sum -|a_n|$ convergono, $\sum a_n$ converge.
+\end{proof}
+
+\begin{obs}
+  Il viceversa è falso. Infatti $\sum \dfrac{1}{n}$ diverge, mentre $\sum \dfrac{(-1)^n}{n}$ converge.
+\end{obs}
+
+
+\section{Riordinamenti}
+
+\begin{define}
+  Sia $\{a_n\}$ una successione, $b_n$ è un \textbf{riordinamento} di 
+  $a_n$ se $b_n = a_{k(n)}$, dove $k: \mathbb{N} \to \mathbb{N}$ è una funzione 
+  biunivoca.
+\end{define}
+
+\begin{define}
+  Sia $\sum a_n$ una serie, $\sum b_n$ è un \textbf{riordinamento della serie} 
+  $\sum a_n$ se $b_n$ è un riordinamento di $a_n$.
+\end{define}
+
+\begin{define}
+  Una serie $\sum a_n$ converge \textbf{incondizionatamente} se tutti i riordinamenti di $\sum a_n$ 
+  convergono.
+\end{define}
+
+\begin{thm}[Riemann-Dini]\leavevmode
+  \begin{itemize}
+    \item Se $\sum a_n$ converge assolutamente, allora $\sum a_n$ converge incondizionatamente.
+    \item Se $\sum a_n$ converge, ma non converge assolutamente, allora $\forall l \in \overline{\mathbb{R}}$ esiste un riordinamento $\sum b_n$ t.che $\sum b_n = l$.
+  \end{itemize}
+\end{thm}
+
+\begin{obs}
+  Sia $\sum a_n$ una serie a termini positivi. Se $\sum a_n$ converge, converge incondizionatamente.
+\end{obs}
+
+
+\section{Funzione Zeta di Riemann}
+
+\begin{define}[Funzione Zeta di Riemann]
+  Si definisce la funzione \textbf{Zeta di Riemann}:
+
+  $$
+    \zeta(s) = \sum_{n=1}^{\infty} \dfrac{1}{n^s}
+  $$
+\end{define}
+
+\begin{obs}\leavevmode
+  $$
+    \zeta(2) = \sum_{n=1}^{\infty} \dfrac{1}{n^2} = \dfrac{\pi^2}{6}
+  $$
+\end{obs}
+
+\begin{prop}\leavevmode
+  $$
+    \zeta(2n) = 2^{2n-1}\dfrac{\pi^{2n}|B_{2n}|}{(2n)!}
+  $$
+  dove $B_{n}$ è l'$n$-esimo numero di Bernoulli.
+\end{prop}
