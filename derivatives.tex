@@ -14,6 +14,50 @@
 \end{define}
 
 
+\begin{center}
+  \begin{tikzpicture}
+  \begin{axis}[
+    width=10cm,
+    height=8cm,
+    xmin=-1, xmax=6,
+    ymin=-1, ymax=6,
+    axis lines=middle,
+    axis line style={->},
+    xtick=\empty,
+    ytick=\empty,
+  ]
+
+  % Convex function (example)
+  \addplot[domain=0:5.5, smooth, thick, blue]
+      {e^(sin(deg(x)))*sqrt(x)};
+
+  \addplot[domain=0.5:3, smooth, thick, amber]
+      {((e^(sin(deg(2)))*sqrt(2) - e^(sin(deg(1))))/(1))*(x - 1) + e^(sin(deg(1)))};
+
+  % Coordinates
+  \coordinate (X) at (1, {e^(sin(deg(1)))*sqrt(1)});
+  \coordinate (Y) at (2, {e^(sin(deg(2)))*sqrt(2)}); % z_lambda at center
+
+  % Mark points
+  \addplot[only marks, mark=*] coordinates {(1, {e^(sin(deg(1)))*sqrt(1)})};
+  \addplot[only marks, mark=*] coordinates {(2, {e^(sin(deg(2)))*sqrt(2)})};
+
+  % Labels
+  \node[below] at (axis cs:1,0) {$x_0$};
+  \node[below] at (axis cs:2,0) {$x_0 + h$};
+
+  % Line segments r and p
+  % \draw[amber, thick] (X) -- (Z) node[midway, above] {$r$};
+  % \draw[amber, thick] (Z) -- (Y) node[midway, above] {$p$};
+
+  \draw[dashed, gray] (1, 0) -- (X);
+  \draw[dashed, gray] (2, 0) -- (Y);
+
+  \end{axis}
+  \end{tikzpicture}
+\end{center}
+
+
 \begin{define}[Derivata]
   Una funzione reale $f$ è \textbf{derivabile} in $x_0$ se:
 
@@ -124,6 +168,68 @@
 \end{proof}
 
 
+\section{Teorema di Fermat}
+
+\begin{define}[Massimo locale]
+  Sia $f: \mathfrak{D}(f) \to \mathbb{R}$ una funzione e sia $x_0 \in \mathfrak{D}(f)$. $x_0$ si dice 
+  \textbf{massimo locale} di $f$ se $\exists \mathcal{U}(x_0)$ t.che:
+
+  $$
+    f(x) \leqslant f(x_0)~\forall x \in \mathcal{U}(x_0) \cap \mathfrak{D}(f)
+  $$
+\end{define}
+
+\begin{define}[Minimo locale]
+  Sia $f: \mathfrak{D}(f) \to \mathbb{R}$ una funzione e sia $x_0 \in \mathfrak{D}(f)$. $x_0$ si dice 
+  \textbf{minimo locale} di $f$ se $\exists \mathcal{U}(x_0)$ t.che:
+
+  $$
+    f(x) \geqslant f(x_0)~\forall x \in \mathcal{U}(x_0) \cap \mathfrak{D}(f)
+  $$
+\end{define}
+
+Se $x_0$ è un minimo o un massimo locale, si dice \textbf{estremante locale}.
+
+
+\begin{thm}[Teorema di Fermat]
+  Sia $f: \mathfrak{D}(f) \to \mathbb{R}$ una funzione e sia $x_0 \in \mathfrak{D}(f)$ un estremante locale di $f$. Se $f$ 
+  è derivabile in $x_0$, si ha che:
+
+  $$
+    f'(x_0) = 0
+  $$
+\end{thm}
+
+\begin{proof}
+  Si supponga che $x_0$ sia un massimo locale. Per definizione, esiste un intorno $\mathcal{U}(x_0) = (x_0 - h, x_0 + h)$, con $h > 0$, t.che:
+  
+  $$
+    f(x) \leqslant f(x_0)~\forall x \in (x_0 - h, x_0 + h)
+  $$
+
+  dato che $f$ è derivabile in $x_0$:
+
+  $$
+    f'(x_0) = L \in \mathbb{R} \implies f'_-(x_0) = f'_+(x_0) = f'(x_0)
+  $$
+
+  ma si ha che, per il teorema della permanenza del segno:
+
+  $$
+    f'_-(x_0) = \lim_{h \to 0^-}\dfrac{f(x_0 + h) - f(x_0)}{h} \geqslant 0
+  $$
+  $$
+    f'_+(x_0) = \lim_{h \to 0^+}\dfrac{f(x_0 + h) - f(x_0)}{h} \leqslant 0
+  $$
+
+  quindi:
+
+  $$
+    f'(x_0) = 0
+  $$
+\end{proof}
+
+
 \section{La funzione derivata}
 
 
@@ -227,6 +333,58 @@
   $$ 
 \end{thm}
 
+
+\begin{center}
+  \begin{tikzpicture}
+  \begin{axis}[
+    width=10cm,
+    height=8cm,
+    xmin=-1, xmax=6,
+    ymin=-1, ymax=6,
+    axis lines=middle,
+    axis line style={->},
+    xtick=\empty,
+    ytick=\empty,
+  ]
+
+  % Convex function (example)
+  \addplot[domain=0:5.5, smooth, thick, blue]
+      {e^(cos(deg(x)))*sqrt(x)};
+
+  \addplot[domain=0.5:5.5, smooth, thick, teal]
+      {((e^(cos(deg(5)))*sqrt(5) - e^(cos(deg(1))))/(5-1))*(x - 1) + e^(cos(deg(1)))};
+
+  \addplot[domain=0.5:5.5, smooth, thick, amber]
+      {((e^(cos(deg(5)))*sqrt(5) - e^(cos(deg(1))))/(5-1))*(x - 3.44) + e^(cos(deg(3.44)))*sqrt(3.44)};
+
+  % Coordinates
+  \coordinate (X) at (1, {e^(cos(deg(1)))*sqrt(1)});
+  \coordinate (Y) at (5, {e^(cos(deg(5)))*sqrt(5)});
+  \coordinate (C) at (3.44, {e^(cos(deg(3.44)))*sqrt(3.44)});
+
+  % Mark points
+  \addplot[only marks, mark=*] coordinates {(1, {e^(cos(deg(1)))*sqrt(1)})};
+  \addplot[only marks, mark=*] coordinates {(5, {e^(cos(deg(5)))*sqrt(5)})};
+  \addplot[only marks, mark=*] coordinates {(3.44, {e^(cos(deg(3.44)))*sqrt(3.44)})};
+
+  % Labels
+  \node[below] at (axis cs:1,0) {$a$};
+  \node[below] at (axis cs:5,0) {$b$};
+  \node[below] at (axis cs:3.44,0) {$c$};
+
+  % Line segments r and p
+  % \draw[amber, thick] (X) -- (Z) node[midway, above] {$r$};
+  % \draw[amber, thick] (Z) -- (Y) node[midway, above] {$p$};
+
+  \draw[dashed, gray] (1, 0) -- (X);
+  \draw[dashed, gray] (5, 0) -- (Y);
+  \draw[dashed, gray] (3.44, 0) -- (C);
+
+  \end{axis}
+  \end{tikzpicture}
+\end{center}
+
+
 \begin{cor}[Teorema di Rolle]
   Sia $f:[a, b] \to \mathbb{R}$ t.che:
 
@@ -273,11 +431,6 @@
 \end{proof}
 
 
-\begin{cor}
-
-\end{cor}
-
-
 \begin{thm}[Teorema di Cauchy]
   Siano $f, g: [a, b] \to \mathbb{R}$ due funzioni t.che:
 
@@ -300,8 +453,49 @@
     h(x) = [f(b) - f(a)]g(x) - [g(b) - g(a)]f(x)
   $$
 
-  si ha che $h(x)$ soddisfa le ipotesi di Rolle.
+  si ha che $h(x)$ soddisfa le ipotesi di Rolle. Quindi:
+
+  $$
+    \exists c \in (a, b)~\colon~f'(c)[g(b) - g(a)] - g'(c)[f(b) - f(a)] = 0
+  $$
 \end{proof}
+
+
+\begin{thm}
+  Sia $f \in \mathcal{C}'(\mathcal{U}(a))$, con $a \in \mathbb{R}$ t.che $f'(a) \neq 0$. Siano $a_n$ e $b_n$ due 
+  successioni t.che $a_n \neq b_n$, $a_n \to a$, $b_n \to b$, allora:
+
+  $$
+    f(a_n) - f(b_n) \sim f'(a)(a_n - b_n)
+  $$
+\end{thm}
+
+\begin{cor}
+  Se $b_n = a$, si ha che:
+
+  $$
+    f(a_n) - f(a) \sim f'(a)(a_n - a)
+  $$
+\end{cor}
+
+\begin{proof}
+  Sia $a_n \to a$, con $a_n \neq a$, si ha che:
+
+  $$
+    a_n = a + \varepsilon_n
+  $$
+
+  quindi, dato che $f$ è differenziabile:
+
+  $$
+    f(a_n) = f(a + \varepsilon_n) = f(a) + f'(a)\varepsilon_n + \varepsilon_n \omega(\varepsilon_n)
+  $$
+
+  $$
+    f(a_n) - f(a) = f'(a)\varepsilon_n + \varepsilon_n \omega(\varepsilon_n) \sim f'(a)(a_n - a)
+  $$
+\end{proof}
+
 
 
 \begin{thm}[Condizione sufficiente di derivabilità]
@@ -563,23 +757,81 @@
   dove $\tau$ è la tangente al grafico di $f$ in $x_0$.
 \end{thm}
 
+\begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[
+        domain=0:2.7,
+        xlabel=$x$,
+        smooth,thick,
+        axis lines=center,
+        xtick=\empty,
+        ytick=\empty
+      ]
+
+      \addplot[color=blue]{x*ln(x)};
+
+      \addplot[color=amber]{x-1};
+
+      \coordinate (X) at (1, 0);
+      \coordinate (Y) at (2, {2*ln(2)});
+      \coordinate (Z) at (1.5, {1.5*ln(1.5)});
+
+      \draw[dashed, gray] (1.5, 0) -- (Z);
+      \draw[dashed, gray] (2, 0) -- (Y);
+
+      % Mark points
+      \addplot[only marks, mark=*] coordinates {(1, 0)};
+      \addplot[only marks, mark=*] coordinates {(2, {2*ln(2)})};
+      \addplot[only marks, mark=*] coordinates {(1.5, {1.5*ln(1.5)})};
+
+      % Labels
+      \node[below] at (axis cs:1,-0.05) {$x_0$};
+      \node[below] at (axis cs:2,0) {$t$};
+      \node[below] at (axis cs:1.5,0) {$x_0 + h$};
+
+      \node[above] at ($(0.0, -0.6) + (X)$) {$f(x_0)$};
+      \node[above] at ($(0.0, -0.6) + (Y)$) {$f(t)$};
+      \node[above] at ($(0.0, -0.6) + (Z)$) {$f(x_0 + h)$};
+
+    \end{axis}
+  \end{tikzpicture}
+\end{center}
+
 \begin{proof}
   Si fissi $x_0 \in [a, b]$, la tangente in $x_0$ risulta essere:
 
   $$
-    \tau(x) = f'(x_0)(x - x_0) + x_0
+    \tau(x) = f'(x_0)(x - x_0) + f(x_0)
   $$
 
-  sia $ x := x_0 + h$  con $h > 0$. Sia quindi $z_{\lambda} \in [x_0, x_0 + h]$:
+  sia $h > 0$ e sia $t > x_0 + h$. Si ha che:
 
   $$
-    z_{\lambda} = \lambda x_0 + (1 - \lambda)(x_0 + h) = x_0 + h(1 - \lambda)
+    x_0 + h = \lambda t + (1 - \lambda)x_0 = x_0 + \lambda(t - x_0) \implies h = \lambda(t - x_0)
   $$
 
-  si ha che, dato che $f$ è convessa:
+  dato che $f$ è convessa:
 
   $$
-    f(z_{\lambda}) \leqslant \lambda f(x_0) + (1 - \lambda)f(x_0 + h) = \lambda (f(x_0) - f(x_0 + h)) + f(x_0 + h)
+    f(x_0 + h) \leqslant \lambda f(t) + (1 - \lambda)f(x_0) \implies f(x_0 + h) - f(x_0) \leqslant \lambda[f(t) - f(x_0)]
+  $$
+
+  dato che:
+
+  $$
+    \lambda = \dfrac{h}{t - x_0}
+  $$
+
+  si ottiene:
+
+  $$
+    f(x_0 + h) - f(x_0) \leqslant \dfrac{h}{t - x_0}[f(t) - f(x_0)] \implies \dfrac{f(x_0 + h) - f(x_0)}{h} \leqslant \dfrac{f(t) - f(x_0)}{t-x_0}
+  $$
+
+  per il teorema della permanenza del segno, per $h \to 0$ si ha:
+
+  $$
+    f'(x_0) \leqslant \dfrac{f(t) - f(x_0)}{t-x_0} \implies \tau(t) \leqslant f(t)
   $$
 \end{proof}
 
@@ -601,12 +853,59 @@
 
 
 \begin{thm}
-  Sia $f: [a, b] \to \mathbb{R}$ t.che $f$ è derivabile in $[a, b]$ e $\forall x_0 \in [a, b]$ $f(x) \geqslant \tau(x)~~~\forall x \in [a, b]$, dove $\tau$ è la 
+  Sia $f: [a, b] \to \mathbb{R}$ t.che $f$ è derivabile in $[a, b]$ e $\forall x_0 \in [a, b]$ $f(x) \geqslant \tau_{x_0}(x)~~~\forall x \in [a, b]$, dove $\tau_{x_0}$ è la 
   tangente al grafico di $f$ in $x_0$ $\implies$ $f$ è convessa in $[a, b]$.
 \end{thm}
 
 \begin{proof}
+  Sia $x_0 \in [a, b]$ fissato, si ha che:
 
+  $$
+    \tau_{x_0}(t) = f'(x_0)(t - x_0) + f(x_0)
+  $$
+
+  siano $x, y \in [a, b]$ t.che $x < x_0 < y$. Si ha che:
+
+  $$
+    x_0 = \lambda x + (1 - \lambda) y
+  $$
+
+  $$
+    \begin{cases*}
+      f(y) \geqslant \tau_{x_0}(y) \implies f(y) \geqslant f'(x_0)(y - x_0) + f(x_0) \\
+      f(x) \geqslant \tau_{x_0}(x) \implies f(x) \geqslant f'(x_0)(x - x_0) + f(x_0)
+    \end{cases*}
+  $$
+
+  $$
+    y - x_0 = y - \lambda x - y + \lambda y = \lambda (y - x)
+  $$
+
+  $$
+    x - x_0 = x - \lambda x - y + \lambda y = (x - y)(1 - \lambda)
+  $$
+
+  di conseguenza:
+
+  $$
+    \begin{cases*}
+      f(y) \geqslant f'(x_0)\lambda (y - x) + f(x_0) \\
+      f(x) \geqslant f'(x_0)(x - y)(1 - \lambda) + f(x_0)
+    \end{cases*}
+  $$
+
+  $$
+    \begin{cases*}
+      (1 - \lambda)f(y) \geqslant (1 - \lambda)f'(x_0)\lambda (y - x) + (1 - \lambda)f(x_0) \\
+      \lambda f(x) \geqslant -\lambda f'(x_0)(y - x)(1 - \lambda) + \lambda f(x_0)
+    \end{cases*}
+  $$
+
+  \begin{align*}
+    \lambda f(x) + (1 - \lambda)f(y)  &\geqslant (1 - \lambda)f'(x_0)\lambda (y - x) - \lambda f'(x_0)(y - x)(1 - \lambda) + f(x_0) = \\
+                                      &= \cancel{\lambda f'(x_0)(y - x)} - \cancel{\lambda^2 f'(x_0)(y - x)} - \cancel{\lambda f'(x_0)(y - x)} + \cancel{\lambda^2f'(x_0)(y - x)} + f(x_0) = \\
+                                      &= f(\lambda x + (1 - \lambda)y)
+  \end{align*}
 \end{proof}
 
 
@@ -616,7 +915,7 @@
 \end{thm}
 
 \begin{proof}
-
+  
 \end{proof}
 
 
@@ -633,6 +932,38 @@
 \section{Sviluppi di Taylor}
 
 \subsection{Approssimazione di una funzione}
+
+Sia $f: \mathfrak{D}(f) \to \mathbb{R}$ una funzione $n$ volte derivabile e sia $x_0 \in \mathfrak{D}(f)$. Si vuole trovare 
+un polinomio $p_n$ di grado $n$ che "approssimi" la funzione $f$ in $x_0$. Per approssimare si intende che le prime $n$ derivate di $p_n$ uguagliano 
+le prime $n$ derivate di $f$ in $x_0$. Sia quindi $p_n$ un generico polinomio di grado $n$:
+
+$$
+  p_n(x) = a_0 + a_1(x-x_0) + a_2(x-x_0)^2 + \dots + a_n(x-x_0)^n
+$$
+
+le cui derivate risultano:
+
+\begin{align*}
+  p'_n(x)       &= a_1 + 2a_2(x-x_0) + 3a_3(x-x_0)^2 + \dots + n a_n (x-x_0)^{n-1} \\
+  p''_n(x)      &= 2a_2 + 6a_3(x-x_0) + \dots + n(n-1)(x-x_0)^{n-2} \\
+  p'''_n(x)     &= 6a_3 + \dots + n(n-1)(n-2)(x-x_0)^{n-3} \\
+  p^{(k)}_n(x)  &= k! \cdot a_k + \dots + \dfrac{n!}{(n-k)!} (x-x_0)^{n-k} \\
+  p^{(n)}_n(x)  &= n! \cdot a_n
+\end{align*}
+
+quindi i coefficienti di $p_n$ possono essere determinati come (con $k < n$):
+
+$$
+  \begin{cases*}
+    p_n(x_0)        = f(x_0)          \implies     f(x_0)         = a_0           \implies a_0 = f(x_0) \\
+    p'_n(x_0)       = f'(x_0)         \implies     f'(x_0)        = a_1           \implies a_1 = f'(x_0) \\ 
+    p''_n(x_0)      = f''(x_0)        \implies     f''(x_0)       = 2a_2          \implies a_2 = \dfrac{f''(x_0)}{2} \\
+    p'''_n(x_0)     = f'''(x_0)       \implies     f'''(x_0)      = 6a_3          \implies a_3 = \dfrac{f'''(x_0)}{6} \\
+    p^{(k)}_n(x_0)  = f^{(k)}(x_0)    \implies     f^{(k)}(x_0)   = k! \cdot a_k  \implies a_k = \dfrac{f^{(k)(x_0)}}{k!} \\
+    p^{(n)}_n(x_0)  = f^{(n)}(x_0)    \implies     f^{(n)}(x_0)   = n! \cdot a_n  \implies a_n = \dfrac{f^{(n)}(x_0)}{n!}
+  \end{cases*}
+$$
+
 
 \subsection{Polinomio di Taylor}
 
@@ -797,7 +1128,19 @@
 \end{thm}
 
 \begin{proof}
+  Si dimostrerà il caso in cui si ottiene la forma indeterminata $\dfrac{0}{0}$ con $x_0 \in \mathbb{R}$. Si considerino le estensioni di $f$ e $g$ in $x_0$ $\hat{f}$, $\hat{g}$. Si ha che:
 
+  $$
+    \hat{f}(x_0) = \hat{g}(x_0) = 0
+  $$ 
+
+  inoltre, per il teorema di Cauchy, in $\dot{\mathcal{U}}(x_0)$:
+
+  $$
+    \dfrac{f(x)}{g(x)} = \dfrac{\hat{f}(x) - \hat{f}(x_0)}{\hat{g}(x) - \hat{g}(x_0)} = \dfrac{f'(y)}{g'(y)} \underset{y \to x_0}{\to} l
+  $$
+
+  con $x < y < x_0$ (se $x_0 > x$).
 \end{proof}
 
 
@@ -835,7 +1178,7 @@
   Sia $f$ derivabile $n$ volte in $x_0$, allora:
 
   $$
-    f(x_0 + h) = \sum_{k=0}^{n}\dfrac{f^(k)(x_0)}{k!}h^k + o(h^n)
+    f(x_0 + h) = \sum_{k=0}^{n}\dfrac{f^{(k)}(x_0)}{k!}h^k + o(h^n)
   $$
 \end{thm}
 

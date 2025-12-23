@@ -5,4 +5,5 @@
 *.gz
 *.toc
 *.pdf
+*.synctex*
 !main.pdf

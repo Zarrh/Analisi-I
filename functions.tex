@@ -321,11 +321,22 @@ Molti dei teoremi sui limiti di successioni hanno una "controparte" per i limiti
 reali ottenibili tramite il teorema traghettatore.
 
 \begin{thm}[Unicità del limite]
-
+  Sia $f: \mathfrak{D}(f) \to \mathbb{R}$ una funzione reale e sia $x_0$ un punto di accumulazione di $\mathfrak{D}(f)$. Se $\exists l \in \mathbb{R}$ t.che $\lim_{x \to x_0}f(x) = l$, $l$ è unico.
 \end{thm}
 
-\begin{thm}[Permanenza del segno]
+\begin{proof}
+  Dato che $\exists \lim_{x \to x_0}f(x) = l$, allora $\slim_{x\to x_0}f(x) = l$. Quindi:
 
+  $$
+    \forall a_n \neq x_0,~a_n \to x_0~~~f(a_n) \to l
+  $$
+
+  la tesi segue dal teorema di unicità del limite per le successioni.
+\end{proof}
+
+\begin{thm}[Permanenza del segno]
+  Sia $f: \mathfrak{D}(f) \to \mathbb{R}$ una funzione reale e sia $x_0$ un punto di accumulazione di $\mathfrak{D}(f)$.
+  
 \end{thm}
 
 \begin{thm}[Teorema del confronto]
@@ -623,7 +634,71 @@ reali ottenibili tramite il teorema traghettatore.
 
 \end{es}
 
-***grafico***
+\begin{center}
+  \begin{tikzpicture}
+  \begin{axis}[
+    width=12cm,
+    height=7cm,
+    xmin=-10, xmax=10,
+    ymin=-0.3, ymax=1.1,
+    axis lines=middle,
+    axis line style={->, thick},
+    xlabel={$x$},
+    ylabel={$y$},
+    domain=-10:10,
+    samples=400,
+    smooth,
+    enlargelimits=false,
+    ticks=none,
+  ]
+
+  \addplot[blue, thick, domain=0:10] ({x},{1/x});
+  \addplot[blue, thick, domain=-10:0] ({x}, 0);
+
+  \addplot[blue, only marks, mark=*] coordinates {(0,0)};
+
+  \end{axis}
+  \end{tikzpicture}
+\end{center}
+
+\begin{es}
+
+\end{es}
+
+\begin{center}
+  \begin{tikzpicture}
+  \begin{axis}[
+    width=8cm,
+    height=7cm,
+    xmin=-2, xmax=2,
+    ymin=-2, ymax=2.5,
+    axis lines=middle,
+    axis line style={->, thick},
+    xlabel={$x$},
+    ylabel={$y$},
+    domain=-2:2,
+    samples=400,
+    smooth,
+    enlargelimits=false,
+    ticks=none,
+  ]
+
+  \addplot[blue, thick, domain=0.001:2] ({x},{sin(deg(1/x))});
+  \addplot[blue, thick, domain=-2:0] ({x}, -x);
+
+  \addplot[
+    only marks,
+    mark=o,
+    mark size=3pt,
+    blue,
+    line width=1pt
+  ] coordinates {(0,0)};
+
+  \addplot[blue, only marks, mark=*] coordinates {(0,2)};
+
+  \end{axis}
+  \end{tikzpicture}
+\end{center}
 
 
 \begin{thm}[$\diamondsuit$]
@@ -635,7 +710,98 @@ reali ottenibili tramite il teorema traghettatore.
   $$
 \end{thm}
 
-***grafico***
+\begin{center}
+  \begin{tikzpicture}
+    \begin{groupplot}[
+      group style={
+        group size=2 by 2, % 2 columns, 2 rows
+        horizontal sep=2cm,
+        vertical sep=2cm,
+      },
+      width=7cm, height=6cm,
+      axis lines=middle,
+      axis line style={->, thick},
+      xlabel={$x$}, ylabel={$y$},
+      ticks=none,
+      enlargelimits=false,
+      samples=400,
+      % smooth,
+    ]
+
+      % --- Subgraph 1: Top Left ---
+      \nextgroupplot[title={I}, xmin=-2, xmax=2, ymin=-2, ymax=2.5]
+      \addplot[blue, thick, domain=-2:0] {(1/2*x+1)^2 - 1.5};
+      \addplot[blue, thick, domain=0:2] {-1/4*(x-2)^2 + 1.5};
+      \addplot[
+        only marks,
+        mark=o,
+        mark size=3pt,
+        blue,
+        line width=1pt
+      ] coordinates {(0, -0.5)};
+      \addplot[
+        only marks,
+        mark=o,
+        mark size=3pt,
+        blue,
+        line width=1pt
+      ] coordinates {(0, 0.5)};
+      \addplot[only marks, mark=*, blue] coordinates {(0,0)};
+      \node[below left] at (0,0) {$x_0$};
+
+      % --- Subgraph 2: Top Right ---
+      \nextgroupplot[title={II}, xmin=-2, xmax=2, ymin=-2, ymax=2.5]
+      \addplot[teal, thick, domain=-2:0] {sqrt(abs(1/2*x+1))-2};
+      \addplot[teal, thick, domain=0:2] {-sqrt(abs(1/2*x-1))+2};
+      \addplot[
+        only marks,
+        mark=o,
+        mark size=3pt,
+        teal,
+        line width=1pt
+      ] coordinates {(0, -1)};
+      \addplot[
+        only marks,
+        mark=o,
+        mark size=3pt,
+        teal,
+        line width=1pt
+      ] coordinates {(0, 1)};
+      \addplot[only marks, mark=*, teal] coordinates {(0,0)};
+      \node[below left] at (0,0) {$x_0$};
+
+      % --- Subgraph 3: Bottom Left ---
+      \nextgroupplot[title={III}, xmin=-2, xmax=2, ymin=-2, ymax=2.5]
+      \addplot[amber, thick, domain=-2:0] {sqrt(abs(1/2*x+1))-1.5};
+      \addplot[amber, thick, domain=0:2] {-1/4*(x-2)^2 + 1.5};
+      \addplot[
+        only marks,
+        mark=o,
+        mark size=3pt,
+        amber,
+        line width=1pt
+      ] coordinates {(0, -0.5)};
+      \addplot[
+        only marks,
+        mark=o,
+        mark size=3pt,
+        amber,
+        line width=1pt
+      ] coordinates {(0, 0.5)};
+      \addplot[only marks, mark=*, amber] coordinates {(0,0)};
+      \node[below left] at (0,0) {$x_0$};
+
+      % --- Subgraph 4: Bottom Right ---
+      \nextgroupplot[title={IV}, xmin=-2, xmax=2, ymin=-2, ymax=2.5]
+      \addplot[tyrian, thick, domain=0:2] {sqrt(x)};
+      \addplot[tyrian, thick, domain=-2:0] {exp(x) - 1};
+      \addplot[only marks, mark=*, tyrian] coordinates {(0,0)};
+      \node[below left] at (0,0) {$x_0$};
+
+    \end{groupplot}
+  \end{tikzpicture}
+\end{center}
+
 
 \subsection{Prolungamento per continuità}
 
@@ -755,6 +921,49 @@ reali ottenibili tramite il teorema traghettatore.
     \forall \gamma~\colon~f(x) < \gamma < f(y)~\exists c \in [x, y]~\colon~f(c) = \gamma
   $$
 
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+          domain=0:5,
+          ymin=-1.5,
+          ymax=1.5,
+          xlabel=$x$,
+          smooth,thick,
+          axis lines=center,
+          xtick=\empty,
+          ytick=\empty
+        ]
+
+        \addplot[color=blue]{4*e^(-x)*sin(deg(x))*ln(x)};
+
+        \draw[->,color=amber] (0, {4*e^(-1.5)*sin(deg(1.5))*ln(1.5)}) -- (5, {4*e^(-1.5)*sin(deg(1.5))*ln(1.5)});
+        \node[left,color=amber] at (4.5,{4*e^(-1.5)*sin(deg(1.5))*ln(1.5)+0.15}) {$\gamma$};
+
+        \coordinate (X) at (1, 0);
+        \coordinate (Y) at (2.5, {4*e^(-2.5)*sin(deg(2.5))*ln(2.5)});
+        % \coordinate (Z) at (1.5, {1.5*ln(1.5)});
+
+        \draw[dashed, gray] (1, 0) -- (X);
+        \draw[dashed, gray] (2.5, 0) -- (Y);
+
+        % Mark points
+        \addplot[only marks, mark=*] coordinates {(1, 0)};
+        \addplot[only marks, mark=*] coordinates {(2.5, {4*e^(-2.5)*sin(deg(2.5))*ln(2.5)})};
+        \addplot[only marks, mark=*] coordinates {(1.5, {4*e^(-1.5)*sin(deg(1.5))*ln(1.5)})};
+
+        % Labels
+        \node[below] at (axis cs:1,-0.025) {$x$};
+        \node[below] at (axis cs:2.5,0) {$y$};
+        \node[below] at (axis cs:1.5,0) {$t$};
+
+        % \node[above] at ($(0.0, -0.6) + (X)$) {$f(x_0)$};
+        % \node[above] at ($(0.0, -0.6) + (Y)$) {$f(t)$};
+        % \node[above] at ($(0.0, -0.6) + (Z)$) {$f(x_0 + h)$};
+
+      \end{axis}
+    \end{tikzpicture}
+  \end{center}
+
   \begin{itemize}
     \item Se $f(x) = f(y)$, la tesi è verificata
     \item Se $f(x) \neq f(y)$, si supponga $f(x) < f(y)$. Si fissi $\gamma$ t.che $f(x) < \gamma < f(y)$. 
@@ -850,3 +1059,33 @@ reali ottenibili tramite il teorema traghettatore.
 \section{Continuità uniforme}
 
 
+\begin{define}[Continuità uniforme]
+  Sia $f: \mathfrak{I} \to \mathbb{R}$ una funzione reale, $f$ è \textbf{uniformemente continua} se:
+
+  $$
+    \forall \varepsilon > 0~\exists \delta > 0~\colon~\text{ se }~|x - y| < \delta \implies |f(x) - f(y)| < \varepsilon~\forall x,y \in \mathfrak{I}
+  $$
+\end{define}
+
+\begin{obs}
+  Tale definizione non è equivalente a richiedere che, fissato $x \in \mathfrak{I}$:
+
+  $$
+    \forall \varepsilon > 0~\exists \delta > 0~\colon~\text{ se }~|x - y| < \delta \implies |f(x) - f(y)| < \varepsilon~\forall y \in \mathfrak{I}
+  $$
+
+  in tal caso infatti, la scelta di $\delta = \delta(x)$ può dipendere da $x$.
+\end{obs}
+
+\begin{es}
+  $f: (0, 1] \to \mathbb{R}$, $f(x) = \dfrac{1}{x}$ non è uniformemente continua.
+\end{es}
+
+
+\begin{thm}[Teorema di Heine-Cantor]
+  Sia $f: \mathfrak{I} \to \mathbb{R}$, se $f$ è continua $\implies$ $f$ è uniformemente continua.
+\end{thm}
+
+\begin{proof}
+
+\end{proof}

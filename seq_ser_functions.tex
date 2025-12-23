@@ -44,6 +44,53 @@
   $$
 \end{es}
 
+\begin{center}
+  \begin{tikzpicture}
+  \begin{axis}[
+    width=10cm,
+    height=10cm,
+    xmin=-0.1, xmax=1.1,
+    ymin=-0.1, ymax=1.1,
+    axis lines=middle,
+    axis line style={->},
+    xtick=\empty,
+    ytick=\empty,
+  ]
+
+  \addplot[domain=0:1, smooth, thick, blue]
+      {x};
+
+  \addplot[domain=0:1, smooth, thick, amber]
+      {x^2};
+
+  \addplot[domain=0:1, smooth, thick, teal]
+      {x^3};
+
+  \addplot[domain=0:1, smooth, thick, tyrian]
+      {x^4};
+
+  \addplot[domain=0:1, smooth, thick, purple]
+      {x^8};
+
+  % \addplot[domain=0:5, smooth, thick, teal]
+  %     {((e^(cos(deg(5)))*sqrt(5) - e^(cos(deg(1))))/(5-1))*(x - 1) + e^(cos(deg(1)))};
+
+  % \addplot[domain=0.5:5.5, smooth, thick, amber]
+  %     {((e^(cos(deg(5)))*sqrt(5) - e^(cos(deg(1))))/(5-1))*(x - 3.44) + e^(cos(deg(3.44)))*sqrt(3.44)};
+
+  % Labels
+  \node[below] at (axis cs:1,0) {$1$};
+  \node[left] at (axis cs:0,1) {$1$};
+  % \node[below] at (axis cs:3.44,0) {$c$};
+
+  % \draw[dashed, gray] (1, 0) -- (X);
+  % \draw[dashed, gray] (5, 0) -- (Y);
+  % \draw[dashed, gray] (3.44, 0) -- (C);
+
+  \end{axis}
+  \end{tikzpicture}
+\end{center}
+
 \begin{es}[II]
   Sia $\mathfrak{I} = [0, 1]$ e sia $f_n$:
 
@@ -66,7 +113,45 @@
 \begin{es}[III]
   Sia $\mathfrak{I} = [0, 1]$ e sia $f_n$ così definita:
 
-  ***grafico***
+  \begin{center}
+    \begin{tikzpicture}
+    \begin{axis}[
+      width=10cm,
+      height=10cm,
+      xmin=-0.1, xmax=1.1,
+      ymin=-0.7, ymax=6.5,
+      axis lines=middle,
+      axis line style={->},
+      xtick=\empty,
+      ytick=\empty,
+    ]
+
+    \addplot[domain={1/3}:1, smooth, thick, blue]
+        {0};
+
+    \draw[smooth, thick, blue] (0, 0) -- ({1/(2*3)}, {2*3}) -- ({1/3}, 0);
+
+
+
+    % \addplot[domain=0:5, smooth, thick, teal]
+    %     {((e^(cos(deg(5)))*sqrt(5) - e^(cos(deg(1))))/(5-1))*(x - 1) + e^(cos(deg(1)))};
+
+    % \addplot[domain=0.5:5.5, smooth, thick, amber]
+    %     {((e^(cos(deg(5)))*sqrt(5) - e^(cos(deg(1))))/(5-1))*(x - 3.44) + e^(cos(deg(3.44)))*sqrt(3.44)};
+
+    % Labels
+    \node[below] at (axis cs:1,0) {$1$};
+    \node[left] at (axis cs:0,1) {$1$};
+    \node[below] at (axis cs:{1/3},0) {$\dfrac{1}{n}$};
+    \node[left] at (axis cs:0,{2*3}) {$2n$};
+
+    % \draw[dashed, gray] (1, 0) -- (X);
+    % \draw[dashed, gray] (5, 0) -- (Y);
+    % \draw[dashed, gray] (3.44, 0) -- (C);
+
+    \end{axis}
+    \end{tikzpicture}
+  \end{center}
 
   $$
     f_n(x) \to f(x) = 0
@@ -125,6 +210,51 @@
     \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~|f_n(x) - f(x)| < \varepsilon~\forall n \geqslant n_0~\forall x \in \mathfrak{I}
   $$
 \end{define}
+
+\begin{center}
+  \begin{tikzpicture}
+  \begin{axis}[
+    width=10cm,
+    height=8cm,
+    xmin=-1, xmax=7,
+    ymin=-5, ymax=5,
+    axis lines=middle,
+    axis line style={->},
+    xtick=\empty,
+    ytick=\empty,
+  ]
+
+  % Convex function (example)
+  \addplot[domain=0:6.28, smooth, thick, blue]
+      {sin(deg(x))};
+
+  \addplot[domain=0:6.28, smooth, thick, amber]
+      {sin(deg(x))-3*sin(deg(x))*(-1)^1/(1)^2};
+
+  \addplot[domain=0:6.28, smooth, thick, teal]
+      {sin(deg(x))-3*sin(deg(x))*(-1)^2/(2)^2};
+
+  \addplot[domain=0:6.28, smooth, thick, tyrian]
+      {sin(deg(x))-3*sin(deg(x))*(-1)^3/(3)^2};
+
+  % \addplot[domain=0:5, smooth, thick, teal]
+  %     {((e^(cos(deg(5)))*sqrt(5) - e^(cos(deg(1))))/(5-1))*(x - 1) + e^(cos(deg(1)))};
+
+  % \addplot[domain=0.5:5.5, smooth, thick, amber]
+  %     {((e^(cos(deg(5)))*sqrt(5) - e^(cos(deg(1))))/(5-1))*(x - 3.44) + e^(cos(deg(3.44)))*sqrt(3.44)};
+
+  % Labels
+  % \node[below] at (axis cs:1,0) {$a$};
+  % \node[below] at (axis cs:5,0) {$b$};
+  % \node[below] at (axis cs:3.44,0) {$c$};
+
+  % \draw[dashed, gray] (1, 0) -- (X);
+  % \draw[dashed, gray] (5, 0) -- (Y);
+  % \draw[dashed, gray] (3.44, 0) -- (C);
+
+  \end{axis}
+  \end{tikzpicture}
+\end{center}
 
 \begin{notation}
   $f_n \uniformto f$
@@ -267,6 +397,28 @@
 \end{notation}
 
 
+\begin{thm}[Convergenza uniforme e continuità per le serie di funzioni]
+  Se $f_n$ è continua $\forall n$ e $\sum f_n \uniformto s$ $\implies$ $s$ è continua
+\end{thm}
+
+\begin{thm}[Convergenza uniforme e integrabilità per le serie di funzioni]
+  Sia $f_n: [a, b] \to \mathbb{R}$, se $f_n \in R(a, b)$ $\forall n$ e $\sum f_n \uniformto s$ $\implies$ $s \in R(a, b)$. Inoltre:
+
+  $$
+    \sum_{n=1}^{\infty}\int_{a}^{b}f_n(x)dx = \int_{a}^{b}\sum_{n=1}^{\infty}f_n(x)dx
+  $$
+\end{thm}
+
+\begin{thm}[Convergenza uniforme e derivabilità per le serie di funzioni]
+  Sia $f_n: [a, b] \to \mathbb{R}$ t.che $f_n$ è derivabile $\forall n$, se $\exists x_0 \in [a, b]$ t.che $\sum_{n=1}^{\infty}f_n(x_0)$ converge e 
+  $\sum f'_n \uniformto s': [a, b] \to \mathbb{R}$ $\implies$ $\sum f_n \uniformto s: [a, b] \to \mathbb{R}$ e $\sum f_n$ è derivabile. Inoltre: 
+
+  $$
+    \sum_{n=1}^{\infty}f_n'(x) = \left(\sum_{n=1}^{\infty}f_n(x)\right)'
+  $$
+\end{thm}
+
+
 \subsection{Convergenza totale}
 
 \begin{define}[Convergenza totale]
@@ -278,3 +430,294 @@
     \item $\sum M_n$ converge
   \end{itemize}
 \end{define}
+
+
+\begin{thm}
+  Se $\sum f_n$ converge totalmente $\implies$ $\sum f_n$ converge uniformemente
+\end{thm}
+
+\begin{proof}
+  Sia $s_n$ la successione delle somme parziali. Si noti inoltre che, se $\sum_{k=1}^{\infty} M_k$ converge, allora:
+
+  $$
+    \sum_{k=n+1}^{\infty}M_k \underset{n \to +\infty}{\to} 0
+  $$
+
+  si ha quindi che:
+
+  \begin{align*}
+    |s_n(x) - s(x)| &= \left|\sum_{k=1}^{n}f_n(x) - \sum_{k=1}^{\infty}f_n(x)\right| = \left|\sum_{k=n+1}^{\infty}f_n(x)\right| \leqslant \\
+                    &\leqslant \sum_{k=n+1}^{\infty}|f_n(x)| \leqslant \sum_{k=n+1}^{\infty}M_k~~~\forall x \in \mathfrak{I}
+  \end{align*}
+
+  dunque:
+
+  $$
+    \sup_{x \in \mathfrak{I}}|s_n(x) - s(x)| \leqslant \sum_{k=n+1}^{\infty}M_k \underset{n \to +\infty}{\to} 0
+  $$
+\end{proof}
+
+
+\subsection{Serie di potenze}
+
+\begin{define}[Serie di potenze]
+  Sia $\{a_n\}$ una successione numerica, si definisce \textbf{serie di potenze} la serie:
+
+  $$
+    \sum_{n=0}^{\infty}a_n x^n
+  $$
+\end{define}
+
+\begin{obs}
+  Se $x = 0$, la serie converge a $a_0$.
+\end{obs}
+
+\begin{define}[Raggio di convergenza]
+  Sia $\sum a_n x^n$ una serie di potenze, si dice \textbf{raggio di convergenza} della serie:
+
+  $$
+    R := \dfrac{1}{L} \in [0, +\infty]
+  $$
+
+  dove:
+
+  $$
+    L := \limsup \sqrt[n]{|a_n|} \in [0, +\infty]
+  $$
+\end{define}
+
+\begin{obs}
+  Se $a_n$ è polinomiale, $R = 1$.
+\end{obs}
+
+
+\begin{thm}
+  Sia $\sum a_n x^n$ una serie di potenze e sia $R$ il suo raggio di convergenza, allora se $R > 0$:
+
+  \begin{itemize}
+    \item la serie converge puntualmente su $(-R, R)$
+    \item la serie converge totalmente su ogni $[-r, r]$ con $0 < r < R$
+    \item la serie non converge in alcun $x \in [-R, R]^C$
+  \end{itemize}
+\end{thm}
+
+\begin{obs}
+  Se $R = +\infty$ si ha convergenza totale su ogni intervallo chiuso.
+\end{obs}
+
+\begin{obs}
+  Se $R = 0$, la serie converge solo in $x = 0$.
+\end{obs}
+
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item Il primo punto segue dal secondo
+    \item Sia $0 < r < R$ e sia $x \in [-r, r]$, allora:
+          $$
+            |a_n x^n| \leqslant |a_n| r^n
+          $$
+
+          inoltre, per il criterio della radice la serie $\sum |a_n|r^n$ converge:
+
+          $$
+            \limsup \sqrt[n]{|a_n|r^n} = \limsup r \sqrt[n]{|a_n|} = \dfrac{r}{R} < 1
+          $$
+
+    \item Sia $|x| > R$:
+
+          $$
+            \limsup \sqrt[n]{|a_n x^n|} = \dfrac{|x|}{R} > 1
+          $$
+
+          quindi esiste una sottosuccessione t.che $|a_{n_k} x^{n_k}| > 1$, quindi $a_n x^n \not \to 0$.
+  \end{itemize}
+\end{proof}
+
+\begin{obs}
+  Si può sostituire $x$ con $f(x)$:
+
+  $$
+    \sum a_n [f(x)]^n
+  $$
+
+  ed ottenere il raggio di convergenza ponendo $y := f(x)$ e imponendo $y \in (-R, R)$.
+\end{obs}
+
+
+\begin{lemma}[Lemma di Abel]
+  Sia $\sum a_n x^n$ una serie di potenze di raggio di convergenza $0 < R < +\infty$, se $\sum a_n R^n$ converge allora 
+  la serie converge uniformemente su $[-r, R]~\forall 0 < r < R$. Lo stesso vale per l'altro estremo.
+  Di conseguenza, se $\sum a_n x^n$ converge su $x = -R$ e $x = R$ si ha convergenza uniforme su $[-R, R]$.
+\end{lemma}
+
+
+
+\begin{thm}[Continuità per le serie di potenze]
+  Sia $\sum a_n x^n$ una serie di potenze di raggio di convergenza $R > 0$ e sia:
+
+  $$
+    s(x) := \sum_{n=0}^{\infty}a_n x^n
+  $$
+
+  allora $s$ è continua su $(-R, R)$. Inoltre, se la serie converge su $x = R$, 
+  $s$ è continua su $(-R, R]$. Lo stesso vale per l'altro estremo.
+\end{thm}
+
+\begin{thm}[Integrabilità per le serie di potenze]
+  Sia $\sum a_n x^n$ una serie di potenze di raggio di convergenza $R > 0$ e sia:
+
+  $$
+    s(x) := \sum_{n=0}^{\infty}a_n x^n
+  $$
+
+  allora $s$ è integrabile su ogni $[a, b]$, con $-R < a < b < R$. Inoltre:
+
+  $$
+    \int_{a}^{b}s(x) dx = \sum_{n=0}^{\infty} \int_{a}^{b}a_n x^n dx = \sum_{n=0}^{\infty}\dfrac{a_n}{n+1}(b^{n+1}-a^{n+1})
+  $$
+  
+  Inoltre, se la serie converge su $x = R$, 
+  $s$ è integrabile su $-R < a < b \leqslant R$. Lo stesso vale per l'altro estremo.
+\end{thm}
+
+\begin{lemma}
+  Se $\sum_{n=0}^{\infty} a_n x^n$ ha raggio di convergenza $R > 0$ $\implies$ $\sum_{n=1}^{\infty} n a_n x^{n-1}$ ha raggio di convergenza $R$.
+\end{lemma}
+
+\begin{proof}
+  Si ha che:
+
+  $$
+    \sum_{n=1}^{\infty} n a_n x^{n-1} = \sum_{n=0}^{\infty}(n+1)a_{n+1}x^{n}
+  $$
+
+  inoltre:
+
+  $$
+    \limsup \sqrt[n]{(n + 1)|a_{n+1}|} = \limsup \sqrt[n]{n+1}\left(|a_{n+1}|^{\frac{1}{n+1}}\right)^{\frac{n+1}{n}} = L
+  $$
+\end{proof}
+
+\begin{thm}[Derivabilità per le serie di potenze]
+  Sia $\sum a_n x^n$ una serie di potenze di raggio di convergenza $R > 0$ e sia:
+
+  $$
+    s(x) := \sum_{n=0}^{\infty}a_n x^n
+  $$
+
+  allora $s$ è derivabile su $(-R, R)$. Inoltre:
+
+  $$
+    s'(x) = \sum_{n=1}^{\infty}n a_n x^{n-1}
+  $$
+\end{thm}
+
+
+\begin{obs}
+  $s \in \mathcal{C}^{\infty}(-R, R)$. Inoltre:
+
+  $$
+    s^{(k)}(x) = \sum_{n=k}^{\infty}n(n-1)(n-2)\dots(n-k+1)a_n x^{n-k}~~~\forall k=0,1,\dots
+  $$
+
+  $$
+    s^{(k)}(0) = k!\cdot a_k
+  $$
+
+  $$
+    s(x) = \sum_{n=0}^{\infty}\dfrac{s^{(n)}(0)}{n!}x^n
+  $$
+\end{obs}
+
+
+\begin{es}
+  $$
+    s(x) := \sum_{n=0}^{\infty}\dfrac{(-1)^n}{2n + 1}x^{2n + 1}
+  $$
+
+  si ha che $R = 1$. Sia $x \in (-1, 1)$, si ha che:
+
+  $$
+    s'(x) = \sum_{n=0}^{\infty}(-1)^n x^{2n} = \sum_{n=0}^{\infty}(-x^2)^n = \dfrac{1}{1 + x^2}
+  $$
+
+  quindi, per il teorema fondamentale del calcolo integrale:
+
+  $$
+    s(x) - \equalto{s(0)}{0} = \arctan{x} \implies s(x) = \arctan{x}
+  $$
+
+  si ha inoltre che $s$ converge puntualmente per $x = 1$. Quindi, per il lemma di Abel:
+
+  $$
+    s(1) = \arctan{1} = \dfrac{\pi}{4}
+  $$
+\end{es}
+
+
+\begin{es}
+  Si vuole calcolare:
+
+  $$
+    \sum_{n=0}^{\infty}\dfrac{1}{2^n (n + 2)}
+  $$
+
+  sia allora:
+
+  $$
+    s(x) := \sum_{n=0}^{\infty}\dfrac{x^n}{n+2}
+  $$
+
+  si ha che $s$ ha raggio di convergenza $R = 1$. Sia quindi $x \in (-1, 1)$, con $x \neq 0$:
+
+  $$
+    s(x)x^2 = \sum_{n=0}^{\infty}\dfrac{x^{n+2}}{n+2}
+  $$
+
+  $$
+    \left(s(x)x^2\right)' = \sum_{n=0}^{\infty}x^{n+1} = x\sum_{n=0}^{\infty}x^{n} = \dfrac{x}{1 - x}
+  $$
+
+  inoltre:
+
+  $$
+    \int_{0}^{x}\dfrac{t}{1 - t}dt = -\int_{0}^{x}dt + \int_{0}^{1}\dfrac{1}{1 - t}dt = -x - \log{(1 - x)}
+  $$
+
+  quindi:
+
+  $$
+    s(x)x^2 = -x - \log{(1 - x)} \implies s(x) = -\dfrac{1}{x} - \dfrac{\log{(1 - x)}}{x^2}
+  $$
+
+  si noti che, pur non essendo definita in $x=0$, la funzione trovata può essere estesa per continuità in tale punto (dove infatti la serie converge a $\dfrac{1}{2}$). Si ha quindi che:
+
+  $$
+    \sum_{n=0}^{\infty}\dfrac{1}{2^n (n + 2)} = s\left(\dfrac{1}{2}\right) = -2 + 4\log{2}
+  $$
+\end{es}
+
+
+\begin{es}
+  Si vuole calcolare:
+
+  $$
+    s(x) = \sum_{n=1}^{\infty}nx^n
+  $$
+
+  il raggio di convergenza di tale serie di funzioni è $R = 1$. Sia $x \in (-1, 1)$ e sia $F$ così definita:
+
+  $$
+    F(x) := \sum_{n=1}^{\infty}x^n = \dfrac{1}{1 - x}
+  $$
+
+  si ha che:
+
+  $$
+    F'(x) = \sum_{n=1}^{\infty}nx^{n-1} \implies xF'(x) = \sum_{n=1}^{\infty}nx^{n} = s(x)
+  $$
+
+  $$
+    s(x) = x F'(x) = \dfrac{x}{(1 - x)^2}
+  $$
+\end{es}
