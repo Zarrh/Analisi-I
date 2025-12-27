@@ -14,6 +14,7 @@
 \usepackage{pgfplots}
 \usepackage{xcolor}
 \usepackage{centernot}
+% \usepackage{svg}
 \usetikzlibrary{intersections}
 \usetikzlibrary{calc}
 \usetikzlibrary{pgfplots.groupplots}
@@ -40,6 +41,7 @@
 \newtheorem{notation}{Notazione}
 \newtheorem{obs}[section]{Osservazione}
 \newtheorem{limnot}{Limite notevole}
+\newtheorem{ex}[section]{Esercizio}
 
 \renewcommand{\thelimnot}{\Roman{limnot}}
 \renewcommand{\proofname}{Dim.}
@@ -53,16 +55,47 @@
 \newcommand{\uniformto}{\overset{u}{\to}}
 
 \newcommand{\verteq}{\rotatebox{90}{$\,=$}}
+\newcommand{\vertto}{\rotatebox{-90}{$\,\to$}}
+
 \newcommand{\equalto}[2]{\underset{\scriptstyle\overset{\mkern4mu\verteq}{#2}}{#1}}
 \newcommand{\geqto}[2]{\underset{\scriptstyle\overset{\mkern4mu\geqslant}{#2}}{#1}}
+\newcommand{\goesto}[2]{\underset{\scriptstyle\overset{\mkern-4mu\vertto}{#2}}{#1}}
 
 \newcommand{\slim}{\mathop{\mathrm{s-lim}}}
 
 
-\definecolor{teal}{HTML}{14A4A6}
+\definecolor{teal}{HTML}{02889a}
 \definecolor{blue}{HTML}{1043e7}
-\definecolor{tyrian}{HTML}{BE3075}
+\definecolor{tyrian}{HTML}{900756}
 \definecolor{amber}{HTML}{DA8A04}
+
+
+\definecolor{cmapteal-100}{HTML}{27ba99}
+\definecolor{cmapteal-200}{HTML}{34b5b0}
+\definecolor{cmapteal-300}{HTML}{318fab}
+\definecolor{cmapteal-400}{HTML}{0038e3}
+\definecolor{cmapteal-500}{HTML}{2200e3}
+\definecolor{cmapteal-600}{HTML}{9d0ebc}
+
+
+\newtheoremstyle{important}
+  {3pt}   % Space above
+  {3pt}   % Space below
+  {}      % Body font
+  {}      % Indent amount
+  {\color{cmapteal-300}\bfseries} % Head font
+  {.}     % Punctuation after head
+  {0.5em} % Space after head
+  % {\llap{\raisebox{-0.1em}{\includesvg[height=1em]{images/fire.svg}} \hspace{0.5em}} \thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+  {\small$\clubsuit$\normalsize\hspace{0.5em}\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}} % Head spec
+
+\theoremstyle{important} % Switch to your teal style
+\newtheorem{defineimp}[section]{Definizione}
+\newtheorem{thmimp}[thm]{Teorema}
+
+
+\renewcommand{\textbf}[1]{\textcolor{cmapteal-300}{\bfseries #1}}
+
 
 % Margins
 \textwidth=16cm

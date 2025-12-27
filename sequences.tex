@@ -3,16 +3,16 @@
 
 \section{Introduzione}
 
+\begin{defineimp}
+  Si definisce una \textbf{successione} $\{a_n\}$ una funzione $a\colon \mathbb{N} \to \mathbb{R}$.
+\end{defineimp}
+
 \begin{define}
-  Definiamo una \textbf{successione} $\{a_n\}$ una funzione $a\colon \mathbb{N} \to \mathbb{R}$.
+  Una successione $a_n$ è \textbf{positiva} se $a_n \geqslant 0~\forall n$
 \end{define}
 
 \begin{define}
-  Diciamo che una successione $a_n$ è \textbf{positiva} se $a_n \geqslant 0~\forall n$
-\end{define}
-
-\begin{define}
-  Diciamo che una successione $a_n$ è \textbf{limitata} se:
+  Una successione $a_n$ è \textbf{limitata} se:
 
   $$
     \exists M > 0~\colon~|a_n| \leqslant M~\forall n
@@ -38,14 +38,14 @@
     ]
 
     % Upper and lower bounds
-    \addplot [name path=upper, very thick, dashed, color=teal] {2};
-    \addplot [name path=lower, very thick, dashed, color=teal] {0};
+    \addplot [name path=upper, very thick, dashed, color=cmapteal-300] {2};
+    \addplot [name path=lower, very thick, dashed, color=cmapteal-300] {0};
 
     % Bounded sequence (sample data)
     \addplot [
       only marks,
       mark=*,
-      blue,
+      cmapteal-400,
     ] table {
       1 1.84
       2 1.91
@@ -70,25 +70,25 @@
     };
 
     % Labels
-    \node[teal, anchor=west] at (axis cs:20,2) {$M$};
-    \node[teal, anchor=west] at (axis cs:20,0) {$M$};
-    \node[blue, anchor=west] at (axis cs:15,1.5) {$(a_n)$};
+    \node[cmapteal-300, anchor=west] at (axis cs:20,2) {$M$};
+    \node[cmapteal-300, anchor=west] at (axis cs:20,0) {$M$};
+    \node[cmapteal-400, anchor=west] at (axis cs:15,1.5) {$(a_n)$};
 
   \end{axis}
 \end{tikzpicture}
 \end{center}
 
 \begin{define}
-  Diciamo che una proposizione $P(n)$, con $n \in \mathbb{N}$, è vera \textbf{definitivamente} se è vera $\forall n \geqslant n_0$, con $n_0 \in \mathbb{N}$.
+  Data una proposizione $P(n)$, con $n \in \mathbb{N}$, è vera \textbf{definitivamente} se è vera $\forall n \geqslant n_0$, con $n_0 \in \mathbb{N}$.
 \end{define}
 
 
-\begin{define}
-  Data una successione $a_n$, diciamo che $a_n$ \textbf{converge}, oppure tende a, oppure ha limite $l \in \mathbb{R}$ se $\exists l \in \mathbb{R}$ t.che:
+\begin{defineimp}
+  Data una successione $a_n$, si dice che $a_n$ \textbf{converge}, oppure tende a, oppure ha limite $l \in \mathbb{R}$ se $\exists l \in \mathbb{R}$ t.che:
   $$
     \forall \varepsilon > 0~\exists n_0 \in \mathbb{N}~\colon~|a_n - l| < \varepsilon~\forall n \geqslant n_0
   $$
-\end{define}
+\end{defineimp}
 
 \begin{center}
 \begin{tikzpicture}
@@ -108,33 +108,39 @@
 
     % Define limit and epsilon band
     \def\L{1.2}
-    \def\eps{0.3}
+    \def\eps{0.2}
+    \def\n0{4}
 
     % Epsilon tube (the "tube" around the limit)
     \addplot [
       name path=upper,
       draw=none,
+      domain=\n0:20,
     ] { \L + \eps };
 
     \addplot [
       name path=lower,
       draw=none,
+      domain=\n0:20,
     ] { \L - \eps };
 
     \addplot [
-      fill=teal!20,
+      fill=cmapteal-200,
       opacity=0.4,
     ] fill between[of=upper and lower];
 
     % Upper and lower bounds of the tube
-    \addplot [very thick, dashed, color=teal] { \L + \eps };
-    \addplot [very thick, dashed, color=teal] { \L - \eps };
+    \addplot [very thick, dashed, color=cmapteal-300] { \L + \eps };
+    \addplot [very thick, dashed, color=cmapteal-300] { \L - \eps };
+
+    \draw [very thick, dashed, color=cmapteal-300] (\n0, 0) -- (\n0, \L + \eps);
+    \node[below, cmapteal-300] at (\n0, 0) {$n_0$};
 
     % Converging sequence points
     \addplot [
       only marks,
       mark=*,
-      color=blue,
+      color=cmapteal-400,
     ] table {
       1 2.0
       2 1.8
@@ -163,7 +169,7 @@
     \node[anchor=west, blue!70!black] at (axis cs:20,\L) {$L$};
 
     % Labels
-    \node[blue, anchor=west] at (axis cs:10,1.6) {$(a_n)$};
+    \node[cmapteal-400, anchor=west] at (axis cs:10,1.6) {$(a_n)$};
     \node[teal!60!black, anchor=west] at (axis cs:20,\L+\eps) {$L + \varepsilon$};
     \node[teal!60!black, anchor=west] at (axis cs:20,\L-\eps) {$L - \varepsilon$};
 
@@ -260,9 +266,9 @@
 
 \section{Unicità del limite}
 
-\begin{thm}
+\begin{thmimp}
   Se $a_n \to l \in \mathbb{R}$, $l$ è unico.
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   P.A. supponiamo che esistano due numeri reali $l_1$ e $l_2$, tali che $l_1 \neq l_2$ e tali che:
@@ -371,13 +377,13 @@
 
 \section{Permanenza del segno}
 
-\begin{thm}
+\begin{thmimp}
   Sia $a_n \to l$, si ha che:
   \begin{itemize}
     \item Se $l > 0$, $a_n > 0~\definit$
     \item Se $a_n \geqslant 0~\definit$, allora $l \geqslant 0$;
   \end{itemize}
-\end{thm}
+\end{thmimp}
 
 \begin{proof}\leavevmode
   \begin{itemize}
@@ -394,7 +400,7 @@
 
 \section{Teorema del confronto}
 
-\begin{thm}[Primo teorema del confronto]
+\begin{thmimp}[Primo teorema del confronto]
   Siano $\{a_n\}$, $\{b_n\}$ e $\{c_n\}$ tre successioni tali che:
 
   $$
@@ -402,7 +408,7 @@
   $$
 
   se $a_n \to l$, $b_n \to l$ con $l \in \mathbb{R}$, allora $c_n \to l$.
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Dato che $a_n$ e $b_n$ convergono allo stesso $l$:
@@ -571,10 +577,10 @@
 
 \section{Sottosuccessioni}
 
-\begin{define}
+\begin{defineimp}
   Data una successione $a_n$ e una successione $n_k: \mathbb{N} \to \mathbb{N}$, si dice \textbf{sottosuccessione} di $a_n$ la funzione composta 
   $a_{n_k} = a_n \circ n_k$
-\end{define}
+\end{defineimp}
 
 \begin{obs}
   Le possibili Sottosuccessioni di una data successione $a_n$ sono infinite di cardinalità $\mathfrak{C}$
@@ -611,7 +617,7 @@
       every axis label/.append style={font=\small},
     ]
     % Plotting the sequence
-    \addplot[blue, mark=*, thick] coordinates {
+    \addplot[cmapteal-500, mark=*, thick] coordinates {
       (0,2) (1,3) (2,6) (3,4) (4,5) (5,3) (6,4) (7,4.5) (8,3) (9,2.5)
     };
     
@@ -635,9 +641,9 @@
   \end{itemize}
 \end{proof}
 
-\begin{thm}[Teorema di Bolzano-Weierstrass]
+\begin{thmimp}[Teorema di Bolzano-Weierstrass]
   Ogni successione limitata ammette una sottosuccessione convergente.
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Per il \textit{lemma dei picchi} ogni successione $a_n$ ammette una sottosuccessione $a_{n_k}$ monotona. 
@@ -821,10 +827,6 @@ Sia $\varepsilon_n \to 0$ una successione infinitesima, con $\varepsilon \neq 0~
   Si ha che:
   \begin{center}
   \begin{tikzpicture}[scale=3.5, line cap=round, line join=round]
-    % Colors
-    \definecolor{sector}{HTML}{B3E5FC}
-    \definecolor{triangle1}{HTML}{C8E6C9}
-    \definecolor{triangle2}{HTML}{FFCDD2}
 
     % Circle
     % \draw[thick] (0,0) circle(1);
@@ -838,13 +840,13 @@ Sia $\varepsilon_n \to 0$ una successione infinitesima, con $\varepsilon \neq 0~
 
     % Fill areas
     % Small triangle OAB (sin x)
-    \fill[triangle1!70!white] (O) -- (A) -- (B) -- cycle;
+    \fill[cmapteal-100, opacity=0.7] (O) -- (A) -- (B) -- cycle;
 
     % Sector OAB
-    \fill[sector, opacity=0.5] (0,0) -- (B) arc(0:30:1) -- cycle;
+    \fill[cmapteal-200, opacity=0.5] (0,0) -- (B) arc(0:30:1) -- cycle;
 
     % Large triangle OAC (tan x)
-    \fill[triangle2!70!white, opacity=0.6] (O) -- (A) -- (C) -- cycle;
+    \fill[cmapteal-400, opacity=0.1] (O) -- (C) -- (B) -- cycle;
 
     % Axes
     \draw[->, thick] (-0.1,0) -- (1.2,0) node[right] {$x$};
@@ -861,7 +863,7 @@ Sia $\varepsilon_n \to 0$ una successione infinitesima, con $\varepsilon \neq 0~
     \node[right] at (C) {$C$};
 
     % Angle marker
-    \draw[->, thick, teal] (0.3,0) arc(0:30:0.3);
+    \draw[->, thick, cmapteal-300] (0.3,0) arc(0:30:0.3);
     \node at (0.38,0.08) {$x$};
 
     % Legends
@@ -1173,13 +1175,13 @@ Sia $\varepsilon_n \to 0$ una successione infinitesima, con $\varepsilon \neq 0~
 \section{Asintoticità}
 
 
-\begin{define}
+\begin{defineimp}
   Due successioni $a_n$ e $b_n$ si dicono \textbf{asintotiche} se:
 
   $$
     \dfrac{a_n}{b_n} \to 1
   $$
-\end{define}
+\end{defineimp}
 
 \begin{notation}
   $a_n \sim b_n$
@@ -1478,19 +1480,19 @@ Sia $\varepsilon_n \to 0$ una successione infinitesima, con $\varepsilon \neq 0~
       samples=40
     ]
 
-    % Limit line
-    \addplot [very thick, teal, dashed, domain=0:20] {1.5} node [pos=1.01, right] {$L$};
+    \def\eps{0.1}
+    \def\n0{5}
 
     % ε-tube around the limit
-    \addplot [name path=upper, draw=none, domain=0:20] {1.5 + 0.3};
-    \addplot [name path=lower, draw=none, domain=0:20] {1.5 - 0.3};
+    \addplot [name path=upper, thick, cmapteal-300, domain=0:20] {1.5 + \eps};
+    \addplot [name path=lower, thick, cmapteal-300, domain=0:20] {1.5 - \eps};
     \addplot [fill=teal!10] fill between [of=upper and lower];
 
     % Sequence points
     \addplot [
       only marks,
       mark=*,
-      blue
+      cmapteal-400
     ] table {
       1 0.5
       2 1.3
@@ -1514,14 +1516,9 @@ Sia $\varepsilon_n \to 0$ una successione infinitesima, con $\varepsilon \neq 0~
       20 1.49
     };
 
-    % Label ε tube
-    % \draw[decorate, decoration={brace, mirror, amplitude=5pt}, thick, teal]
-    %   (axis cs:20,1.8) -- (axis cs:20,1.2)
-    %   node[midway,xshift=1.3cm,teal] {$2\varepsilon$};
-
     % N marker
-    \draw[dashed, gray] (axis cs:9,0) -- (axis cs:9,2.5);
-    \node[gray, below] at (axis cs:9,0) {$n_0$};
+    \draw[dashed, gray] (\n0, 0) -- (\n0, 2.5);
+    \node[gray, below] at (\n0, 0) {$n_0$};
 
     % Text annotations
     \node[teal!70!black] at (axis cs:17,2.1) {\small $\forall \varepsilon > 0,\ \exists n_0 :\ |a_n - a_m| < \varepsilon~\forall n,m \geqslant n_0$};
@@ -1653,13 +1650,13 @@ Sia $\varepsilon_n \to 0$ una successione infinitesima, con $\varepsilon \neq 0~
     every axis label/.append style={font=\small},
   ]
     % Plot for a_n (increasing)
-    \addplot[mark=*, blue, domain=2:30, samples=20, thick] {(1 + 1/x)^x};
+    \addplot[mark=*, cmapteal-400, domain=2:30, samples=20, thick] {(1 + 1/x)^x};
 
     % Plot for b_n (decreasing)
-    \addplot[mark=*, teal, domain=2:30, samples=20, thick] {(1 + 1/x)^(x+1)};
+    \addplot[mark=*, cmapteal-300, domain=2:30, samples=20, thick] {(1 + 1/x)^(x+1)};
     
-    \node[anchor=north, blue!70!black] at (axis cs:5, {(1 + 1/5)^5 + 0.15}) {$a_n$};
-    \node[anchor=south, teal!70!black] at (axis cs:5, {(1 + 1/5)^6 - 0.15}) {$b_n$};
+    \node[anchor=north, cmapteal-400!70!black] at (axis cs:5, {(1 + 1/5)^5 + 0.15}) {$a_n$};
+    \node[anchor=south, cmapteal-300!70!black] at (axis cs:5, {(1 + 1/5)^6 - 0.15}) {$b_n$};
       
   \end{axis}
 \end{tikzpicture}

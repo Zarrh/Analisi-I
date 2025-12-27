@@ -59,9 +59,9 @@
   ylabel={$y$},
   ylabel style={xshift=2.5pt}
 ]
-\addplot[blue, thick] {sinh(x)};
+\addplot[cmapteal-200, very thick] {sinh(x)};
 \addlegendentry{$\sinh(x)$}
-\addplot[teal, thick, dashed] {cosh(x)};
+\addplot[cmapteal-400, very thick] {cosh(x)};
 \addlegendentry{$\cosh(x)$}
 
 \nextgroupplot[
@@ -69,10 +69,10 @@
   ylabel={$y$}, 
   ylabel style={xshift=2.5pt}
 ]
-\addplot[blue, thick] {tanh(x)};
+\addplot[cmapteal-200, very thick] {tanh(x)};
 \addlegendentry{$\tanh(x)$}
-\addplot[teal, thick, dashed, domain=-3:-0.2] {cosh(x)/sinh(x)};
-\addplot[teal, thick, dashed, domain=0.2:3] {cosh(x)/sinh(x)};
+\addplot[cmapteal-400, very thick, domain=-3:-0.2] {cosh(x)/sinh(x)};
+\addplot[cmapteal-400, very thick, domain=0.2:3] {cosh(x)/sinh(x)};
 \addlegendentry{$\coth(x)$}
 
 \end{groupplot}

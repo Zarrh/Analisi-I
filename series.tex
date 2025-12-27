@@ -2,7 +2,7 @@
 
 \section{Introduzione}
 
-\begin{define}
+\begin{defineimp}
   Data una successione $\{a_n\}$, si construisca la successione $\{s_n\}$ (detta delle somme parziali):
 
   $$
@@ -17,7 +17,7 @@
     \item Se $\cancel{\exists}\lim s_n$, diciamo che la serie è \textbf{oscillante}.
   \end{itemize}
 
-\end{define}
+\end{defineimp}
 
 \begin{notation}
   $\lim s_n$, $\displaystyle \sum_{n=0}^{\infty}a_n$, $\sum_n a_n$, $\sum a_n$
@@ -180,13 +180,13 @@ Caso particolare di una serie telescopica è la serie di Mengoli, il cui termine
 \end{obs}
 
 
-\begin{thm}[Teorema del confronto]
+\begin{thmimp}[Teorema del confronto]
   Siano $\{a_n\}$, $\{b_n\}$ due successioni tali che $0 \leqslant a_n \leqslant b_n~\forall n$. Si ha che:
   \begin{itemize}
     \item Se $\sum a_n$ diverge, $\sum b_n$ diverge;
     \item Se $\sum b_n$ converge, $\sum a_n$ converge.
   \end{itemize}
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Siano $s_n = a_0 + a_1 + \dots + a_n$ e $\sigma_n = b_0 + b_1 + \dots b_n$, si ha che:
@@ -311,11 +311,11 @@ $$
   \sum_{n=1}^{\infty} \dfrac{1}{n}
 $$
 
-\begin{thm}
+\begin{thmimp}
   $$
     \sum_{n=1}^{\infty} \dfrac{1}{n} = +\infty
   $$
-\end{thm}
+\end{thmimp}
 
 \begin{proof}[Dim. I]
   P.A. si supponga che $\sum \dfrac{1}{n} = l \in \mathbb{R}$. Sia $s_n$ la successione delle somme parziali:
@@ -434,10 +434,10 @@ con $\alpha \in \mathbb{R}$.
 
 \section{Criterio del confronto asintotico}
 
-\begin{thm}
+\begin{thmimp}
   Siano $\sum a_n$ e $\sum b_n$ due serie a termini positivi. Se $a_n \sim b_n$, 
   $\sum a_n$ e $\sum b_n$ hanno lo stesso carattere.
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Dato che $a_n \sim b_n$, si ha che:
@@ -467,7 +467,7 @@ $$
 con $\alpha, \beta \in \mathbb{R}$.
 
 
-\begin{thm}
+\begin{thmimp}
   La serie campione:
 
   \begin{itemize}
@@ -476,7 +476,7 @@ con $\alpha, \beta \in \mathbb{R}$.
     \item Se $\alpha = 1$, converge se $\beta > 1$
     \item Se $\alpha = 1$, diverge se $\beta \leqslant 1$
   \end{itemize}
-\end{thm}
+\end{thmimp}
 
 
 
@@ -547,13 +547,13 @@ $$
 $$
 
 
-\begin{thm}
+\begin{thmimp}
   Sia $\displaystyle e_n = \sum_{k=0}^{n}\dfrac{1}{k!}$, allora:
 
   $$
     0 < e - e_n < \dfrac{1}{n\cdot n!}~\forall n \in \mathbb{N}_0
   $$
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Dato che $e_n \uparrow  e$, $e_n < e \implies 0 < e - e_n$
@@ -604,7 +604,7 @@ $$
 
 \section{Criterio di Leibniz}
 
-\begin{thm}
+\begin{thmimp}
   Sia $\sum a_n = \sum (-1)^n \cdot b_n$ una serie a segno alterno, se:
   \begin{itemize}
     \item $b_n \geqslant 0$
@@ -612,7 +612,7 @@ $$
     \item $b_n \to 0$
   \end{itemize}
   o, equivalentemente $b_n \downarrow 0$, allora $\sum a_n$ converge.
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Si considerino i termini della successione delle somme parziali con $n$ pari o nullo:
@@ -657,13 +657,13 @@ $$
 
 \section{Convergenza assoluta}
 
-\begin{define}
+\begin{defineimp}
   Data una serie $\sum a_n$, diciamo che essa converge \textbf{assolutamente} se la serie $\sum |a_n|$ converge
-\end{define}
+\end{defineimp}
 
-\begin{thm}
+\begin{thmimp}
   Se una serie converge assolutamente, allora converge.
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Sia $\sum a_n$ t.che $\sum |a_n|$ converge. Sia $b_n = a_n + |a_n|$, si ha che:

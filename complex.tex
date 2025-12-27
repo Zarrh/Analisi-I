@@ -133,18 +133,18 @@ con $\rho \in [0, +\infty)$, $\vartheta \in [-\pi, \pi)$
 
   % Complex number z = 2 + i
   \coordinate (Z) at (2,1);
-  \draw[thick, teal, ->] (0,0) -- (Z);
-  \filldraw[teal] (Z) circle (2pt);
+  \draw[thick, cmapteal-300, ->] (0,0) -- (Z);
+  \filldraw[cmapteal-300] (Z) circle (2pt);
   \node[black, above right] at (Z) {$z$};
-  \node[teal] at (1.0,0.8) {$\rho$};
+  \node[cmapteal-300] at (1.0,0.8) {$\rho$};
 
   % Projections on axes
   \draw[dashed, gray] (Z) -- (2,0);
   \draw[dashed, gray] (Z) -- (0,1);
 
   % Argument angle
-  \draw[->, thick, blue] (0.8,0) arc (0:26.565:0.8);
-  \node[blue!80!black] at (1.2,0.3) {$\vartheta$};
+  \draw[->, thick, cmapteal-500] (0.8,0) arc (0:26.565:0.8);
+  \node[cmapteal-500!80!black] at (1.2,0.3) {$\vartheta$};
 
   % Labels
   \node[below left] at (0,0) {$O$};
@@ -296,11 +296,11 @@ con $\rho \in [0, +\infty)$, $\vartheta \in [-\pi, \pi)$
   % 5th roots of unity
   \foreach \k in {0,1,2,3,4} {
     \coordinate (P\k) at ({cos(360/5*\k)}, {sin(360/5*\k)});
-    \filldraw[teal, z=10] (P\k) circle(0.02);
+    \filldraw[cmapteal-300, z=10] (P\k) circle(0.02);
   }
 
   % Connect the points to form a pentagon
-  \draw[teal, very thick] (P0) -- (P1) -- (P2) -- (P3) -- (P4) -- cycle;
+  \draw[cmapteal-300, very thick] (P0) -- (P1) -- (P2) -- (P3) -- (P4) -- cycle;
 
   % Labels
   \foreach \k in {1,2,3,4} {

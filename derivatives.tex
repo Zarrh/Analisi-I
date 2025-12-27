@@ -28,7 +28,7 @@
   ]
 
   % Convex function (example)
-  \addplot[domain=0:5.5, smooth, thick, blue]
+  \addplot[domain=0:5.5, smooth, very thick, cmapteal-300]
       {e^(sin(deg(x)))*sqrt(x)};
 
   \addplot[domain=0.5:3, smooth, thick, amber]
@@ -58,7 +58,7 @@
 \end{center}
 
 
-\begin{define}[Derivata]
+\begin{defineimp}[Derivata]
   Una funzione reale $f$ è \textbf{derivabile} in $x_0$ se:
 
   $$
@@ -66,7 +66,7 @@
   $$
 
   $l$ è detto \textbf{derivata} di $f$ in $x_0$.
-\end{define}
+\end{defineimp}
 
 
 \begin{notation}
@@ -83,14 +83,14 @@
 \end{notation}
 
 
-\begin{define}[Differenziabilità]
+\begin{defineimp}[Differenziabilità]
   Sia $f:(a,b) \to \mathbb{R}$ e $x_0 \in (a,b)$, $f$ è \textbf{differenziabile} in 
   $x_0$ se:
 
   $$
     \exists L\in \mathbb{R}~\colon~f(x_0 + h) = f(x_0) + L\cdot h + h\omega(h)
   $$
-\end{define}
+\end{defineimp}
 
 \begin{obs}
   Sia $x_0 + h := x$, allora:
@@ -165,6 +165,91 @@
   $$
 
   che è la definizione di continuità in $x_0$.
+\end{proof}
+
+
+\section{Operazioni con le derivate}
+
+\begin{prop}[Derivata della somma]
+  Siano $f$ e $g$ due funzioni derivabili in $x_0$, la loro somma è derivabile in $x_0$ e:
+
+  $$ 
+    [f + g]'(x_0) = f'(x_0) + g'(x_0)
+  $$
+\end{prop}
+
+\begin{prop}[Derivata del prodotto]
+  Siano $f$ e $g$ due funzioni derivabili in $x_0$, il loro prodotto è derivabile in $x_0$ e:
+  
+  $$ 
+    [f \cdot g]'(x_0) = f'(x_0)g(x_0) + f(x_0)g'(x_0)
+  $$
+\end{prop}
+
+\begin{prop}[Derivata della composta]
+  Sia $f: \mathfrak{D}(f) \to \mathfrak{D}(g)$ una funzione derivabile in $x_0$ e $g: \mathfrak{D}(g) \to \mathbb{R}$ 
+  una funzione derivabile in $f(x_0)$. Allora la funzione composta $\eta := g \circ f$ è derivabile in $x_0$ e:
+  
+  $$
+    \eta'(x_0) = g'(f(x_0))f(x_0)
+  $$
+\end{prop}
+
+\begin{proof}
+  Si utilizzerà l'equivalente nozione di differenziabilità al posto di quella di derivabilità. Si ha dunque che:
+
+  $$
+    f(x_0 + h) = f(x_0) + f'(x_0)h + h \omega_f(h)
+  $$
+  $$
+    g(y_0 + k) = g(y_0) + g'(y_0)k + k \omega_g(k)
+  $$
+
+  di conseguenza:
+
+  \begin{align*}
+    \eta(x_0 + h) = g(f(x_0 + h)) &= g(\equalto{f(x_0)}{y_0} + \underset{k \to 0}{\underbrace{f'(x_0)h + h \omega_f(h)}}) = \\
+                                  &= g(y_0) + g'(y_0)\left[f'(x_0)h + h\omega_f(h)\right] + \left[f'(x_0)h + h\omega_f(h)\right]\omega_g(k)
+  \end{align*}
+
+  $$
+    \eta(x_0 + h) = g(y_0) + g'(y_0)f'(x_0)h + h\omega(h) = \eta(x_0) + \eta'(x_0)h + h\omega(h)
+  $$
+\end{proof}
+
+
+\begin{prop}[Derivata dell'inversa]
+  Sia $f: (a, b) \to \mathbb{R}$ una funzione continua e strettamente monotona. Se $f$ è derivabile in $x_0 \in (a, b)$ e 
+  $f'(x_0) \neq 0$ allora $f^{-1}$ è derivabile in $y_0 = f(x_0)$ e:
+
+  $$
+    \left(f^{-1}\right)'(y_0) = \dfrac{1}{f'(x_0)}
+  $$
+\end{prop}
+
+\begin{proof}
+  Si ha che:
+
+  $$
+    R\left(f^{-1}, y_0, k\right) = \dfrac{f^{-1}(y_0 + k) - f^{-1}(y_0)}{k}
+  $$
+
+  Sia $h = f^{-1}(y_0 + k) - f^{-1}(y_0)$. \\
+  Dato che $f^{-1}$ è continua, $h \underset{k \to 0}{\to} 0$. Quindi:
+
+  $$
+    x_0 + h = f^{-1}(y_0 + k)
+  $$
+
+  $$
+    f(x_0 + h) = y_0 + k = f(x_0) + k \implies k = f(x_0 + h) - f(x_0)
+  $$
+
+  quindi:
+
+  $$
+    R\left(f^{-1}, y_0, k\right) = \dfrac{h}{f(x_0 + h) - f(x_0)} = \dfrac{1}{\dfrac{f(x_0 + h) - f(x_0)}{h}} \underset{k \to 0}{\to} \dfrac{1}{f'(x_0)}
+  $$
 \end{proof}
 
 
@@ -318,7 +403,7 @@ Se $x_0$ è un minimo o un massimo locale, si dice \textbf{estremante locale}.
 
 \section{Teoremi sulle funzioni derivabili}
 
-\begin{thm}[Teorema di Lagrange]
+\begin{thmimp}[Teorema di Lagrange]
   Sia $f:[a, b] \to \mathbb{R}$ t.che:
 
   \begin{itemize}
@@ -331,7 +416,7 @@ Se $x_0$ è un minimo o un massimo locale, si dice \textbf{estremante locale}.
   $$
     \exists c \in (a, b)~\colon~f'(c) = \dfrac{f(b) - f(a)}{b-a}
   $$ 
-\end{thm}
+\end{thmimp}
 
 
 \begin{center}
@@ -348,10 +433,10 @@ Se $x_0$ è un minimo o un massimo locale, si dice \textbf{estremante locale}.
   ]
 
   % Convex function (example)
-  \addplot[domain=0:5.5, smooth, thick, blue]
+  \addplot[domain=0:5.5, smooth, very thick, cmapteal-300]
       {e^(cos(deg(x)))*sqrt(x)};
 
-  \addplot[domain=0.5:5.5, smooth, thick, teal]
+  \addplot[domain=0.5:5.5, smooth, thick, cmapteal-500]
       {((e^(cos(deg(5)))*sqrt(5) - e^(cos(deg(1))))/(5-1))*(x - 1) + e^(cos(deg(1)))};
 
   \addplot[domain=0.5:5.5, smooth, thick, amber]
@@ -498,7 +583,7 @@ Se $x_0$ è un minimo o un massimo locale, si dice \textbf{estremante locale}.
 
 
 
-\begin{thm}[Condizione sufficiente di derivabilità]
+\begin{thmimp}[Condizione sufficiente di derivabilità]
   Sia $f:\mathcal{U}(x_0) \to \mathbb{R}$ t.che:
 
   \begin{itemize}
@@ -508,7 +593,7 @@ Se $x_0$ è un minimo o un massimo locale, si dice \textbf{estremante locale}.
   \end{itemize}
 
   allora $f$ è derivabile in $x_0$ e $f'(x_0) = l$.
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Si dimostrerà che $f'_+(x_0) = l$. Si consideri, per $h > 0$, l'intervallo $[x_0, x_0 + h]$. Si ha che $f$ soddisfa le ipotesi del 
@@ -599,13 +684,13 @@ Se $x_0$ è un minimo o un massimo locale, si dice \textbf{estremante locale}.
 \end{proof}
 
 
-\begin{define}[Convessità]
+\begin{defineimp}[Convessità]
   Sia $f: [x, y] \to \mathbb{R}$, $f$ è \textbf{convessa} in se:
 
   $$
     \forall \lambda \in (0, 1)~~~f(\lambda x + (1 - \lambda)y) \leqslant \lambda f(x) + (1-\lambda)f(y)
   $$
-\end{define}
+\end{defineimp}
 
 \begin{obs}
   La definizione di funzione convessa equivale a dire che il grafico di $f$ sta sotto alla retta passante per $x$ e $y$.
@@ -674,7 +759,7 @@ Se $x_0$ è un minimo o un massimo locale, si dice \textbf{estremante locale}.
   ]
 
   % Convex function (example)
-  \addplot[domain=0.5:5.5, smooth, thick, blue]
+  \addplot[domain=0.5:5.5, smooth, very thick, cmapteal-300]
       {0.5*(x-3)^2 + 1};
 
   % Coordinates
@@ -697,8 +782,8 @@ Se $x_0$ è un minimo o un massimo locale, si dice \textbf{estremante locale}.
   \node[below] at (Z) {$f(z_\lambda)$};
 
   % Line segments r and p
-  \draw[amber, thick] (X) -- (Z) node[midway, above] {$r$};
-  \draw[amber, thick] (Z) -- (Y) node[midway, above] {$p$};
+  \draw[cmapteal-500, thick] (X) -- (Z) node[midway, above] {$r$};
+  \draw[cmapteal-500, thick] (Z) -- (Y) node[midway, above] {$p$};
 
   \draw[dashed, gray] (1, 0) -- (X);
   \draw[dashed, gray] (5, 0) -- (Y);
@@ -746,7 +831,7 @@ Se $x_0$ è un minimo o un massimo locale, si dice \textbf{estremante locale}.
   La convessità non implica la derivabilità.
 \end{obs}
 
-\begin{thm}
+\begin{thmimp}
   Sia $f: [a, b] \to \mathbb{R}$ una funzione convessa e si assuma che $f$ sia 
   derivabile in $x_0 \in [a, b]$, Allora:
 
@@ -755,7 +840,7 @@ Se $x_0$ è un minimo o un massimo locale, si dice \textbf{estremante locale}.
   $$
 
   dove $\tau$ è la tangente al grafico di $f$ in $x_0$.
-\end{thm}
+\end{thmimp}
 
 \begin{center}
   \begin{tikzpicture}
@@ -768,9 +853,9 @@ Se $x_0$ è un minimo o un massimo locale, si dice \textbf{estremante locale}.
         ytick=\empty
       ]
 
-      \addplot[color=blue]{x*ln(x)};
+      \addplot[color=cmapteal-300, very thick]{x*ln(x)};
 
-      \addplot[color=amber]{x-1};
+      \addplot[color=cmapteal-500]{x-1};
 
       \coordinate (X) at (1, 0);
       \coordinate (Y) at (2, {2*ln(2)});
@@ -909,13 +994,30 @@ Se $x_0$ è un minimo o un massimo locale, si dice \textbf{estremante locale}.
 \end{proof}
 
 
-\begin{thm}
+\begin{thmimp}
   Sia $f: [a, b] \to \mathbb{R}$ una funzione derivabile, allora 
   $f$ è convessa $\iff$ $f'$ è crescente.
-\end{thm}
+\end{thmimp}
 
-\begin{proof}
-  
+\begin{proof}\leavevmode
+  \begin{itemize}
+    \item ($\Leftarrow$) Si vuole mostrare che $f$ sta sopra ogni tangente. Sia $x_0$ fissato, si vuole mostrare che:
+          $$
+            f(x) \geqslant \tau_{x_0}(x)~\forall x > x_0
+          $$
+
+          dove $\tau_{x_0}$ è la tangente al grafico di $f$ in $x_0$. Si applichi allora il teorema di Lagrange all'intervallo $[x, x_0]$:
+
+          $$
+            \exists y \in (x, x_0)~\colon~f(x) - f(x_0) = f'(y)(x - x_0)
+          $$
+
+          dato che $f'$ è crescente, $f'(y) \geqslant f'(x_0)$. Quindi:
+
+          $$
+            f(x) - f(x_0) \geqslant f'(x_0) f'(x_0)(x - x_0) \implies f(x) \geqslant \tau_{x_0}(x)
+          $$
+  \end{itemize}
 \end{proof}
 
 
@@ -925,7 +1027,11 @@ Se $x_0$ è un minimo o un massimo locale, si dice \textbf{estremante locale}.
 \end{cor}
 
 \begin{proof}
+  La dimostrazione segue dal teorema precedente, dato che:
 
+  $$
+    f'~~~\text{ crescente }~\iff f''(x) \geqslant 0~~~\forall x \in [a, b]
+  $$
 \end{proof}
 
 
@@ -967,22 +1073,22 @@ $$
 
 \subsection{Polinomio di Taylor}
 
-\begin{define}
+\begin{defineimp}
   Sia $f$ una funzione derivabile $n$ volte in $x_0$, si 
   definisce \textbf{polinomio di Taylor} di ordine $n$ centrato in $x_0$ il polinomio:
 
   $$
     p_n(x) := \sum_{k=0}^{n}\dfrac{f^{(k)}(x_0)}{k!}(x - x_0)^k
   $$
-\end{define}
+\end{defineimp}
 
-\begin{thm}[Teorema di Taylor-Peano]
+\begin{thmimp}[Teorema di Taylor-Peano]
   Sia $f$ derivabile $n$ volte in $x_0$ e sia $p_n(x)$ il polinomio di Taylor di ordine $n$ di $f$ centrato in $x_0$. Allora:
 
   $$
     \lim_{x \to x_0} \dfrac{f(x) - p_n(x)}{(x - x_0)^n} = 0
   $$
-\end{thm}
+\end{thmimp}
 
 \begin{obs}
   Sia $x := x_0 + h$, con $h \neq 0$, allora la tesi è equivalente a:
@@ -1100,13 +1206,24 @@ $$
 
 
 \begin{thm}[Teorema di Taylor-Lagrange]
+  Sia $x_0 \in \mathfrak{D}(f)$ fissato e sia $f$ una funzione derivabile $n-1$ volte in $[x_0, x]$ (o $[x, x_0]$) e sia 
+  $p_n(x)$ il polinomio di Taylor di $f$ di ordine $n$ centrato in $x_0$ $\implies$ $\exists y \in (x_0, x)$ (o $(x, x_0)$) t.che:
 
+  $$
+    f(x) = p_n(x) + R_n(x)
+  $$
+
+  dove $R_n(x)$ è detto \textbf{resto di Lagrange} ed è definito come:
+
+  $$
+    R_n(x) := \dfrac{f^{(n+1)}(y)}{(n+1)!}(x-x_0)^{n+1}
+  $$
 \end{thm}
 
 
 \section{Teorema di de l'Hôpital}
 
-\begin{thm}[Teorema di de l'Hôpital]
+\begin{thmimp}[Teorema di de l'Hôpital]
   Sia $x_0 \in \overline{\mathbb{R}}$ e siano $f, g$ due funzioni derivabili in un
   $\dot{\mathcal{U}}(x_0)$ con $g'(x) \neq 0~\forall x \in \dot{\mathcal{U}}(x_0)$. Si assuma che:
 
@@ -1125,7 +1242,7 @@ $$
   $$
     \lim_{x \to x_0}\dfrac{f'(x)}{g'(x)} = l \in \overline{\mathbb{R}} \implies \lim_{x \to x_0}\dfrac{f(x)}{g(x)} = l
   $$
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Si dimostrerà il caso in cui si ottiene la forma indeterminata $\dfrac{0}{0}$ con $x_0 \in \mathbb{R}$. Si considerino le estensioni di $f$ e $g$ in $x_0$ $\hat{f}$, $\hat{g}$. Si ha che:

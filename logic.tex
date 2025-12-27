@@ -1,5 +1,85 @@
 \chapter{Logica}
 
+\section{Relazioni}
+
+\begin{define}[Prodotto cartesiano]
+  Siano $A$ e $B$ due insiemi. Si definisce \textbf{prodotto cartesiano} di $A$ e $B$ l'insieme di coppie ordinate:
+
+  $$
+    A \times B = \{(a, b)~\colon~a \in A \wedge b \in B\}
+  $$
+\end{define}
+
+\begin{define}[Relazione]
+  Dati due insiemi $A$ e $B$ si definisce \textbf{relazione} $\mathfrak{R}$ tra $A$ e $B$ un 
+  sottoinsieme del prodotto cartesiano $A \times B$. Diciamo che $\mathfrak{R}$ \textbf{associa} un elemento 
+  $a \in A$ a $b \in B$ se $(a, b) \in \mathfrak{R}$.
+\end{define}
+
+\begin{notation}
+  $A \mathfrak{R}B$
+\end{notation}
+
+\begin{define}[Funzione]
+  Dati due insiemi $A$ e $B$, una funzione $f$ è una relazione che a 
+  un elemento di $A$ associa al più un elemento di $B$.
+\end{define}
+
+\begin{notation}
+  $f : A \to B$
+\end{notation}
+
+
+\section{Insiemi numerici}
+
+\begin{define}[Estremo superiore]
+  Sia $A \subset \mathbb{R}$, si definisce estremo superiore di $A$:
+
+  \begin{itemize}
+    \item $\sup_A := l \in \mathbb{R} \iff l \geqslant a~\forall a \in A~\wedge~\forall \varepsilon > 0~\exists a \in A~\colon~a \geqslant l - \varepsilon$
+    \item $\sup_A := +\infty \iff \forall M > 0~\exists a \in A~\colon~a > M$
+  \end{itemize}
+\end{define}
+
+\begin{define}[Massimo]
+  Sia $A \subset \mathbb{R}$, si definisce massimo di $A$:
+
+  $$
+    \max{A} = M \in \mathbb{A}~\colon~M \geqslant a~\forall a \in \mathbb{A}
+  $$
+\end{define}
+
+\begin{obs}
+  Se $\sup_A \in \mathbb{A}, \sup_A = \max{A}$.
+\end{obs}
+
+\begin{axiom}[Assioma di completezza]
+  Sia $A \subset \mathbb{R}$, $A \neq \emptyset$, con $A$ superiormente limitato. $A$ ammette estremo superiore in $\mathbb{R}$.
+\end{axiom}
+
+
+\section{Strutture algebriche}
+
+\begin{define}[Campo]
+
+\end{define}
+
+\begin{define}[Relazione d'equivalenza]
+
+\end{define}
+
+\begin{define}[Relazione d'ordine]
+
+\end{define}
+
+\begin{define}[Campo ordinato]
+
+\end{define}
+
+\begin{define}[Campo ordinato completo]
+
+\end{define}
+
 \section{Sommatorie e produttorie}
 
 \begin{notation}
@@ -131,87 +211,6 @@
 \end{proof}
 
 
-\section{Relazioni}
-
-\begin{define}[Prodotto cartesiano]
-  Siano $A$ e $B$ due insiemi. Si definisce \textbf{prodotto cartesiano} di $A$ e $B$ l'insieme di coppie ordinate:
-
-  $$
-    A \times B = \{(a, b)~\colon~a \in A \wedge b \in B\}
-  $$
-\end{define}
-
-\begin{define}[Relazione]
-  Dati due insiemi $A$ e $B$ si definisce \textbf{relazione} $\mathfrak{R}$ tra $A$ e $B$ un 
-  sottoinsieme del prodotto cartesiano $A \times B$. Diciamo che $\mathfrak{R}$ \textbf{associa} un elemento 
-  $a \in A$ a $b \in B$ se $(a, b) \in \mathfrak{R}$.
-\end{define}
-
-\begin{notation}
-  $A \mathfrak{R}B$
-\end{notation}
-
-\begin{define}[Funzione]
-  Dati due insiemi $A$ e $B$, una funzione $f$ è una relazione che a 
-  un elemento di $A$ associa al più un elemento di $B$.
-\end{define}
-
-\begin{notation}
-  $f : A \to B$
-\end{notation}
-
-
-\section{Insiemi numerici}
-
-\begin{define}[Estremo superiore]
-  Sia $A \subset \mathbb{R}$, si definisce estremo superiore di $A$:
-
-  \begin{itemize}
-    \item $\sup_A := l \in \mathbb{R} \iff l \geqslant a~\forall a \in A~\wedge~\forall \varepsilon > 0~\exists a \in A~\colon~a \geqslant l - \varepsilon$
-    \item $\sup_A := +\infty \iff \forall M > 0~\exists a \in A~\colon~a > M$
-  \end{itemize}
-\end{define}
-
-\begin{define}[Massimo]
-  Sia $A \subset \mathbb{R}$, si definisce massimo di $A$:
-
-  $$
-    \max{A} = M \in \mathbb{A}~\colon~M \geqslant a~\forall a \in \mathbb{A}
-  $$
-\end{define}
-
-\begin{obs}
-  Se $\sup_A \in \mathbb{A}, \sup_A = \max{A}$.
-\end{obs}
-
-\begin{axiom}[Assioma di completezza]
-  Sia $A \subset \mathbb{R}$, $A \neq \emptyset$, con $A$ superiormente limitato. $A$ ammette estremo superiore in $\mathbb{R}$.
-\end{axiom}
-
-
-\section{Strutture algebriche}
-
-\begin{define}[Campo]
-
-\end{define}
-
-\begin{define}[Relazione d'equivalenza]
-
-\end{define}
-
-\begin{define}[Relazione d'ordine]
-
-\end{define}
-
-\begin{define}[Campo ordinato]
-
-\end{define}
-
-\begin{define}[Campo ordinato completo]
-
-\end{define}
-
-
 \section{Cardinalità infinite}
 
 \begin{define}
@@ -274,23 +273,123 @@
 \end{thm}
 
 \begin{proof}
+  È sufficiente associare ogni intero a un naturale ordinandoli in tal modo:
 
+  \begin{center}
+    \begin{tikzpicture}
+
+    % Draw the top row of numbers
+    \node at (0, 0) {-2};
+    \node at (1, 0) {3};
+    \node at (-1, 0) {2};
+    \node at (2, 0) {-3};
+    \node at (-2, 0) {-1};
+    \node at (3, 0) {4};
+    \node at (-3, 0) {1};
+    \node at (4, 0) {-4};
+    \node at (-4, 0) {0};
+
+    % Draw the second row of numbers (1, 2, 3, 4, ...)
+    \node at (0, -1) {4};
+    \node at (1, -1) {5};
+    \node at (-1, -1) {3};
+    \node at (2, -1) {6};
+    \node at (-2, -1) {2};
+    \node at (3, -1) {7};
+    \node at (-3, -1) {1};
+    \node at (4, -1) {8};
+    \node at (-4, -1) {0};
+
+    % Draw arrows from the top numbers to the bottom numbers
+    \draw[->, teal, thick] (0, -0.25) -- (0, -0.65);
+    \draw[->, teal, thick] (1, -0.25) -- (1, -0.65);
+    \draw[->, teal, thick] (-1, -0.25) -- (-1, -0.65);
+    \draw[->, teal, thick] (2, -0.25) -- (2, -0.65);
+    \draw[->, teal, thick] (-2, -0.25) -- (-2, -0.65);
+    \draw[->, teal, thick] (3, -0.25) -- (3, -0.65);
+    \draw[->, teal, thick] (-3, -0.25) -- (-3, -0.65);
+    \draw[->, teal, thick] (4, -0.25) -- (4, -0.65);
+    \draw[->, teal, thick] (-4, -0.25) -- (-4, -0.65);
+
+    \end{tikzpicture}
+  \end{center}
 \end{proof}
 
 \begin{thm}
   $|\mathbb{Q}| = \aleph_0$
 \end{thm}
 
-\begin{proof}
+\begin{proof}\leavevmode
+  \begin{center}
+    \begin{tikzpicture}
 
+    \def\n{5};
+
+    \foreach \a in {1, ..., \n} {
+      \node at (-1, \n-\a) {\a};
+    }
+
+    \foreach \a in {1, ..., \n} {
+      \node at (\a-1, \n) {\a};
+    }
+
+    \node at (-1, \n) {$0$};
+
+    \foreach \a in {1, ..., \n} {
+      \foreach \b in {1, ..., \n} {
+        \node at (\a-1, -\b+\n) {$\frac{\a}{\b}$};
+      }
+    }
+
+    \draw[->, teal, thick] (0, \n-1-0.25)       -- node[left]   {\small $1$}    (0, \n-2+0.25);
+    \draw[->, teal, thick] (0+0.25, \n-2+0.25)  -- node[above]  {\small $2$}    (1-0.25, \n-1-0.25);
+    \draw[->, teal, thick] (1+0.25, \n-1)       -- node[above]  {\small $3$}    (2-0.25, \n-1);
+    \draw[->, teal, thick] (2-0.25, \n-1-0.25)  -- node[above]  {\small $4$}    (1+0.25, \n-2+0.25);
+    \draw[->, teal, thick] (1-0.25, \n-2-0.25)  -- node[above]  {\small $5$}    (0+0.25, \n-3+0.25);
+    \draw[->, teal, thick] (0, \n-3-0.25)       -- node[left]   {\small $6$}    (0, \n-4+0.25);
+    \draw[->, teal, thick] (0+0.25, \n-4+0.25)  -- node[above]  {\small $7$}    (1-0.25, \n-3-0.25);
+    \draw[->, teal, thick] (1+0.25, \n-3+0.25)  -- node[above]  {\small $8$}    (2-0.25, \n-2-0.25);
+    \draw[->, teal, thick] (2+0.25, \n-2+0.25)  -- node[above]  {\small $9$}    (3-0.25, \n-1-0.25);
+    \draw[->, teal, thick] (3+0.25, \n-1)       -- node[above]  {\small $10$}   (4-0.25, \n-1);
+    \draw[->, teal, thick] (4-0.25, \n-1-0.25)  -- node[above]  {\small $11$}   (3+0.25, \n-2+0.25);
+    \draw[->, teal, thick] (3-0.25, \n-2-0.25)  -- node[above]  {\small $12$}   (2+0.25, \n-3+0.25);
+    \draw[->, teal, thick] (2-0.25, \n-3-0.25)  -- node[above]  {\small $13$}   (1+0.25, \n-4+0.25);
+    \draw[->, teal, thick] (1-0.25, \n-4-0.25)  -- node[above]  {\small $14$}   (0+0.25, \n-5+0.25);
+
+    \end{tikzpicture}
+  \end{center}
 \end{proof}
 
 \begin{thm}
   $\mathbb{R}$ non è numerabile.
 \end{thm}
 
-\begin{proof}[Dim. (Diagonalizzazione di Cantor)]
-  
+\begin{proof}[Dimostrazione (Diagonalizzazione di Cantor)]
+  Si dimostrerà che $[0, 1]$ non è numerabile. Si supponga di aver trovato un'enumerazione del suddetto insieme. È possibile 
+  comunque trovare un nuovo numero nel seguente modo:
+
+  \begin{center}
+    \begin{tikzpicture}
+
+    \node at (-1, 4)  {$0.$};   \node at (-1+0.25, 4)  {$\color{teal} 3$};   \node at (-1+0.5, 4)  {$7$};   \node at (-1+0.75, 4)  {$8$};   \node at (-1+1, 4)  {$2$};   \node at (-1+1.25, 4)  {$0$};    \node at (-1+1.5, 4)  {$2$}; \node at (-1+2, 4)  {$\dots$};
+    \node at (-1, 3)  {$0.$};   \node at (-1+0.25, 3)  {$4$};   \node at (-1+0.5, 3)  {$\color{teal} 4$};   \node at (-1+0.75, 3)  {$7$};   \node at (-1+1, 3)  {$9$};   \node at (-1+1.25, 3)  {$2$};    \node at (-1+1.5, 3)  {$6$}; \node at (-1+2, 3)  {$\dots$};
+    \node at (-1, 2)  {$0.$};   \node at (-1+0.25, 2)  {$2$};   \node at (-1+0.5, 2)  {$2$};   \node at (-1+0.75, 2)  {$\color{teal} 0$};   \node at (-1+1, 2)  {$4$};   \node at (-1+1.25, 2)  {$4$};    \node at (-1+1.5, 2)  {$8$}; \node at (-1+2, 2)  {$\dots$};
+    \node at (-1, 1)  {$0.$};   \node at (-1+0.25, 1)  {$1$};   \node at (-1+0.5, 1)  {$5$};   \node at (-1+0.75, 1)  {$7$};   \node at (-1+1, 1)  {$\color{teal} 6$};   \node at (-1+1.25, 1)  {$0$};    \node at (-1+1.5, 1)  {$2$}; \node at (-1+2, 1)  {$\dots$};
+    \node at (-1, 0)  {$0.$};   \node at (-1+0.25, 0)  {$6$};   \node at (-1+0.5, 0)  {$2$};   \node at (-1+0.75, 0)  {$2$};   \node at (-1+1, 0)  {$0$};   \node at (-1+1.25, 0)  {$\color{teal} 2$};    \node at (-1+1.5, 0)  {$9$}; \node at (-1+2, 0)  {$\dots$};
+    \node at (-1, -1) {$0.$};   \node at (-1+0.25,-1)  {$8$};   \node at (-1+0.5,-1)  {$1$};   \node at (-1+0.75,-1)  {$1$};   \node at (-1+1,-1)  {$2$};   \node at (-1+1.25,-1)  {$3$};    \node at (-1+1.5,-1)  {$\color{teal} 1$}; \node at (-1+2, -1)  {$\dots$};
+
+    \draw[teal, thick] (-1-0.25, -1.5) -- (-1+2+0.25, -1.5);
+
+    \draw[->, teal, thick] (-1+0.25, 4-0.25)       -- node[right]   {\small $+1$}    (-1+0.5, 3+0.25);
+    \draw[->, teal, thick] (-1+0.5, 3-0.25)       -- node[right]   {\small $+1$}    (-1+0.75, 2+0.25);
+    \draw[->, teal, thick] (-1+0.75, 2-0.25)       -- node[right]   {\small $+1$}    (-1+1, 1+0.25);
+    \draw[->, teal, thick] (-1+1, 1-0.25)       -- node[right]   {\small $+1$}    (-1+1.25, 0+0.25);
+    \draw[->, teal, thick] (-1+1.25, 0-0.25)       -- node[right]   {\small $+1$}    (-1+1.5, -1+0.25);
+
+    \node at (-1, -2) {$0.$};   \node at (-1+0.25,-2)  {$\color{teal} 4$};   \node at (-1+0.5,-2)  {$\color{teal} 5$};   \node at (-1+0.75,-2)  {$\color{teal} 1$};   \node at (-1+1,-2)  {$\color{teal} 7$};   \node at (-1+1.25,-2)  {$\color{teal} 3$};    \node at (-1+1.5,-2)  {$\color{teal} 2$}; \node at (-1+2, -2)  {$\dots$};
+
+    \end{tikzpicture}
+  \end{center}
 \end{proof}
 
 \begin{thm}[Teorema di Cantor]

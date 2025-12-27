@@ -35,14 +35,14 @@
 \end{obs}
 
 
-\begin{define}[Punto di accumulazione]
+\begin{defineimp}[Punto di accumulazione]
   Un punto $x \in \overline{\mathbb{R}}$ è detto \textbf{punto di accumulazione} di un insieme $A \subset \mathbb{R}$ 
   se: 
 
   $$
     \forall \mathcal{U}(x)~~~\dot{\mathcal{U}}(x) \cap A \neq \emptyset
   $$
-\end{define}
+\end{defineimp}
 
 \begin{center}
   \begin{tikzpicture}[scale=1.2]
@@ -55,10 +55,10 @@
 
   \foreach \x in {-5, -2.3, -1.4, -0.8, -0.4, -0.15, 0.05, 0.18, 0.28, 0.34}
   {
-    \filldraw[blue] ({1 + \x/3},0) circle (2.2pt);
+    \filldraw[cmapteal-300] ({1 + \x/3},0) circle (2.2pt);
   }
 
-  \filldraw[amber] (1,0) circle (2pt);
+  \filldraw[cmapteal-500] (1,0) circle (2pt);
 
   \end{tikzpicture}
 \end{center}
@@ -121,10 +121,10 @@
 
   \foreach \x in {-5, -4, -3, -2, 2, 3, 4, 5}
   {
-    \filldraw[blue] ({1 + \x/3},0) circle (2.2pt);
+    \filldraw[cmapteal-300] ({1 + \x/3},0) circle (2.2pt);
   }
 
-  \filldraw[amber] (1,0) circle (2pt);
+  \filldraw[cmapteal-500] (1,0) circle (2pt);
 
   \end{tikzpicture}
 \end{center}
@@ -149,15 +149,15 @@
 
   \foreach \x in {-5, -2.3, -1.4, -0.8, -0.4, -0.15}
   {
-    \filldraw[blue] ({1 + \x/3},0) circle (2.2pt);
+    \filldraw[cmapteal-300] ({1 + \x/3},0) circle (1.8pt);
   }
 
   \foreach \x in {5, 2.3, 1.4, 0.8, 0.4, 0.15}
   {
-    \filldraw[teal] ({1 + \x/3},0) circle (2.2pt);
+    \filldraw[tyrian] ({1 + \x/3},0) circle (1.8pt);
   }
 
-  \filldraw[amber] (1,0) circle (2pt);
+  \filldraw[cmapteal-500] (1,0) circle (2.6pt);
 
   \end{tikzpicture}
 \end{center}
@@ -177,13 +177,13 @@
 \begin{center}
   \begin{tikzpicture}[scale=1.2]
 
-  \draw[thick, blue] (-3,0) -- (3,0);
+  \draw[ultra thick, cmapteal-300] (-3,0) -- (3,0);
   \draw[thick] (-3,0.15) -- (-3,-0.15);
-  \draw[thick,->] (2.9,0) -- (3.3,0);
+  \draw[thick,->] (3,0) -- (3.3,0);
 
   \node[below] at (1,-0.25) {$x_0$};
 
-  \filldraw[amber] (1,0) circle (2pt);
+  \filldraw[cmapteal-500] (1,0) circle (2pt);
 
   \end{tikzpicture}
 \end{center}
@@ -246,7 +246,7 @@
 
 \subsection{Introduzione}
 
-\begin{define}[Limite]
+\begin{defineimp}[Limite]
   Sia $f: \mathbb{R} \to \mathbb{R}$ di dominio $\mathfrak{D}$ e sia $x_0 \in \overline{\mathbb{R}}$ 
   un punto di accumulazione di $\mathfrak{D}$, si dice che $f$ ammette \textbf{limite} uguale a $l \in \overline{\mathbb{R}}$ per $x$ 
   che tende a $x_0$ se:
@@ -254,12 +254,11 @@
   $$
     \forall \mathcal{U}(l)~\exists \mathcal{U}(x_0)~\colon~\text{ se } x \in \mathfrak{D} \cap \dot{\mathcal{U}}(x_0) \implies f(x) \in \mathcal{U}(l)
   $$
-\end{define}
+\end{defineimp}
 
 \begin{notation}
   $\displaystyle \lim_{x\to x_0}f(x) = l$, $f(x) \underset{x\to x_0}{\to} l$
 \end{notation}
-
 
 \begin{define}[Limite successionale]
   Data $f: \mathbb{R} \to \mathbb{R}$ di dominio $\mathfrak{D}$, si dice che $f$ ammette \textbf{limite successionale} uguale 
@@ -335,16 +334,22 @@ reali ottenibili tramite il teorema traghettatore.
 \end{proof}
 
 \begin{thm}[Permanenza del segno]
-  Sia $f: \mathfrak{D}(f) \to \mathbb{R}$ una funzione reale e sia $x_0$ un punto di accumulazione di $\mathfrak{D}(f)$.
-  
+  Sia $f: \mathfrak{D}(f) \to \mathbb{R}$ una funzione reale e sia $x_0$ un punto di accumulazione di $\mathfrak{D}(f)$. Sia inoltre $l := \lim_{x \to x_0}f(x) \in \mathbb{R}$ \\
+  Se $f \geqslant 0$ in un $\dot{\mathcal{U}}(x_0)$ $\implies$ $l \geqslant 0$. \\
+  Se $l > 0$ $\implies$ $\exists \mathcal{U}(x_0)$ t.che $f(x) > 0~\forall x \in \dot{\mathcal{U}}(x_0) \cap \mathfrak{D}(f)$
 \end{thm}
 
 \begin{thm}[Teorema del confronto]
+  Siano $f, g, h: \dot{\mathcal{U}}(x_0) \to \mathbb{R}$ t.che $f \leqslant h \leqslant g~~~\forall x \in \dot{\mathcal{U}}(x_0)$, allora, se $\lim_{x \to x_0} f(x) = \lim_{x \to x_0} g(x) = l \in \mathbb{R}$:
 
+  $$
+    \lim_{x \to x_0}h(x) = l
+  $$
 \end{thm}
 
 \begin{thm}[Operazioni con i limiti]
-
+  Siano $f, g$ due funzioni reali e $x_0$ un punto di accumulazione del dominio di entrambe, le 
+  stesse proprietà che valgono per i limiti delle successioni valgono per i limiti di $f$ e $g$.
 \end{thm}
 
 
@@ -395,14 +400,14 @@ reali ottenibili tramite il teorema traghettatore.
 
 \subsection{Continuità}
 
-\begin{define}[Continuità]
+\begin{defineimp}[Continuità]
   Sia $f: \mathbb{R} \to \mathbb{R}$ una funzione di dominio $\mathfrak{D}$ e sia 
   $x_0 \in \mathfrak{D}$, $f$ è \textbf{continua} in $x_0$ se:
 
   $$
     \forall \mathcal{U}(f(x_0))~\exists \mathcal{U}(x_0)~\colon~\text{ se } x \in \mathfrak{D} \cap \mathcal{U}(x_0) \implies f(x) \in \mathcal{U}(f(x_0))
   $$
-\end{define}
+\end{defineimp}
 
 \begin{obs}
   La definizione è equivalente a dire che: \\
@@ -565,16 +570,16 @@ reali ottenibili tramite il teorema traghettatore.
     ticks=none,
   ]
 
-  \addplot[blue, thick] ({x},{sin(deg(x))/x});
+  \addplot[cmapteal-300, very thick] ({x},{sin(deg(x))/x});
 
   \addplot[
     only marks,
     mark=o,
     mark size=3pt,
-    blue,
+    cmapteal-300,
     line width=1pt
   ] coordinates {(0,1)};
-  \addplot[blue, only marks, mark=*] coordinates {(0,0)};
+  \addplot[cmapteal-300, only marks, mark=*] coordinates {(0,0)};
 
   \end{axis}
   \end{tikzpicture}
@@ -607,15 +612,15 @@ reali ottenibili tramite il teorema traghettatore.
     ticks=none
   ]
 
-  \addplot[blue, thick, domain=-3:0] {-1};
+  \addplot[cmapteal-300, very thick, domain=-3:0] {-1};
 
-  \addplot[blue, thick, domain=0:3] {1};
+  \addplot[cmapteal-300, very thick, domain=0:3] {1};
 
-  \addplot[only marks, mark=o, blue, mark size=3pt] coordinates {(0,-1)};
+  \addplot[only marks, mark=o, cmapteal-300, mark size=3pt] coordinates {(0,-1)};
 
-  \addplot[only marks, mark=*, blue, mark size=2pt] coordinates {(0,0)};
+  \addplot[only marks, mark=*, cmapteal-300, mark size=2pt] coordinates {(0,0)};
 
-  \addplot[only marks, mark=o, blue, mark size=3pt] coordinates {(0,1)};
+  \addplot[only marks, mark=o, cmapteal-300, mark size=3pt] coordinates {(0,1)};
 
   \end{axis}
   \end{tikzpicture}
@@ -652,10 +657,10 @@ reali ottenibili tramite il teorema traghettatore.
     ticks=none,
   ]
 
-  \addplot[blue, thick, domain=0:10] ({x},{1/x});
-  \addplot[blue, thick, domain=-10:0] ({x}, 0);
+  \addplot[cmapteal-300, very thick, domain=0:10] ({x},{1/x});
+  \addplot[cmapteal-300, very thick, domain=-10:0] ({x}, 0);
 
-  \addplot[blue, only marks, mark=*] coordinates {(0,0)};
+  \addplot[cmapteal-300, only marks, mark=*] coordinates {(0,0)};
 
   \end{axis}
   \end{tikzpicture}
@@ -683,18 +688,18 @@ reali ottenibili tramite il teorema traghettatore.
     ticks=none,
   ]
 
-  \addplot[blue, thick, domain=0.001:2] ({x},{sin(deg(1/x))});
-  \addplot[blue, thick, domain=-2:0] ({x}, -x);
+  \addplot[cmapteal-300, very thick, domain=0.001:2] ({x},{sin(deg(1/x))});
+  \addplot[cmapteal-300, very thick, domain=-2:0] ({x}, -x);
 
   \addplot[
     only marks,
     mark=o,
     mark size=3pt,
-    blue,
+    cmapteal-300,
     line width=1pt
   ] coordinates {(0,0)};
 
-  \addplot[blue, only marks, mark=*] coordinates {(0,2)};
+  \addplot[cmapteal-300, only marks, mark=*] coordinates {(0,2)};
 
   \end{axis}
   \end{tikzpicture}
@@ -805,17 +810,42 @@ reali ottenibili tramite il teorema traghettatore.
 
 \subsection{Prolungamento per continuità}
 
+Sia $f: \mathfrak{D}(f) \to \mathbb{R}$ e sia $x_0 \not \in \mathfrak{D}(f)$ un punto di accumulazione di $\mathfrak{D}(f)$. Non essendo definita in $x_0$, 
+non ha senso porsi domande sulla continuità di $f$ in $x_0$. È tuttavia lecito domandarsi se sia possibile definire una funzione $\hat{f}: \mathfrak{D}(f) \cup \{x_0\} \to \mathbb{R}$ t.che $\hat{f}(x) = f(x)~\forall x \neq x_0$ e t.che 
+$\hat{f}$ è continua in $x_0$. Tale funzione, se esiste, si dice \textbf{estensione per continuità} di $f$ in $x_0$. \\
+Perché $\hat{f}$ sia continua in $x_0$, si deve avere:
+
+$$
+  \lim_{x \to x_0^-}\hat{f}(x) = \lim_{x \to x_0^+}\hat{f}(x) = \hat{f}(x_0)
+$$
+
+dunque, dato che $\hat{f}$ è uguale a $f$ in un qualsiasi intorno bucato di $x_0$:
+
+$$
+  \lim_{x \to x_0^-}f(x) = \lim_{x \to x_0^+}f(x) = \hat{f}(x_0) \in \mathbb{R}
+$$
+
+quindi, detto $l := \lim_{x \to x_0}f(x)$, è sufficiente definire $\hat{f}$ come segue:
+
+$$
+  \hat{f}(x) =  \begin{cases*}
+                  f(x)~~~\text{ se } x \neq x_0 \\
+                  l~~~\text{ se } x = x_0
+                \end{cases*}
+$$
+
+Si noti che è possibile definire $\hat{f}$ solo se $l$ esiste ed è finito.
 
 
 \section{Teoremi sulle funzioni continue}
 
-\begin{thm}[Teorema degli zeri]
+\begin{thmimp}[Teorema degli zeri]
   Sia $f: [a,b] \to \mathbb{R}$ una funzione continua. Se $f(a)\cdot f(b) < 0$, allora 
 
   $$
     \exists c \in [a, b]~\colon~f(c) = 0
   $$
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Si supponga che sia $f(a) > 0$ e $f(b) < 0$. Sia $P := \{x \in [a,b]~\colon~f(x) > 0\}$. Dato che $P$ è limitato e non vuoto ($a$ appartiene a $P$), ammette estremo superiore. 
@@ -857,7 +887,7 @@ reali ottenibili tramite il teorema traghettatore.
   \node at (0, 0) [below left] {$0$};
 
   % --- 2. Draw the Continuous Function f(x) ---
-  \draw[thick, blue, smooth]
+  \draw[thick, cmapteal-300, smooth]
       (\a, \fa) -- (\c, 0) -- (\b, \fb);
 
   % --- 3. Mark and Label the Key Points ---
@@ -867,14 +897,14 @@ reali ottenibili tramite il teorema traghettatore.
   \draw[dashed, gray] (0, \fa) -- (\a, \fa);
   \node[dot, label={below:$a$}] at (\a, 0) {};
   \node[dot, label={left:$f(a)$}] at (0, \fa) {};
-  \node[dot, blue, label={above right:$(\text{a}, \text{f}(\text{a}))$}] at (\a, \fa) {};
+  \node[dot, cmapteal-300, label={above right:$(\text{a}, \text{f}(\text{a}))$}] at (\a, \fa) {};
 
   % Mark b and f(b)
   \draw[dashed, gray] (\b, 0) -- (\b, \fb);
   \draw[dashed, gray] (0, \fb) -- (\b, \fb);
   \node[dot, label={below:$b$}] at (\b, 0) {};
   \node[dot, label={left:$f(b)$}] at (0, \fb) {};
-  \node[dot, blue, label={below right:$(\text{b}, \text{f}(\text{b}))$}] at (\b, \fb) {};
+  \node[dot, cmapteal-300, label={below right:$(\text{b}, \text{f}(\text{b}))$}] at (\b, \fb) {};
 
   % Mark c (the root)
   \node[dot, amber, label={below:$c$}] at (\c, 0) {};
@@ -910,9 +940,9 @@ reali ottenibili tramite il teorema traghettatore.
   Se $f: \mathfrak{I} \to \mathbb{R}$ è di Darboux, non può avere discontinuità eliminabili.
 \end{obs}
 
-\begin{thm}[Teorema di Darboux]
+\begin{thmimp}[Teorema di Darboux]
   Sia $f:\mathfrak{I} \to \mathbb{R}$, se $f$ è continua allora è di Darboux.
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Si vuole mostrare che, fissati $x, y \in \mathfrak{I},~x < y$:
@@ -934,7 +964,7 @@ reali ottenibili tramite il teorema traghettatore.
           ytick=\empty
         ]
 
-        \addplot[color=blue]{4*e^(-x)*sin(deg(x))*ln(x)};
+        \addplot[color=cmapteal-300, very thick]{4*e^(-x)*sin(deg(x))*ln(x)};
 
         \draw[->,color=amber] (0, {4*e^(-1.5)*sin(deg(1.5))*ln(1.5)}) -- (5, {4*e^(-1.5)*sin(deg(1.5))*ln(1.5)});
         \node[left,color=amber] at (4.5,{4*e^(-1.5)*sin(deg(1.5))*ln(1.5)+0.15}) {$\gamma$};
@@ -997,9 +1027,9 @@ reali ottenibili tramite il teorema traghettatore.
 \end{proof}
 
 
-\begin{thm}[Teorema di Weierstrass]
+\begin{thmimp}[Teorema di Weierstrass]
   Sia $f:[a, b] \to \mathbb{R}$ una funzione continua, $f$ ammette massimo e minimo.
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Sia $M := \sup_f$ (o $+\infty$ se f è illimitata). Si ha che:
@@ -1089,3 +1119,14 @@ reali ottenibili tramite il teorema traghettatore.
 \begin{proof}
 
 \end{proof}
+
+
+\section{Continuità di Lipschitz}
+
+\begin{define}[Funzione Lipschitz continua]
+  Sia $f: [a, b] \to \mathbb{R}$ una funzione reale, $f$ si dice \textbf{Lipschitz continua} se:
+
+  $$
+    \exists L \in \mathbb{R}^+~\colon~\forall x, y \in [a, b]~~~|f(x) - f(y)| \leqslant L|x - y|
+  $$
+\end{define}

@@ -22,11 +22,11 @@ Sia $f: [a, b] \to \mathbb{R}$ una funzione limitata.
   % Subdivision points
   \foreach \k in {1,...,\numexpr\n-2} {
     \draw[thick] ({10*\k/\n},0) -- ({10*\k/\n},0.15);
-    \node[below] at ({10*\k/\n},0) {$x_{\k}$};
+    \node[below, cmapteal-300] at ({10*\k/\n},0) {$x_{\k}$};
   }
 
   \draw[thick] ({10*(\numexpr\n-1)/\n},0) -- ({10*(\numexpr\n-1)/\n},0.15);
-  \node[below] at ({10*(\numexpr\n-1)/\n},0) {$x_{n-1}$};
+  \node[below, cmapteal-300] at ({10*(\numexpr\n-1)/\n},0) {$x_{n-1}$};
 
   % Interval braces and labels
   \foreach \k in {1,...,\numexpr\n-1} {
@@ -125,13 +125,13 @@ Si defiscano allora:
 \end{obs}
 
 
-\begin{define}[Integrabilità secondo Riemann]
+\begin{defineimp}[Integrabilità secondo Riemann]
   $f$ si dice \textbf{integrabile secondo Riemann} su $[a, b]$ se 
   
   $$
     \lim \sigma_n = \lim S_n = S = \sigma
   $$
-\end{define}
+\end{defineimp}
 
 \begin{notation}
   $R(a, b)$, insieme delle funzioni integrabili secondo Riemann su $[a, b]$
@@ -142,9 +142,9 @@ Si defiscano allora:
 \end{obs}
 
 
-\begin{define}[Integrale di Riemann]
+\begin{defineimp}[Integrale di Riemann]
   Se $f \in R(a, b)$, $S = \sigma$ è detto \textbf{integrale di Riemann} di $f$ su $[a, b]$.
-\end{define}
+\end{defineimp}
 
 \begin{notation}
   $\displaystyle \int_{a}^{b} f(x)dx$, $\displaystyle \int_{[a, b]} f(x)dx$, $\displaystyle \int_{a}^{b}f$
@@ -298,7 +298,7 @@ Si defiscano allora:
 \end{proof}
 
 
-\begin{thm}[Linearità dell'integrale]
+\begin{thmimp}[Linearità dell'integrale]
   Se $f, g \in R(a, b)$ e $\lambda \in \mathbb{R}$, allora:
 
   $$
@@ -307,7 +307,7 @@ Si defiscano allora:
   $$
     \int_{a}^{b}f(x) + \lambda g(x) dx = \int_{a}^{b}f(x)dx + \lambda\int_{a}^{b}g(x) dx
   $$
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Consideriamo il caso in cui $f(x) = 0$. Si vuole mostrare che:
@@ -360,13 +360,13 @@ Si defiscano allora:
   $$
 \end{prop}
 
-\begin{thm}[Teorema del confronto per l'integrale di Riemann]
+\begin{thmimp}[Teorema del confronto per l'integrale di Riemann]
   Siano $f, g \in R(a, b)$, se $f \geqslant g$ ($f(x) \geqslant g(x)~\forall x \in [a, b]$), allora:
 
   $$
     \int_{a}^{b}f(x)dx \geqslant \int_{a}^{b}g(x)dx
   $$
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Dato che $f \geqslant g$, si ha che:
@@ -408,13 +408,13 @@ Si defiscano allora:
 \end{obs}
 
 
-\begin{thm}[Disuguaglianza del modulo]
+\begin{thmimp}[Disuguaglianza del modulo]
   Sia $f \in R(a, b)$, allora $|f| \in R(a, b)$ e:
 
   $$
     \left|\int_{a}^{b}f(x)dx\right| \leqslant \int_{a}^{b}\left|f(x)\right|dx
   $$
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Il fatto che $|f| \in R(a, b)$ sarà dimostrato successivamente. \\
@@ -465,7 +465,7 @@ Si defiscano allora:
 \end{proof}
 
 
-\begin{thm}[Additività dell'integrale]
+\begin{thmimp}[Additività dell'integrale]
   Sia dato $[a, b]$ e $c \in (a, b)$, allora:
 
   $$
@@ -474,7 +474,7 @@ Si defiscano allora:
   $$
     \int_{a}^{b}f(x)dx = \int_{a}^{c}f(x)dx + \int_{c}^{b}f(x)dx
   $$
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
 
@@ -531,7 +531,26 @@ Si defiscano allora:
 \end{thm}
 
 \begin{proof}
+  Per il teorema di Heine-Cantor, $f$ è uniformemente continua su $[a, b]$. Quindi:
 
+  $$
+    \forall \varepsilon > 0~\exists \delta~\colon~\text{ se }~|x - y| < \delta \implies |f(x) - f(y)| < \varepsilon~\forall x,y \in [a, b]
+  $$
+
+  Si fissi $\varepsilon > 0$, sia $n_0 \in \mathbb{N}_0$ t.che $\dfrac{b-a}{n} < \delta~\forall n \geqslant n_0$. \\
+  Si suddivida $[a, b]$ in $n$ intervalli $\mathfrak{I}_k$ di lunghezza $\dfrac{b-a}{n} < \delta$. Si ha che:
+
+  $$
+    \forall x,y \in \mathfrak{I}_k~~~|f(x) - f(y)| < \varepsilon \implies \sup_{\mathfrak{I}_k}f - \inf_{\mathfrak{I}_k} < \varepsilon
+  $$
+
+  quindi:
+
+  $$
+    \omega_n(f) = \dfrac{b-a}{n}\sum_{k=1}^{n}\sup_{\mathfrak{I}_k} f - \inf_{\mathfrak{I}_k}f < \dfrac{b-a}{n}\sum_{k=1}^{n}\varepsilon = (b-a)\varepsilon
+  $$
+
+  di conseguenza $\omega_n(f) \to 0$.
 \end{proof}
 
 
@@ -661,14 +680,14 @@ Si defiscano allora:
 
 \section{Primitiva}
 
-\begin{define}
+\begin{defineimp}
   Sia $f: [a, b] \to \mathbb{R}$, si dice \textbf{primitiva} di $f$ 
   una funzione derivabile $F: [a, b] \to \mathbb{R}$ t.che:
 
   $$
     F'(x) = f(x)~\forall x \in [a, b]
   $$
-\end{define}
+\end{defineimp}
 
 \begin{prop}
   Data una funzione $f$, non è detto che esista una primitiva di $F$ di $f$.
@@ -742,13 +761,13 @@ Si defiscano allora:
 
 \section{Teorema fondamentale del calcolo integrale}
 
-\begin{thm}[Teorema fondamentale del calcolo integrale]
+\begin{thmimp}[Teorema fondamentale del calcolo integrale]
   Sia $f \in R_P(a, b)$ e sia $F$ una primitiva di $f$, allora:
 
   $$
     \int_{a}^{b}f(x)dx = F(b) - F(a)
   $$
-\end{thm}
+\end{thmimp}
 
 \begin{notation}
   $F\vert_{a}^{b} := F(b) - F(a)$
@@ -822,13 +841,13 @@ Si defiscano allora:
 
 \section{Integrazione per parti}
 
-\begin{thm}[Integrazione per parti]
+\begin{thmimp}[Integrazione per parti]
   Siano $f, g \in R_P(a, b)$ e siano $F$ e $G$ due primitive rispettivamente di $f$ e $g$, allora:
 
   $$
     \int_{a}^{b}F(x)g(x)dx = F(x)G(x)\vert_{a}^{b} - \int_{a}^{b}f(x)G(x)dx
   $$
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   Sia $h(x) = F(x)g(x) + f(x)G(x)$, si ha che $h$ è integrabile ($F$ e $G$ sono continue, in quanto derivabili), inoltre:
@@ -847,13 +866,13 @@ Si defiscano allora:
 
 \section{Funzione integrale}
 
-\begin{define}
+\begin{defineimp}
   Sia $f \in R(a, b)$, si definisce \textbf{funzione integrale} di $f$ la funzione $\mathcal{I}: [a, b] \to \mathbb{R}$ così definita:
 
   $$
     \mathcal{I}(x) = \int_{a}^{x}f(t)dt
   $$
-\end{define}
+\end{defineimp}
 
 \begin{obs}
   Sia $f \in R(a, b)$, se $a < x < b$, allora $f \in R(a, x)$.
@@ -875,7 +894,7 @@ Si defiscano allora:
   \end{enumerate}
 \end{thm}
 
-\begin{proof}[Dim. I]
+\begin{proof}[Dimostrazione I]
   Sia $F$ una primitiva di $f$, allora, per il teorema fondamentale del calcolo integrale:
 
   $$
@@ -890,7 +909,18 @@ Si defiscano allora:
 \end{proof}
 
 
-\begin{proof}[Dim. III]
+\begin{proof}[Dimostrazione II]
+  Si ha che, dato che $f \in R(a, b)$, $f$ è limitata, quindi $\exists L \geqslant 0$ t.che $|f(x)| \leqslant L~~~\forall x \in [a, b]$. Inoltre:
+
+  \begin{align*}
+    |\mathcal{I}(x) - \mathcal{I}(y)| &= \left|\int_{a}^{x}f(t)dt - \int_{a}^{y}f(t)dt\right| = \\
+                                      &= \left|\int_{x}^{y}f(t)dt\right| \leqslant \int_{x}^{y}|f(t)|dt \\
+                                      &\leqslant \int_{x}^{y}L dt = L(y - x)
+  \end{align*}
+\end{proof}
+
+
+\begin{proof}[Dimostrazione III]
   Si dimostrerà che $I'_+(x_0) = f(x_0)$. Dato che $f$ è continua in $x_0$, fissato $\varepsilon > 0$:
 
   $$
@@ -994,10 +1024,10 @@ Si defiscano allora:
 
 \section{Integrale indefinito}
 
-\begin{define}[Integrale indefinito]
+\begin{defineimp}[Integrale indefinito]
   Sia $f$ una funzione che ammetta primitiva in $[a, b]$, si definisce \textbf{integrale indefinito} di 
   $f$ in $[a, b]$ l'insieme delle primitive di $f$.
-\end{define}
+\end{defineimp}
 
 \begin{notation}[Integrale indefinito]
   $\displaystyle \int f(x)dx$
@@ -1014,15 +1044,27 @@ Si defiscano allora:
 
 
 \begin{property}[Linearità]
-
+  $$
+    \int f(x) + \lambda g(x) dx = \int f(x) dx + \lambda \int g(x) dx
+  $$
 \end{property}
 
 \begin{property}[Integrazione per parti]
-  
+  $$
+    \int f(x)g'(x) dx = f(x)g(x) - \int f'(x)g(x)dx
+  $$
 \end{property}
 
 \begin{property}[Cambio di variabili]
-  
+  $$
+    \int f(\psi(t))\psi'(t)dt = F(\psi(t)) + C~~~C \in \mathbb{R}
+  $$
+
+  se $\psi$ è invertibile:
+
+  $$
+    \int f(x)dx = \int f(\psi(t))\psi'(t)dt|_{t=\psi^{-1}(x)}
+  $$
 \end{property}
 
 
@@ -1057,14 +1099,14 @@ Si defiscano allora:
       ytick=\empty,
     ]
 
-    \addplot[domain=1:7, smooth, thick, tyrian]
+    \addplot[domain=1:7, smooth, very thick, tyrian]
         {1/x^3};
 
     \addplot[
       ybar interval,
-      fill=blue,
+      fill=cmapteal-300,
       fill opacity=0.35,
-      draw=blue,
+      draw=cmapteal-300,
     ] coordinates {
       (0,1)
       (1,{1/2^3})
@@ -1085,7 +1127,7 @@ Si defiscano allora:
     \node[below] at (axis cs:3,0) {$3$};
     \node[below] at (axis cs:6,0) {$n$};
 
-    \node[above] at (axis cs:0.5,1) {$\color{blue} h(x)$};
+    \node[above] at (axis cs:0.5,1) {$\color{cmapteal-300} h(x)$};
     \node[above] at (axis cs:2,{1/2^3+0.2}) {$\color{tyrian} f(x)$};
 
     \end{axis}
@@ -1177,9 +1219,294 @@ Si defiscano allora:
   $$
 \end{thm}
 
-\begin{proof}
+\begin{proof}\leavevmode
 
+  \begin{center}
+    \begin{tikzpicture}
+    \begin{axis}[
+      width=8cm,
+      height=8cm,
+      xmin=-0.7, xmax=7.5,
+      ymin=-0.2, ymax=1.2,
+      axis lines=middle,
+      axis line style={->},
+      xtick=\empty,
+      ytick=\empty,
+    ]
+
+    \addplot[name path=curve, domain=0.99:7, smooth, very thick, tyrian]
+        {1/x};
+
+    \addplot[name path=top1, draw=none] {1};
+
+    \addplot[
+      cmapteal-500,
+      fill opacity=0.35,
+      draw=cmapteal-500
+    ]
+    fill between[
+      of=top1 and curve,
+      soft clip={domain=1:2},
+    ];
+
+    \addplot[name path=top2, draw=none] {1/2};
+
+    \addplot[
+      cmapteal-500,
+      fill opacity=0.35,
+      draw=cmapteal-500
+    ]
+    fill between[
+      of=top2 and curve,
+      soft clip={domain=2:3},
+    ];
+
+    \addplot[name path=top3, draw=none] {1/3};
+
+    \addplot[
+      cmapteal-500,
+      fill opacity=0.35,
+      draw=cmapteal-500
+    ]
+    fill between[
+      of=top3 and curve,
+      soft clip={domain=3:4},
+    ];
+
+    % Labels
+    \node[left] at (axis cs:0,1) {$1$};
+    \node[left] at (axis cs:0,{1/2}) {$\frac{1}{2}$};
+    \node[left] at (axis cs:0,{1/3}) {$\frac{1}{3}$};
+    \node[below left] at (axis cs:0,{1/5}) {$\frac{1}{n}$};
+
+    \node[below] at (axis cs:1,0) {$1$};
+    \node[below] at (axis cs:2,0) {$2$};
+    \node[below] at (axis cs:3,0) {$3$};
+    \node[below] at (axis cs:6,0) {$n$};
+
+    \node[above] at (axis cs:1.5,1) {$\color{cmapteal-500} h(x)$};
+    \node[above] at (axis cs:2.5,0.5) {$\color{cmapteal-500} \mathfrak{A}_k$};
+    \node[below] at (axis cs:2,{1/2-0.2}) {$\color{tyrian} f(x)$};
+
+    \end{axis}
+    \end{tikzpicture}
+  \end{center}
+
+  si ha che:
+
+  $$
+    \log{(n+1)} = \log{\left[n\left(1 + \dfrac{1}{n}\right)\right]} = \log{n} + \goesto{\log{\left(1 + \dfrac{1}{n}\right)}}{0}
+  $$
+
+  di conseguenza, $\log{n}$ e $\log{(n+1)}$ sono uguali a meno di una successione infinitesima. \\
+  Detta $S_n$ la successione delle somme parziali:
+
+  $$
+    S_n = \int_{1}^{n+1}h(x)dx = \equalto{\int_{1}^{n+1}\dfrac{1}{x}dx}{\log{(n+1)}} + \sum_{k=1}^{n}\mathfrak{A}_k
+  $$
+
+  quindi:
+
+  $$
+    S_n - \log{(n+1)} = \sum_{k=1}^{n}\mathfrak{A}_k
+  $$
+
+  si ha che:
+
+  \begin{center}
+  \begin{tikzpicture}
+    \begin{groupplot}[
+      group style={
+        group size=2 by 1,
+        horizontal sep=2cm,
+      },
+      width=8cm,
+      height=7cm,
+      xmin=0.8, xmax=2.2,
+      ymin=0, ymax=1.2,
+      axis lines=none,
+      ticks=none,
+    ]
+
+    % -------- LEFT: curved region --------
+    \nextgroupplot
+
+    \addplot[
+      fill=tyrian,
+      fill opacity=0.05,
+      draw=tyrian,
+    ]
+    coordinates {
+      (1,1)
+      (2,1)
+      (2,0.5)
+      (1,0.5)
+      (1,1)
+      (2,0.5)
+    };
+
+    % invisible top boundary y = 1
+    \addplot[name path=top, domain=1:2, draw=none] {1};
+
+    % curve y = 1/x
+    \addplot[name path=curve, domain=1:2, thick, cmapteal-500]
+      {1/x};
+
+    % filled curved region
+    \addplot[
+      fill=cmapteal-500,
+      fill opacity=0.35,
+      draw=cmapteal-500
+    ]
+    fill between[
+      of=top and curve,
+    ];
+
+    \node[above] at (axis cs:2,1) {$\color{cmapteal-500} \mathfrak{A}_k$};
+
+    % -------- RIGHT: rectangle --------
+    \nextgroupplot
+
+    % rectangle with base [1,2] and height 0.5
+    \addplot[
+      fill=tyrian,
+      fill opacity=0.35,
+      draw=tyrian,
+    ]
+    coordinates {
+      (1,1)
+      (2,1)
+      (2,0.5)
+      (1,0.5)
+      (1,1)
+      (2,0.5)
+    };
+
+    \node[above] at (axis cs:2,1) {$\color{tyrian} \mathfrak{A}_{R_k}$};
+
+    \end{groupplot}
+  \end{tikzpicture}
+  \end{center}
+
+  $$
+    \dfrac{1}{2}\mathfrak{A}_{R_k} \leqslant \mathfrak{A}_k \leqslant \mathfrak{A}_{R_k}
+  $$
+
+  dove l'altezza del rettangolo è:
+  
+  $$
+    h = \dfrac{1}{k} - \dfrac{1}{k+1}
+  $$
+
+  quindi si ha che:
+
+  $$
+    \dfrac{1}{2}\sum_{k=1}^{n}\dfrac{1}{k(k+1)} \leqslant \gamma_n \leqslant \sum_{k=1}^{n}\dfrac{1}{k(k+1)}
+  $$
+
+  quindi per confronto:
+
+  $$
+    \gamma_n \to \gamma \in \left[\dfrac{1}{2}, 1\right]
+  $$
 \end{proof}
+
+
+\subsection{Esercizi svolti}
+
+\begin{ex}
+  $$
+    \int \log{x}dx
+  $$
+
+  $$
+    \int \log{x}dx = \int 1 \cdot \log{x}dx = x\log{x} - \int \cancel{x} \cdot \dfrac{1}{\cancel{x}}dx = x(\log{x} - 1) + C
+  $$
+\end{ex}
+
+
+\begin{ex}
+  Determinare una primitiva di una funzione nella forma:
+
+  $$
+    f(x) = \dfrac{P(\sin{x}, \cos{x})}{Q(\sin{x}, \cos{x})}
+  $$
+
+  dove $P$ e $Q$ sono due polinomi in seno e coseno. \\
+
+  Per determinare una primitiva è sufficiente operare la sostituzione:
+
+  $$
+    t := \tan{\dfrac{x}{2}}
+  $$
+
+  e sfruttare le formule parametriche di seno e coseno:
+
+  $$
+    \sin{x} = \dfrac{2t}{1 + t^2}
+  $$
+  $$
+    \cos{x} = \dfrac{1 - t^2}{1 + t^2}
+  $$
+\end{ex}
+
+
+\begin{ex}
+  Calcolare:
+
+  $$
+    \int \sqrt{a^2 - x^2}dx
+  $$
+  $$
+    \int \sqrt{a^2 + x^2}dx
+  $$
+  $$
+    \int \sqrt{x^2 - a^2}dx
+  $$
+
+  È sufficiente operare le seguenti sostituzioni (nell'ordine):
+
+  $$
+    \int \sqrt{a^2 - x^2}dx~~~x := a\sin{t}
+  $$
+  $$
+    \int \sqrt{a^2 + x^2}dx~~~x := a\sinh{t}
+  $$
+  $$
+    \int \sqrt{x^2 - a^2}dx~~~x := a\cosh{t}
+  $$
+\end{ex}
+
+
+\begin{ex}
+  Calcolare:
+
+  $$
+    \int \dfrac{1}{\sqrt{x} + \sqrt[3]{x}}dx
+  $$
+
+  Si può procedere effettuando la sostituzione:
+
+  $$
+    t := x^{\frac{1}{\gcd{(2, 3)}}} = \sqrt[6]{x}
+  $$
+\end{ex}
+
+
+\begin{ex}
+  Calcolare:
+
+  $$
+    I = \int \sin{(\alpha x)}\cos{(\beta x)}dx
+  $$
+
+  È sufficiente utilizzare le formule di Prostaferesi:
+
+  $$
+    \sin{p} + \sin{q} = 2\sin{\dfrac{p + q}{2}}\cos{\dfrac{p - q}{2}}
+  $$
+\end{ex}
+
 
 
 \section{Integrale improprio (generalizzato)}
@@ -1194,7 +1521,7 @@ Si defiscano allora:
   $$
 \end{define}
 
-\begin{define}[Integrale improprio]
+\begin{defineimp}[Integrale improprio]
   Sia $f$ localmente integrabile in $(a, b)$, se esiste finito:
   
   $$
@@ -1203,7 +1530,7 @@ Si defiscano allora:
 
   $f$ si dice \textbf{integrabile impropriamente} su $(a, b)$. Inoltre, $l$ si dice \textbf{integrale improprio} di $f$ 
   su $(a, b)$
-\end{define}
+\end{defineimp}
 
 \begin{notation}
   $\displaystyle \int_{a}^{b}f(d)dx := l$
@@ -1254,7 +1581,17 @@ Si defiscano allora:
 \end{prop}
 
 \begin{proof}
+  È sufficiente calcolare i limiti:
 
+  $$
+    \lim_{R \to +\infty}\left[\dfrac{R^{-\alpha + 1}}{-\alpha + 1} - \dfrac{1}{-\alpha + 1}\right] = \lim_{R \to +\infty} \dfrac{1 - R^{-\alpha + 1}}{\alpha - 1}
+  $$
+
+  e
+
+  $$
+    \lim_{\varepsilon \to 0^+}\left[\dfrac{1}{-\alpha + 1} - \dfrac{\varepsilon^{-\alpha + 1}}{-\alpha + 1}\right] = \lim_{\varepsilon \to 0^+} \dfrac{\varepsilon^{-\alpha + 1} - 1}{\alpha - 1}
+  $$
 \end{proof}
 
 
@@ -1269,7 +1606,7 @@ Si defiscano allora:
   Sia $f$ localmente integrabile su $[a, b]$, si definisce \textbf{integrale improprio} su $[a, b]$ (se esiste finito):
 
   $$
-    \int_{a}^{b}f(x)dx = \sum_{k=1}^{n}\int_{x_{k-1}}^{x_k}f(x)dx = l \in \mathbb{R}
+    \int_{a}^{b}f(x)dx := \sum_{k=1}^{n}\int_{x_{k-1}}^{x_k}f(x)dx = l \in \mathbb{R}
   $$
 \end{define}
 
@@ -1367,14 +1704,14 @@ Si defiscano allora:
 \end{es}
 
 
-\begin{thm}[Confronto asintotico per gli integrali impropri]
+\begin{thmimp}[Confronto asintotico per gli integrali impropri]
   Sia $f$ una funzione di segno costante in $\dot{\mathcal{U}}(x_0)$, allora se $f \sim g$ in $\mathcal{U}(x_0)$ 
   si ha che $\exists \mathcal{U}'(x_0) \subset \mathcal{U}(x_0)$ t.che:
 
   $$
     f \in I(\mathcal{U}'(x_0)) \iff g \in I(\mathcal{U}'(x_0))
   $$
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
   $$
@@ -1384,7 +1721,7 @@ Si defiscano allora:
 
 
 
-\begin{thm}[Funzione campione]
+\begin{thmimp}[Funzione campione]
   Siano $\alpha, \beta \in \mathbb{R}$ e $f$ definita come:
 
   $$
@@ -1406,8 +1743,210 @@ Si defiscano allora:
                                           \alpha = 1,~\beta > 1
                                         \end{cases*}     
   $$
-\end{thm}
+\end{thmimp}
 
 \begin{proof}
+  Sia $\alpha > 1$, si può scrivere:
 
+  $$
+    \alpha := 1 + 2p
+  $$
+
+  con $p > 0$. Quindi, sia $x \in \mathcal{U}(+\infty)$:
+
+  $$
+    f(x) = \dfrac{1}{x^{1 + 2p}\left(\log x\right)^\beta} \leqslant \dfrac{1}{x^{1 + p}} \iff \dfrac{x^{1 + p}}{x^{1 + 2p}\left(\log x\right)^\beta} \leqslant 1 \iff x^{p}\left(\log{x}\right)^{\beta} \geqslant 1
+  $$
+
+  per confronto, si ha che:
+
+  $$
+    \dfrac{1}{x^{\alpha}\left(\log{x}\right)^{\beta}} \leqslant \dfrac{1}{x^{1+p}} \in I(\mathcal{U}(+\infty))
+  $$
 \end{proof}
+
+
+\subsection{Esercizi svolti}
+
+\begin{ex}
+  Si dimostri che:
+
+  $$
+    \lim_{x \to 0^+}\dfrac{1}{x}\int_{0}^{x}\sin{\dfrac{1}{t}}dt = 0
+  $$
+
+  Sia $x > 0$ fissato. Si noti che:
+
+  $$
+    \left(\cos{\dfrac{1}{t}}\right)' = \sin{\dfrac{1}{t}}\cdot \dfrac{1}{t^2}
+  $$
+
+  quindi:
+  
+  $$
+    \int_0^x \sin{\dfrac{1}{t}}dt = \int_0^x t^2\left(\cos{\dfrac{1}{t}}\right)'dt = t^2\cos{\dfrac{1}{t}}\left. \right|_0^x - \int_0^x 2t \cos{\dfrac{1}{t}}dt
+  $$
+
+  Il limite diventa dunque:
+
+  $$
+    \lim_{x \to 0^+}\left[x\cos{\dfrac{1}{x}} - \dfrac{2}{x}\int_0^x t\cos{\dfrac{1}{t}}dt\right] = \lim_{x \to 0^+}\left[- \dfrac{2}{x}\int_0^x t\cos{\dfrac{1}{t}}dt\right]
+  $$
+
+  Inoltre:
+
+  $$
+    \dfrac{2}{x}\left|\int_0^x t\cos{\dfrac{1}{t}}dt\right| \leqslant \dfrac{2}{x}\int_0^x t\left|\cos{\dfrac{1}{t}}\right|dt \leqslant \dfrac{2}{x}\int_0^x t dt = x \underset{x \to 0^+}{\to} 0
+  $$
+\end{ex}
+
+
+\begin{ex}
+  Si dimostri che:
+
+  $$
+    f(x) = \dfrac{\sin{x}}{x}
+  $$
+
+  è integrabile impropriamente in $(\pi, +\infty)$, ma che non lo è il suo modulo
+\end{ex}
+
+
+\begin{ex}[Integrale di Dirichlet]
+  Si calcoli:
+
+  $$
+    \int_{0}^{\infty}\dfrac{\sin{x}}{x}dx
+  $$
+\end{ex}
+
+\begin{ex}
+  Si calcoli:
+
+  $$
+    \int_{0}^{\pi}\log{(\sin{x})}dx
+  $$
+\end{ex}
+
+
+\begin{ex}
+  Si calcoli:
+
+  $$
+    \int e^{\arcsin{x}}dx
+  $$
+
+  $$
+    I := \int e^{\arcsin{x}}dx = \int 1\cdot e^{\arcsin{x}}dx = xe^{\arcsin{x}} - \int \dfrac{x}{\sqrt{1 - x^2}}e^{\arcsin{x}}dx
+  $$
+
+  $$
+    I = xe^{\arcsin{x}} + \int \dfrac{-x}{\sqrt{1 - x^2}}e^{\arcsin{x}}dx = xe^{\arcsin{x}} + \sqrt{1 - x^2}e^{\arcsin{x}} - \int \cancel{\sqrt{1 - x^2}}\dfrac{e^{\arcsin{x}}}{\cancel{\sqrt{1 - x^2}}}dx
+  $$
+
+  $$
+    I = \dfrac{1}{2}xe^{\arcsin{x}} + \dfrac{1}{2}\sqrt{1 - x^2}e^{\arcsin{x}} + C
+  $$
+\end{ex}
+
+
+\begin{ex}
+  Si calcoli:
+
+  $$
+    \int \dfrac{\sqrt{\log{(\log{x})}}}{x\log{x}}dx
+  $$
+
+  si ponga:
+
+  $$
+    t := \log{(\log{x})}
+  $$
+
+  $$
+    dt = \dfrac{1}{\log{x}}\cdot \dfrac{1}{x}dx
+  $$
+
+  si ottiene:
+
+  $$
+    \int \sqrt{t}dt = \dfrac{2}{3}\left[\log{(\log{x})}\right]^{\frac{2}{3}} + C
+  $$
+\end{ex}
+
+
+\begin{ex}[Integrali di Fresnel]
+  Si dimostri che:
+
+  $$
+    \int_0^{\infty} \sin{(x^2)}dx
+  $$
+
+  converge. \\
+
+  Si ponga:
+
+  $$
+    t := x^2 \implies x = \sqrt{t}
+  $$
+
+  $$
+    dx = \dfrac{1}{2\sqrt{t}}dt
+  $$
+
+  $$
+    I = \int_0^{\infty}\dfrac{1}{2\sqrt{t}}\sin{t}dt = \lim_{R \to \infty}\int_0^{R}\dfrac{\sin{t}}{2\sqrt{t}}dt
+  $$
+
+  sia $a > 0$, si ha che:
+
+  $$
+    \int_a^R \dfrac{\sin{t}}{2\sqrt{t}}dt = -\dfrac{\cos{t}}{2\sqrt{t}}\left.\right|_a^R - \int_a^R \dfrac{\cos{t}}{t^{\frac{3}{2}}}dt
+  $$
+
+  $$
+    \int_a^{\infty}\sin{(x^2)}dx = \underset{l \in \mathbb{R}}{\underbrace{\lim_{R \to \infty}\left[-\dfrac{\cos{t}}{2\sqrt{t}}\right]\left. \right|_a^R}} - \int_{a}^{\infty}\dfrac{\cos{t}}{t^{\frac{3}{2}}}dt
+  $$
+
+  ma, dato che il coseno è limitato, per confronto:
+
+  $$
+    \int_{a}^{\infty}\left|\dfrac{\cos{t}}{t^{\frac{3}{2}}}\right|dt~~~\conv
+  $$
+
+  di conseguenza:
+
+  $$
+    \int_a^{\infty}\sin{(x^2)}dx~~~\conv
+  $$
+\end{ex}
+
+
+\begin{ex}
+  Si calcoli:
+
+  $$
+    \int \dfrac{1}{(1 + x^2)^3}dx
+  $$
+
+  È sufficiente effettuare la sostituzione:
+
+  $$
+    x := \tan{u}
+  $$
+\end{ex}
+
+
+\begin{ex}
+  Si calcoli:
+
+  $$
+    I := \int_{-1}^{1}\dfrac{1}{(1 + x^2)(1 + e^x)}dx
+  $$
+
+  È sufficiente effettuare la sostituzione:
+
+  $$
+    u := -x
+  $$
+\end{ex}
